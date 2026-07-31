@@ -1,0 +1,337 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================================
+   Simplified Management — brand tokens
+   accent #2563eb · sync #10b981 · text #0f172a · body #475569
+   Display: Plus Jakarta Sans · Body: Inter
+   ============================================================ */
+:root {
+  --radius: 0.7rem;
+
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+
+  --secondary: #f1f5f9;
+  --secondary-foreground: #0f172a;
+
+  --muted: #f8fafc;
+  --muted-foreground: #64748b;
+
+  --accent: #eff6ff;
+  --accent-foreground: #1d4ed8;
+
+  --destructive: #dc2626;
+
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #2563eb;
+
+  /* brand extensions */
+  --body: #475569;
+  --sync: #10b981;
+  /* Text-safe variant: raw sync-green measures ~2.54:1 on white and fails
+     WCAG AA. Use this (not --sync) anywhere the color carries text meaning
+     rather than sitting decoratively next to already-legible text — same
+     pattern as GTM's --color-cybertech-text. */
+  --sync-text: #047857;
+  --subtle: #f8fafc;
+
+  --chart-1: #2563eb;
+  --chart-2: #10b981;
+  --chart-3: #6366f1;
+  --chart-4: #f59e0b;
+  --chart-5: #06b6d4;
+
+  /* Dense/informational spacing scale (v3 design language, §4) — strict 4px
+     multiples for the stat band and pricing cards specifically. Kept
+     deliberately separate from .container-page/.section-pad's fluid clamp()
+     rhythm, which still governs hero/narrative sections. Never mix the two. */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+
+  /* Consolidated screenshot-frame elevation (v3 design language, §6) — one
+     authored source per elevation idea, replacing the previously separate
+     hand-rolled values in browser-frame.tsx (inline) and this file's old
+     .shot-frame class. --shadow-shot-glow is used exactly once per page
+     (homepage hero screenshot); --shadow-shot-plain is used everywhere else
+     a screenshot appears. */
+  --shadow-shot-glow: 0 30px 80px -24px color-mix(in srgb, var(--primary) 30%, transparent),
+    0 20px 50px -30px rgba(0, 0, 0, 0.8);
+  --shadow-shot-plain: 0 1px 2px rgba(0, 0, 0, 0.35), 0 18px 40px -22px rgba(0, 0, 0, 0.55);
+}
+
+.dark {
+  --background: #08090c;
+  --foreground: #f4f5f7;
+  --card: #0e1015;
+  --card-foreground: #f4f5f7;
+  --popover: #0e1015;
+  --popover-foreground: #f4f5f7;
+
+  --primary: #3b82f6;
+  --primary-foreground: #ffffff;
+
+  --secondary: #14161d;
+  --secondary-foreground: #f4f5f7;
+
+  --muted: #0f1117;
+  --muted-foreground: #8b909c;
+
+  --accent: #14161d;
+  --accent-foreground: #bfdbfe;
+
+  --destructive: #ef4444;
+
+  --border: #1d2029;
+  --input: #1d2029;
+  --ring: #3b82f6;
+
+  --body: #a3a9b6;
+  --sync: #34d399;
+  --subtle: #0b0c11;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-body: var(--body);
+  --color-sync: var(--sync);
+  --color-sync-text: var(--sync-text);
+  --color-subtle: var(--subtle);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-jakarta);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Named type scale (v3 design language, §3) — single source for every
+     heading/copy size. Any future heading size maps to one of these tokens;
+     no new arbitrary bracket values (e.g. text-[3.6rem]). */
+  --text-display: clamp(2.25rem, 1.55rem + 3vw, 3.6rem);
+  --text-h1: clamp(2.1rem, 1.7rem + 1.6vw, 2.75rem);
+  --text-h2: clamp(1.75rem, 1.45rem + 1.2vw, 2.25rem);
+  --text-h3: 1.5rem;
+  --text-body-lg: 1.125rem;
+  --text-body: 1rem;
+  --text-body-sm: 0.875rem;
+  --text-label: 0.75rem;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Shared layout helpers */
+.container-page {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 3rem);
+}
+.section-pad {
+  padding-block: clamp(4rem, 9vw, 8rem);
+}
+
+/* Aspect-style dark aesthetic helpers.
+   One glow-treated screenshot per page, not zero and not many (v3 design
+   language, §2/§6): .glow-hero is reserved for the login page's brand-side
+   panel (the Spline robot's own backdrop); .glow-soft is the smaller radial
+   used behind the homepage hero screenshot only. The old sitewide
+   .grid-texture layer was retired (v1) and is not reintroduced. */
+.glow-hero {
+  background:
+    radial-gradient(48rem 30rem at 78% -8%, color-mix(in srgb, var(--primary) 22%, transparent), transparent 60%),
+    radial-gradient(38rem 24rem at 8% 8%, color-mix(in srgb, var(--primary) 10%, transparent), transparent 55%);
+}
+.glow-soft {
+  background: radial-gradient(40rem 22rem at 50% 0%, color-mix(in srgb, var(--primary) 14%, transparent), transparent 60%);
+}
+.hairline {
+  border-color: color-mix(in srgb, var(--foreground) 8%, transparent);
+}
+
+/* Product screenshot frame elevation — consumes the consolidated tokens
+   above. .shot-frame-glow is the one-per-page emphasis moment;
+   .shot-frame-plain is used everywhere else a screenshot appears. */
+.shot-frame-glow {
+  box-shadow: var(--shadow-shot-glow);
+}
+.shot-frame-plain {
+  box-shadow: var(--shadow-shot-plain);
+}
+
+/* Tabular numerals (v3 design language, §3) — required on every real numeric
+   readout: stat band, screenshot callouts, login proof-stat row. */
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Live-sync pulse dot (v3 design language, §7) — the one new animation this
+   sprint adds, flagged in ITERATIONS.md as needing a deliberate yes/no
+   rather than an approved fix. Kept toggleable in one place: see the
+   `pulse` prop on <SyncDot> in src/components/sync-dot.tsx — flip its
+   default to `false` to fall back to a plain static dot everywhere it's
+   used, no other changes required. */
+.dot-sync {
+  position: relative;
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--sync);
+}
+.dot-sync::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 999px;
+  background: var(--sync);
+  opacity: 0.5;
+  animation: dot-sync-pulse 2.2s ease-out infinite;
+}
+.dot-sync--static::after {
+  content: none;
+}
+@keyframes dot-sync-pulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dot-sync::after {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+}
+
+/* Screenshot callout entrance (v3, refined) — the callout no longer sits
+   static on top of the dashboard; it rises + fades in shortly after the
+   screenshot settles, so it reads as a live annotation rather than a sticker
+   pasted over the UI. Reduced-motion collapses it to its final resting state. */
+.callout-badge {
+  animation: callout-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+}
+@keyframes callout-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .callout-badge {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Marquee ticker (TASKS-style signature moment, homepage only) — a single
+   existing value-prop line, repeated for width and looped seamlessly by
+   translating exactly one duplicated block by -50%. Only the first repeat of
+   the first block is real text for assistive tech; every other repeat
+   (including the whole second block) carries aria-hidden in the markup, and
+   under reduced motion the filler repeats + duplicate block disappear
+   entirely, leaving one static centered line with no animation. */
+.marquee-track {
+  animation: marquee-scroll 26s linear infinite;
+}
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none !important;
+    transform: none !important;
+    width: 100% !important;
+    justify-content: center;
+  }
+  .marquee-dup-block,
+  .marquee-filler,
+  .marquee-sep {
+    display: none !important;
+  }
+}
+
+/* Gentle float for the product-proof section's real-UI chips (v3 addition,
+   ration-checked like dot-sync-pulse: two-per-page max, homepage only).
+   Fully disabled under reduced motion — chips just sit still. */
+.chip-float {
+  animation: chip-float 3.4s ease-in-out infinite;
+}
+@keyframes chip-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chip-float {
+    animation: none !important;
+    transform: none !important;
+  }
+}
