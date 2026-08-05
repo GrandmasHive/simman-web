@@ -29,7 +29,7 @@ export default function BlogIndex() {
       <PageHeader
         eyebrow="Blog"
         title="Playbooks for modern property operators"
-        lede="Practical guides on channel management, OTA distribution, and running 10 to 500+ properties without the spreadsheet chaos."
+        lede="Practical guides on channel management, OTA distribution, and running 10 to 500+ listings without the spreadsheet chaos."
       />
 
       <section className="section-pad">

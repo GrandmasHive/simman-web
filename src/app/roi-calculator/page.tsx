@@ -5,7 +5,7 @@ import { RoiCalculator } from "@/components/roi-calculator";
 export const metadata: Metadata = {
   title: "ROI Calculator",
   description:
-    "Estimate the hours and money you could save by automating calendar sync and OTA distribution across your property portfolio. Estimates only, not a quote.",
+    "Estimate the hours and money you could save by automating calendar sync and OTA distribution across your listing portfolio. Estimates only, not a quote.",
   alternates: { canonical: "/roi-calculator" },
 };
 

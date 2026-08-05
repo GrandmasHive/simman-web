@@ -7,7 +7,7 @@ import { faqs } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Pricing",
   description:
-    "Simplified Management pricing is matched to your portfolio scale and confirmed with a custom quote during a demo. Plans for operators running 10 to 500+ properties.",
+    "Simplified Management pricing is matched to your portfolio scale and confirmed with a custom quote during a demo. Plans for operators running 10 to 500+ listings.",
   alternates: { canonical: "/pricing" },
 };
 

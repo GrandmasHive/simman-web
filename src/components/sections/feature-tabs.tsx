@@ -24,7 +24,7 @@ export function FeatureTabs() {
           </h2>
           <p className="mt-4 text-lg text-body">
             One connected system for listings, calendars, channels, and payouts, built for operators
-            running 10 to 500+ properties.
+            running 10 to 500+ listings.
           </p>
         </div>
 

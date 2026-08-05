@@ -12,7 +12,7 @@ export function CtaSection() {
             Start simplifying your operations
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-lg text-body">
-            From 10 to 500+ properties, automate OTA distribution and partner payouts, and scale your
+            From 10 to 500+ listings, automate OTA distribution and partner payouts, and scale your
             property business.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">

@@ -82,7 +82,7 @@ export function RoiCalculator() {
 
           <div className="mt-8 space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="properties">Number of properties</Label>
+              <Label htmlFor="properties">Number of listings</Label>
               <Input
                 id="properties"
                 type="number"
@@ -167,10 +167,10 @@ export function RoiCalculator() {
             <p className="text-sm font-semibold">Estimates only</p>
             <p className="mt-2 text-sm text-body">
               These figures are illustrative estimates based on general assumptions, not a quote or a
-              guarantee of results. Actual savings depend on your properties, channels, rates, and
+              guarantee of results. Actual savings depend on your listings, channels, rates, and
               how your team works. Assumptions used: automation removes about 70% of manual hours,
               ops time valued at {inr.format(OPS_COST_PER_HOUR)}/hour, roughly{" "}
-              {BOOKINGS_PER_PROPERTY_PER_MONTH} bookings per property per month with about{" "}
+              {BOOKINGS_PER_PROPERTY_PER_MONTH} bookings per listing per month with about{" "}
               {(DOUBLE_BOOKING_RISK_RATE * 100).toFixed(0)}% at risk of a double-booking costing{" "}
               {NIGHTS_LOST_PER_INCIDENT} nights.
             </p>

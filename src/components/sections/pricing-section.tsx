@@ -15,8 +15,8 @@ export function PricingSection({ withHeader = true }: { withHeader?: boolean }) 
               Pricing matched to your portfolio scale
             </h2>
             <p className="mt-4 text-lg text-body">
-              Plans are banded by portfolio size, not a flat per-property fee, so pricing scales
-              predictably. Your exact quote is confirmed during a demo.
+              Pricing is based on your number of listings, so it scales predictably as you
+              grow. Your exact quote is confirmed during a demo.
             </p>
           </div>
         )}

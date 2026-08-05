@@ -76,7 +76,7 @@ export const otaChannels = [
 
 /** Real, defensible product metrics (from the live app) — used instead of a fabricated rating. */
 export const productStats = [
-  { value: "10-500+", label: "Properties per operator", live: false },
+  { value: "10-500+", label: "Listings per operator", live: false },
   { value: "50+", label: "OTA channels", live: false },
   { value: "Real-time", label: "Calendar sync", live: true },
   { value: "15+", label: "Operations modules", live: false },

@@ -8,7 +8,7 @@ import { CtaSection } from "@/components/sections/cta-section";
 export const metadata: Metadata = {
   title: "Software for Property Managers",
   description:
-    "Run multi-owner portfolios of 10 to 500+ properties. Automate partner payouts, split earnings per booking, and give every owner a transparent statement from one dashboard.",
+    "Run multi-owner portfolios of 10 to 500+ listings. Automate partner payouts, split earnings per booking, and give every owner a transparent statement from one dashboard.",
   alternates: { canonical: "/solutions/property-managers" },
 };
 
@@ -46,7 +46,7 @@ const faqs = [
   },
   {
     q: "Does it scale to a large portfolio?",
-    a: "The platform is built for operators running 10 to 500+ properties. You distribute across 50+ OTAs, run operations, and settle partner payouts from one dashboard, adding owners and listings without extra tools.",
+    a: "The platform is built for operators running 10 to 500+ listings. You distribute across 50+ OTAs, run operations, and settle partner payouts from one dashboard, adding owners and listings without extra tools.",
   },
 ];
 

@@ -75,7 +75,7 @@ export function DemoForm() {
           <Input id="phone" name="phone" type="tel" placeholder="+91 98765 43210" autoComplete="tel" />
         </div>
         <div className="grid gap-1.5">
-          <Label htmlFor="properties">Company / Total Properties</Label>
+          <Label htmlFor="properties">Company / Total Listings</Label>
           <Input id="properties" name="properties" placeholder="Builders Stay - 150 listings" />
         </div>
         <div className="grid gap-1.5">

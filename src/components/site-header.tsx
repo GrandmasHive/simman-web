@@ -12,19 +12,6 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { nav } from "@/lib/site";
-import { cn } from "@/lib/utils";
-
-function BrandMark({ className }: { className?: string }) {
-  return (
-    <span
-      className={cn(
-        "inline-block size-6 rounded-md bg-gradient-to-br from-primary to-blue-400",
-        className,
-      )}
-      aria-hidden
-    />
-  );
-}
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -32,9 +19,14 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/80 backdrop-blur-md">
       <div className="container-page flex h-16 items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-2.5 font-display text-[1.05rem] font-bold">
-          <BrandMark />
-          Simplified&nbsp;Management
+        <Link href="/" className="flex items-center">
+          <img
+            src="/logo.webp"
+            alt="Simplified Management"
+            width={1013}
+            height={109}
+            className="h-6 w-auto"
+          />
         </Link>
 
         <nav className="hidden items-center gap-7 lg:flex">
@@ -71,9 +63,14 @@ export function SiteHeader() {
             </SheetTrigger>
             <SheetContent side="right" className="w-[86%] max-w-sm">
               <SheetHeader>
-                <SheetTitle className="flex items-center gap-2 font-display">
-                  <BrandMark />
-                  Simplified Management
+                <SheetTitle className="flex items-center">
+                  <img
+                    src="/logo.webp"
+                    alt="Simplified Management"
+                    width={1013}
+                    height={109}
+                    className="h-5 w-auto"
+                  />
                 </SheetTitle>
               </SheetHeader>
               <div className="flex flex-col gap-1 px-4">

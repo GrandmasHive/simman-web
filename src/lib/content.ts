@@ -7,17 +7,14 @@ export const features = [
     description:
       "Manage every property, reservation, guest, and task from a single control room. Live occupancy, revenue, and activity across your whole portfolio.",
     bullets: [
-      "Unified booking dashboard across 10-500+ properties",
+      "Unified booking dashboard across 10-500+ listings",
       "Live revenue and expense tracking",
       "Guest management, tasks, and staff in one place",
     ],
     image: "/screenshots/overview.png",
     alt: "Property Management Software screenshot showing the properties, bookings, revenue and live activity dashboard",
-    callout: "108 properties tracked live",
-    // Pixel-verified against the actual crop: "108" sits at ~26-28% down /
-    // 23-26% across. Badge anchors just above it, left-aligned with the
-    // Total Properties card, clear of the digits at every breakpoint tested.
-    calloutPosition: "left-[21%] top-[6%]",
+    callout: undefined as string | undefined,
+    calloutPosition: undefined as string | undefined,
     href: "/services/property-management-software",
   },
   {
@@ -33,12 +30,8 @@ export const features = [
     ],
     image: "/screenshots/booking.png",
     alt: "Channel Manager screenshot showing PMS bookings synced from Airbnb and other OTA channels",
-    callout: "100 bookings, 2,905 total",
-    // Pixel-verified: "100" sits much higher in this crop (~15-17% down) than
-    // in the overview screenshot, so it needs its own position — the
-    // Total Bookings card ends at 22% down, with clean whitespace below it
-    // until the search row, so the badge sits there, clear of both.
-    calloutPosition: "left-[24%] top-[23%]",
+    callout: undefined as string | undefined,
+    calloutPosition: undefined as string | undefined,
     href: "/services/channel-manager",
   },
   {
@@ -126,11 +119,11 @@ export const faqs = [
   },
   {
     q: "Does it support large portfolios?",
-    a: "Yes. The Scale plan is built for operators running 200 to 500+ properties, with full OTA distribution, partner payout automation, and priority support.",
+    a: "Yes. The Scale plan is built for operators running 200 to 500+ listings, with full OTA distribution, partner payout automation, and priority support.",
   },
   {
     q: "How is pricing structured as I grow?",
-    a: "Plans are banded by portfolio size rather than a flat per-property fee, so pricing scales predictably as you grow. Exact pricing is confirmed during your demo.",
+    a: "Pricing scales with your number of listings, so it grows predictably as your portfolio grows. Exact pricing is confirmed during your demo.",
   },
   {
     q: "Which channels do you connect to?",

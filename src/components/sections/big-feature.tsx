@@ -21,7 +21,7 @@ const capabilities = [
   {
     icon: ShieldCheck,
     title: "Built to scale",
-    body: "From 10 to 500+ properties, with automation and rules that grow with you.",
+    body: "From 10 to 500+ listings, with automation and rules that grow with you.",
   },
 ];
 
@@ -47,34 +47,6 @@ export function BigFeature() {
             height={1120}
           />
 
-          {/* Floating UI chips — real status labels visible in this exact
-              screenshot crop (the property performance tags on the
-              properties.png cards), not invented text. Hidden below lg so
-              they never crowd the frame on smaller screens. */}
-          <span
-            aria-hidden="true"
-            className="chip-float absolute -left-5 top-10 hidden items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1.5 text-xs font-semibold text-foreground shadow-md lg:inline-flex"
-            style={{ animationDelay: "0s" }}
-          >
-            <span className="size-1.5 rounded-full bg-sync" aria-hidden="true" />
-            Excellent
-          </span>
-          <span
-            aria-hidden="true"
-            className="chip-float absolute -right-4 top-1/3 hidden items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1.5 text-xs font-semibold text-foreground shadow-md lg:inline-flex"
-            style={{ animationDelay: "1.1s" }}
-          >
-            <span className="size-1.5 rounded-full bg-primary" aria-hidden="true" />
-            Good
-          </span>
-          <span
-            aria-hidden="true"
-            className="chip-float absolute -bottom-5 left-16 hidden items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1.5 text-xs font-semibold text-foreground shadow-md lg:inline-flex"
-            style={{ animationDelay: "2.2s" }}
-          >
-            <span className="size-1.5 rounded-full bg-amber-500" aria-hidden="true" />
-            Attention
-          </span>
         </div>
 
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">

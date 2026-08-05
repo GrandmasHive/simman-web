@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BrowserFrame } from "@/components/browser-frame";
-import { ScreenshotCallout } from "@/components/screenshot-callout";
 import { SyncDot } from "@/components/sync-dot";
 import { productStats, site, otaChannels } from "@/lib/site";
 import { FeatureTabs } from "@/components/sections/feature-tabs";
@@ -31,7 +30,7 @@ export default function Home() {
               One dashboard for every listing and channel.
             </h1>
             <p className="mt-6 max-w-xl text-body-lg leading-relaxed text-body">
-              The PMS and channel manager for operators running 10-500+ properties. Sync calendars in
+              The PMS and channel manager for operators running 10-500+ listings. Sync calendars in
               real time across Airbnb, Booking.com, and 50+ OTAs, ending double bookings, manual
               updates, and messy partner payouts.
             </p>
@@ -62,11 +61,6 @@ export default function Home() {
             height={1010}
             priority
             glow
-            overlay={
-              <ScreenshotCallout className="left-[21%] top-[6%]">
-                108 properties tracked live
-              </ScreenshotCallout>
-            }
           />
         </div>
       </section>

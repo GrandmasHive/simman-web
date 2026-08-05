@@ -32,7 +32,7 @@ const included = [
 
 const faqItems = [
   {
-    q: "Is this suitable for a portfolio of a few hundred properties?",
+    q: "Is this suitable for a portfolio of a few hundred listings?",
     a: "Yes. The dashboard is built for operators running 10 to 500+ listings, with filtering, search, and per-property views so a large portfolio stays as easy to work as a handful of units.",
   },
   {
