@@ -14,6 +14,12 @@ export const metadata: Metadata = {
 export default function LoginPage() {
   return (
     <div className="grid min-h-dvh lg:grid-cols-2">
+      {/* Preconnect to Spline's CDN as early as possible — without this the browser
+          doesn't start DNS/TLS for the scene file until the runtime JS chunk finishes
+          loading and calls fetch, which is a fully sequential (and avoidable) delay. */}
+      <link rel="preconnect" href="https://prod.spline.design" />
+      <link rel="dns-prefetch" href="https://prod.spline.design" />
+
       {/* Form side */}
       <div className="flex items-center justify-center px-6 py-16">
         <LoginForm />
@@ -55,7 +61,7 @@ export default function LoginPage() {
           </p>
           <p className="mt-3 max-w-md text-sm text-body">
             Simplified Management keeps your calendars, rates and availability in
-            sync across every OTA, automatically, in real time.
+            sync across every OTA, automatically.
           </p>
 
           {/* Real, defensible proof — no ratings, no live-AI claims.
@@ -69,13 +75,13 @@ export default function LoginPage() {
             <span aria-hidden className="text-border">·</span>
             <div className="flex items-baseline gap-1.5">
               <dt className="sr-only">OTA channels</dt>
-              <dd className="tnum font-display font-bold text-foreground">50+</dd>
+              <dd className="tnum font-display font-bold text-foreground">8</dd>
               <span className="text-muted-foreground">channels</span>
             </div>
             <span aria-hidden className="text-border">·</span>
             <div className="flex items-baseline gap-1.5">
               <dt className="sr-only">Sync</dt>
-              <dd className="font-display font-bold text-primary">real-time</dd>
+              <dd className="font-display font-bold text-primary">two-way</dd>
               <span className="text-muted-foreground">sync</span>
             </div>
           </dl>

@@ -9,7 +9,7 @@ import { otaChannels } from "@/lib/site";
 export const metadata: Metadata = {
   title: "OTA Integrations & Channel Manager",
   description:
-    "Connect and sync your listings across 50+ OTA channels including Airbnb, Booking.com, Agoda, Expedia, Vrbo, MakeMyTrip, Goibibo and StayVista from one dashboard.",
+    "Connect and sync your listings across 8 major OTA channels including Airbnb, Booking.com, Agoda, Expedia, Vrbo, MakeMyTrip, Goibibo and StayVista from one dashboard.",
   alternates: { canonical: "/integrations" },
 };
 
@@ -26,19 +26,19 @@ const steps = [
   },
   {
     icon: RefreshCw,
-    title: "Sync in real time",
-    body: "Every booking, cancellation, and rate change pushes to every channel instantly, so the same night is never double-sold.",
+    title: "Sync automatically",
+    body: "Every booking, cancellation, and rate change pushes to every connected channel, so the same night is never double-sold.",
   },
 ];
 
 const faqItems = [
   {
     q: "Which channels can I connect?",
-    a: "Simplified Management connects to 50+ OTA channels including Airbnb, Booking.com, Agoda, Expedia, Vrbo, MakeMyTrip, Goibibo and StayVista, distributing and syncing availability from one dashboard.",
+    a: "Simplified Management connects to 8 major OTA channels including Airbnb, Booking.com, Agoda, Expedia, Vrbo, MakeMyTrip, Goibibo and StayVista, distributing and syncing availability from one dashboard.",
   },
   {
-    q: "How fast does availability sync across channels?",
-    a: "Availability, rates, and reservations sync in real time across every connected channel, so the same night is never double-sold.",
+    q: "How does availability sync across channels?",
+    a: "Availability, rates, and reservations sync across every connected channel from one master calendar, so you can keep the same night from being double-sold.",
   },
   {
     q: "Is the sync two-way?",
@@ -51,7 +51,7 @@ export default function IntegrationsPage() {
     <>
       <PageHeader
         eyebrow="Integrations"
-        title="Connect to 50+ OTA channels from one dashboard"
+        title="Connect your OTA channels from one dashboard"
         lede="Distribute your listings everywhere your guests book and keep availability, rates, and reservations in sync automatically. Connect the OTAs you already use and manage them all from a single master calendar."
       />
 

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 const points = [
   "A walkthrough tailored to your number of listings",
-  "See real-time calendar sync and 50+ OTA distribution",
+  "See calendar sync and OTA distribution in action",
   "Partner payout automation for co-owned properties",
   "A quote matched to your portfolio scale",
 ];

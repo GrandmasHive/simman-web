@@ -11,7 +11,7 @@ const feature = features.find((f) => f.key === "channel")!;
 export const metadata: Metadata = {
   title: "Channel Manager",
   description:
-    "Distribute and sync listings, rates, and availability across Airbnb, Booking.com, Agoda, Expedia, and 50+ OTAs from one calendar. Sell everywhere, oversell nowhere.",
+    "Distribute and sync listings, rates, and availability across Airbnb, Booking.com, Agoda, Expedia, and the other OTAs you list on, from one calendar.",
   alternates: { canonical: "/services/channel-manager" },
 };
 
@@ -19,7 +19,7 @@ const steps = [
   {
     step: "1",
     title: "Connect your channels",
-    body: "Link Airbnb, Booking.com, Agoda, Expedia, MakeMyTrip, Goibibo, StayVista, and more from one login, no separate extranets to juggle.",
+    body: "Link the OTAs you already list on — Airbnb, Booking.com, Agoda, Expedia, Vrbo, MakeMyTrip, Goibibo, and StayVista — from one login, no separate extranets to juggle.",
   },
   {
     step: "2",
@@ -28,19 +28,19 @@ const steps = [
   },
   {
     step: "3",
-    title: "Sell with confidence",
-    body: "A booking on any channel instantly closes that night everywhere else, so you fill more nights without ever overselling.",
+    title: "Sell with fewer overselling risks",
+    body: "A booking on any connected channel syncs to close that night across the rest, helping you fill more nights without overselling.",
   },
 ];
 
 const faqItems = [
   {
     q: "Which channels can I connect?",
-    a: "Simplified Management connects to 50+ OTAs, including Airbnb, Booking.com, Agoda, Expedia, Vrbo, MakeMyTrip, Goibibo, and StayVista, all managed from one dashboard.",
+    a: "Simplified Management connects to 8 major OTAs, including Airbnb, Booking.com, Agoda, Expedia, Vrbo, MakeMyTrip, Goibibo, and StayVista, all managed from one dashboard.",
   },
   {
-    q: "Will connecting more channels cause double bookings?",
-    a: "No. Availability syncs two-way in real time, so the moment a night sells on one channel it closes on every other, whether you are on two channels or twenty.",
+    q: "Will connecting more channels increase the risk of double bookings?",
+    a: "Availability syncs two-way across your connected channels, so a night that sells on one channel updates the rest, whether you are on two channels or eight.",
   },
   {
     q: "Can I price differently on different platforms?",
@@ -53,8 +53,8 @@ export default function ChannelManagerPage() {
     <>
       <PageHeader
         eyebrow={feature.tagline}
-        title="Sell on 50+ OTAs from a single calendar"
-        lede="Distribute and sync your listings, rates, and availability across Airbnb, Booking.com, Agoda, Expedia, and 50+ other channels from one place. Reach more guests without the manual updates or the risk of selling the same night twice."
+        title="Sell across your OTAs from a single calendar"
+        lede="Distribute and sync your listings, rates, and availability across Airbnb, Booking.com, Agoda, Expedia, and the other channels you list on, from one place. Reach more guests with less manual updating and less risk of selling the same night twice."
       />
 
       <section className="section-pad border-b border-border">
@@ -71,18 +71,18 @@ export default function ChannelManagerPage() {
 
             <div className="mt-8 space-y-4 text-body">
               <p>
-                Every channel you sell on pulls from one master calendar. Update a rate or block a
-                date once, and the change lands on Airbnb, Booking.com, Agoda, and the rest without
-                a single copy-paste.
+                Every channel you sell on reads from one master calendar. Update a rate or block a
+                date once, and the change syncs out to Airbnb, Booking.com, Agoda, and the rest of
+                your connected channels without a single copy-paste.
               </p>
               <p>
-                Wider distribution usually means more manual work and more mistakes. Here it means
-                the opposite: more channels filling more nights, all driven from a view your whole
-                team can trust.
+                Wider distribution usually means more manual work and more mistakes. The channel
+                manager is built to work the other way: more channels filling more nights, all driven
+                from a view your whole team can trust.
               </p>
               <p>
                 When a reservation comes in, it flows straight into your dashboard alongside every
-                other booking, so distribution and operations stay in lockstep.
+                other booking, so distribution and operations stay aligned.
               </p>
             </div>
           </div>

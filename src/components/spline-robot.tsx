@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 const Spline = dynamic(() => import("@splinetool/react-spline"), {
@@ -26,14 +26,31 @@ function RobotLoader() {
  * Cursor-reactive 3D robot (Spline scene). Client-only + lazy-loaded so it never
  * blocks the initial paint or SEO.
  *
+ * The parent panel is only ever shown at `lg` and up (`hidden lg:block`), but a
+ * CSS `display:none` doesn't stop React from mounting what's underneath it — so
+ * without the viewport gate below, every mobile visitor would still download the
+ * Spline runtime chunk and fetch the ~1.3MB scene file for a robot they can never
+ * see. Gating the render itself on `min-width: 1024px` (Tailwind's `lg`) means the
+ * dynamic import, and the scene fetch it triggers, never happens on mobile at all.
+ *
  * The Spline scene only listens for pointer movement over its own <canvas>, so the
  * robot ignores the cursor when it's over the surrounding text/form. We forward every
  * page-wide pointer move into the canvas so the robot tracks the cursor from anywhere.
  */
 export function SplineRobot({ className }: { className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
 
   useEffect(() => {
+    const mql = window.matchMedia("(min-width: 1024px)");
+    setShouldLoad(mql.matches);
+    const onChange = (e: MediaQueryListEvent) => setShouldLoad(e.matches);
+    mql.addEventListener("change", onChange);
+    return () => mql.removeEventListener("change", onChange);
+  }, []);
+
+  useEffect(() => {
+    if (!shouldLoad) return;
     const container = ref.current;
     if (!container) return;
 
@@ -58,15 +75,17 @@ export function SplineRobot({ className }: { className?: string }) {
       window.removeEventListener("pointermove", forward);
       window.removeEventListener("mousemove", forward);
     };
-  }, []);
+  }, [shouldLoad]);
 
   return (
     <div ref={ref} className={cn("relative", className)}>
       <div className="pointer-events-none absolute inset-0 -z-10 glow-soft" />
-      <Spline
-        scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-        className="!h-full !w-full"
-      />
+      {shouldLoad && (
+        <Spline
+          scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+          className="!h-full !w-full"
+        />
+      )}
     </div>
   );
 }

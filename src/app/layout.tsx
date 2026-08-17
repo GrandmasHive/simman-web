@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     template: "%s | Simplified Management",
   },
   description:
-    "Simplified Management is a centralized property management software (PMS) and channel manager. Sync calendars, automate distribution across 50+ OTAs, and split partner payouts from one dashboard.",
+    "Simplified Management is a centralized property management software (PMS) and channel manager. Sync calendars, automate OTA distribution, and split partner payouts from one dashboard.",
   applicationName: "Simplified Management",
   keywords: [
     "property management software",

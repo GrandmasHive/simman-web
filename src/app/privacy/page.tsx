@@ -22,6 +22,15 @@ export default function PrivacyPage() {
         <div className="container-page max-w-3xl space-y-6 text-body">
           <p className="text-sm text-muted-foreground">Last updated: 3 July 2026</p>
 
+          <p className="rounded-lg border border-border bg-subtle px-4 py-3 text-sm">
+            This policy covers this website and the demo request form only. If you use the
+            Simplified Management application as a hotel, guest, or staff member, see our{" "}
+            <a href="/app-privacy" className="font-semibold text-primary hover:underline">
+              App Privacy Policy
+            </a>{" "}
+            instead.
+          </p>
+
           <div className="space-y-3">
             <h2 className="font-display text-2xl font-bold text-foreground">Who we are</h2>
             <p>

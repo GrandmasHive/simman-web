@@ -8,7 +8,7 @@ import { CtaSection } from "@/components/sections/cta-section";
 export const metadata: Metadata = {
   title: "Property Management for Boutique Hotels",
   description:
-    "Manage room-type inventory, keep OTA rate parity, and run the front desk from one dashboard. Distribute across Booking.com, Agoda, Expedia, and 50+ channels in real time.",
+    "Manage room-type inventory, keep OTA rate parity, and run the front desk from one dashboard. Distribute across Booking.com, Agoda, Expedia, and the other channels you list on.",
   alternates: { canonical: "/solutions/boutique-hotels" },
 };
 
@@ -38,7 +38,7 @@ const reasons = [
 const faqs = [
   {
     q: "Can it handle multiple room types and rate plans?",
-    a: "Yes. You define each room type with its own inventory count and rates, and Simplified Management syncs the correct availability and pricing per type across every connected OTA in real time.",
+    a: "Yes. You define each room type with its own inventory count and rates, and Simplified Management syncs the correct availability and pricing per type across every connected OTA.",
   },
   {
     q: "How does it keep my rates the same across OTAs?",

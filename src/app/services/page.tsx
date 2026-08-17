@@ -8,7 +8,7 @@ import { features } from "@/lib/content";
 export const metadata: Metadata = {
   title: "The Platform",
   description:
-    "One platform for end-to-end property distribution: property management software, a 50+ OTA channel manager, real-time calendar sync, and partner split payouts.",
+    "One platform for end-to-end property distribution: property management software, an OTA channel manager, cross-channel calendar sync, and partner split payouts.",
   alternates: { canonical: "/services" },
 };
 
@@ -18,7 +18,7 @@ export default function ServicesPage() {
       <PageHeader
         eyebrow="The Platform"
         title="One platform, end to end property distribution"
-        lede="Four capabilities that run your whole portfolio from a single control room: a PMS to manage every listing, a channel manager to sell on 50+ OTAs, real-time calendar sync to end double bookings, and partner accounts that split every payout automatically."
+        lede="Four capabilities that run your whole portfolio from a single control room: a PMS to manage every listing, a channel manager to sell across your OTAs, calendar sync to cut down double bookings, and partner accounts that split every payout automatically."
       />
 
       <section className="section-pad">

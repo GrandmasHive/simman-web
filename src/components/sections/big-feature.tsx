@@ -5,8 +5,8 @@ import { cn } from "@/lib/utils";
 const capabilities = [
   {
     icon: RefreshCw,
-    title: "Real-time sync",
-    body: "Every booking updates every channel instantly. No refresh, no lag, no double sell.",
+    title: "Cross-channel sync",
+    body: "Every booking updates your master calendar, which syncs out to every connected channel.",
   },
   {
     icon: SplitSquareHorizontal,
@@ -31,10 +31,10 @@ export function BigFeature() {
       <div className="container-page">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="font-display text-3xl font-bold sm:text-4xl">
-            See every booking, sync every channel, act in seconds.
+            See every booking, sync every channel, from one calendar.
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-body">
-            A single source of truth for your whole portfolio, updated in real time across every OTA
+            A single source of truth for your whole portfolio, kept in sync across every OTA
             you sell on.
           </p>
         </div>

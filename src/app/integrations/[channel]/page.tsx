@@ -21,7 +21,7 @@ export async function generateMetadata({
 
   return {
     title: `${ota.name} Channel Manager & Sync`,
-    description: `Connect and sync your ${ota.name} listings with the rest of your channels in real time. Keep availability, rates, and reservations aligned from one dashboard.`,
+    description: `Connect and sync your ${ota.name} listings with the rest of your channels. Keep availability, rates, and reservations aligned from one dashboard.`,
     alternates: { canonical: `/integrations/${ota.slug}` },
   };
 }
@@ -35,7 +35,7 @@ const syncCards = [
   {
     icon: IndianRupee,
     title: "Rates",
-    body: "Set pricing and rate rules once in your master calendar and push them out. Change a price and it updates across all channels instantly.",
+    body: "Set pricing and rate rules once in your master calendar and push them out to your connected channels.",
   },
   {
     icon: ClipboardList,
@@ -57,7 +57,7 @@ export default async function Page({
     `Connect and sync your ${ota.name} listings with your master calendar`,
     `Two-way sync keeps ${ota.name} availability aligned with every other channel`,
     "Centralized rates and rate rules push to every connected channel",
-    "Real-time updates mean the same night is never double-sold",
+    "Cross-channel updates help keep the same night from being double-sold",
     "One reservation list for bookings from every source",
   ];
 
@@ -66,7 +66,7 @@ export default async function Page({
       <PageHeader
         eyebrow="Integration"
         title={`${ota.name} channel manager and sync`}
-        lede={`Sync your ${ota.name} listings with the rest of your channels in real time. Keep availability, rates, and reservations aligned from one dashboard, without logging into separate extranets.`}
+        lede={`Sync your ${ota.name} listings with the rest of your channels. Keep availability, rates, and reservations aligned from one dashboard, without logging into separate extranets.`}
       />
 
       <section className="section-pad border-b border-border">
@@ -91,7 +91,7 @@ export default async function Page({
               <p>
                 Manage {ota.name} rates and availability from the same master calendar you use for
                 the rest of your portfolio. Update a price or block a date once, and the change
-                pushes out automatically in real time.
+                pushes out automatically to your connected channels.
               </p>
             </div>
           </div>

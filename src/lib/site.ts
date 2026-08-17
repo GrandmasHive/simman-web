@@ -12,10 +12,9 @@ export const site = {
     country: "India",
   },
   phones: [
-    { label: "+91 98250 25388", tel: "+919825025388" },
-    { label: "+91 95193 06090", tel: "+919519306090" },
+    { label: "+91 99236 32995", tel: "+919923632995" },
   ],
-  whatsapp: "919825025388",
+  whatsapp: "919923632995",
   socials: {
     instagram: "https://www.instagram.com/simplified_management.in/",
     facebook: "https://www.facebook.com/profile.php?id=61591756372165",
@@ -54,11 +53,14 @@ export const nav = {
   ],
   footerResources: [
     { label: "Blog", href: "/blog" },
+    { label: "Free Templates", href: "/resources" },
     { label: "Integrations", href: "/integrations" },
     { label: "Compare", href: "/compare" },
     { label: "Book a Demo", href: "/demo" },
     { label: "Privacy", href: "/privacy" },
+    { label: "App Privacy", href: "/app-privacy" },
     { label: "Terms", href: "/terms" },
+    { label: "DPA", href: "/dpa" },
   ],
 } as const;
 
@@ -77,7 +79,7 @@ export const otaChannels = [
 /** Real, defensible product metrics (from the live app) — used instead of a fabricated rating. */
 export const productStats = [
   { value: "10-500+", label: "Listings per operator", live: false },
-  { value: "50+", label: "OTA channels", live: false },
-  { value: "Real-time", label: "Calendar sync", live: true },
+  { value: "8", label: "OTA channels", live: false },
+  { value: "Two-way", label: "Calendar sync", live: false },
   { value: "15+", label: "Operations modules", live: false },
 ] as const;

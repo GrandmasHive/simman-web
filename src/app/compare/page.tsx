@@ -7,7 +7,7 @@ import { CtaSection } from "@/components/sections/cta-section";
 export const metadata: Metadata = {
   title: "Compare",
   description:
-    "Comparing channel managers for India? See how Simplified Management approaches OTA coverage, partner payouts, real-time sync, and local support.",
+    "Comparing channel managers for India? See how Simplified Management approaches OTA coverage, partner payouts, calendar sync, and local support.",
   alternates: { canonical: "/compare" },
 };
 
@@ -32,7 +32,7 @@ const competitors = [
 const strengths = [
   "Coverage for India OTAs like MakeMyTrip and Goibibo, alongside Airbnb, Booking.com, Agoda, and Expedia",
   "Partner accounts that split earnings and expenses automatically, per booking",
-  "Real-time, two-way calendar sync so the same night is never double-sold",
+  "Two-way calendar sync to help keep the same night from being double-sold",
   "Local support in your time zone, based in Viman Nagar, Pune",
 ];
 

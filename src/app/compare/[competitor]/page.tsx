@@ -25,7 +25,7 @@ export async function generateMetadata({
   if (!entry) return {};
   return {
     title: `Simplified Management vs ${entry.name}`,
-    description: `If you are comparing ${entry.name} with Simplified Management, here is what operators in India tell us matters: OTA coverage, partner payouts, real-time sync, and local support.`,
+    description: `If you are comparing ${entry.name} with Simplified Management, here is what operators in India tell us matters: OTA coverage, partner payouts, calendar sync, and local support.`,
     alternates: { canonical: `/compare/${competitor}` },
   };
 }
@@ -40,8 +40,8 @@ const capabilities = [
     body: "Allocate properties to partners and automatically split earnings and expenses per booking, with transparent statements for every co-owner.",
   },
   {
-    title: "Real-time calendar sync",
-    body: "Two-way, real-time availability sync keeps every channel aligned, so the same night is never double-sold.",
+    title: "Calendar sync",
+    body: "Two-way availability sync keeps every channel aligned, so the same night is never double-sold.",
   },
   {
     title: "Local support",

@@ -51,8 +51,8 @@ export default function AboutPage() {
           </p>
           <p className="text-lg text-body">
             We built Simplified Management to close that gap. One dashboard manages every listing,
-            reservation, guest, and task. A channel manager distributes availability across 50+ OTAs
-            and keeps them synced in real time, so the same night is never sold twice. Partner
+            reservation, guest, and task. A channel manager distributes availability across your OTAs
+            and keeps them in sync, so the same night is never sold twice. Partner
             accounts split earnings and expenses automatically, down to each booking.
           </p>
           <p className="text-lg text-body">

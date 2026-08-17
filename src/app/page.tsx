@@ -30,9 +30,9 @@ export default function Home() {
               One dashboard for every listing and channel.
             </h1>
             <p className="mt-6 max-w-xl text-body-lg leading-relaxed text-body">
-              The PMS and channel manager for operators running 10-500+ listings. Sync calendars in
-              real time across Airbnb, Booking.com, and 50+ OTAs, ending double bookings, manual
-              updates, and messy partner payouts.
+              The PMS and channel manager for operators running 10-500+ listings. Sync calendars
+              across Airbnb, Booking.com, and the other channels you list on, cutting down double
+              bookings, manual updates, and messy partner payouts.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Button asChild size="lg">

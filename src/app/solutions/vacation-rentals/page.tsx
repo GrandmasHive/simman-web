@@ -8,13 +8,13 @@ import { CtaSection } from "@/components/sections/cta-section";
 export const metadata: Metadata = {
   title: "Channel Management for Vacation Rentals",
   description:
-    "Sync villas and homestays across Airbnb, Vrbo, StayVista, and 50+ OTAs in real time. End double bookings on peak weekends and price for seasonality from one calendar.",
+    "Sync villas and homestays across Airbnb, Vrbo, StayVista, and the other OTAs you list on. Cut down double bookings on peak weekends and price for seasonality from one calendar.",
   alternates: { canonical: "/solutions/vacation-rentals" },
 };
 
 const benefits = [
   "List the same villa on Airbnb, Vrbo, StayVista, and Booking.com without maintaining separate calendars for each.",
-  "A confirmed booking blocks the night everywhere instantly, so a long weekend is never sold twice.",
+  "A confirmed booking blocks the night everywhere, helping keep a long weekend from being sold twice.",
   "Set higher rates for festival dates, school holidays, and long weekends, then let them apply across every channel at once.",
   "Track each home's occupancy and revenue on its own, even when the same guest journey spans multiple listings.",
   "Hand cleaning and turnover tasks to on-ground staff the moment a checkout is confirmed.",
@@ -22,8 +22,8 @@ const benefits = [
 
 const reasons = [
   {
-    title: "No more peak-weekend double bookings",
-    body: "Vacation demand clusters on the same handful of dates. Real-time two-way sync means the night a guest books on Airbnb disappears from Vrbo and StayVista before the next enquiry lands.",
+    title: "Fewer peak-weekend double bookings",
+    body: "Vacation demand clusters on the same handful of dates. Two-way sync means the night a guest books on Airbnb comes down from Vrbo and StayVista too, so the next enquiry sees accurate availability.",
   },
   {
     title: "Seasonal pricing without spreadsheets",
@@ -38,11 +38,11 @@ const reasons = [
 const faqs = [
   {
     q: "Can I connect my Airbnb, Vrbo, and StayVista listings together?",
-    a: "Yes. Simplified Management connects to 50+ OTAs including Airbnb, Vrbo, StayVista, Booking.com, and MakeMyTrip. You manage one master calendar per property and availability syncs both ways across every channel in real time.",
+    a: "Yes. Simplified Management connects to 8 major OTAs including Airbnb, Vrbo, StayVista, Booking.com, and MakeMyTrip. You manage one master calendar per property and availability syncs both ways across every channel.",
   },
   {
-    q: "How does it stop double bookings on busy weekends?",
-    a: "The moment a night is booked on any channel, it is blocked everywhere else instantly. There is no overnight refresh or manual calendar update, so the same peak date is never sold on two platforms.",
+    q: "How does it help with double bookings on busy weekends?",
+    a: "When a night is booked on any channel, it is blocked across every other connected channel from the master calendar, so the same peak date is not sold on two platforms.",
   },
   {
     q: "Can I charge more during peak season and holidays?",
@@ -79,7 +79,7 @@ export default function VacationRentalsPage() {
           </div>
           <BrowserFrame
             src="/screenshots/calendar.png"
-            alt="Real-time availability calendar syncing a vacation rental across Airbnb, Vrbo, and StayVista"
+            alt="Availability calendar syncing a vacation rental across Airbnb, Vrbo, and StayVista"
             width={1800}
             height={1010}
           />

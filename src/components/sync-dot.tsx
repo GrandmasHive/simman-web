@@ -4,8 +4,7 @@ import { cn } from "@/lib/utils";
  * Live-sync pulse dot — the one new animation introduced by the v3 design
  * language (see design-mockups/iterations-2026-07-07/ITERATIONS.md, "v3", and
  * PRODUCTION-DESIGN-LANGUAGE.md §7). A small, deliberate echo of the
- * product's real-time-sync claim, used in the homepage hero eyebrow and the
- * "Real-time" stat cell.
+ * product's cross-channel sync feature, used in the homepage hero eyebrow.
  *
  * ITERATIONS.md flags this as "the one genuinely new addition needing a
  * deliberate yes/no decision," not an approved fix — so it's implemented as

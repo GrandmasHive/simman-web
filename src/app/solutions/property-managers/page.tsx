@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 const benefits = [
   "Allocate each property to its owner or partner and split earnings and expenses automatically, down to every daily booking payment.",
   "Give each owner a clear statement of what their properties earned and what was deducted, without building spreadsheets by hand.",
-  "Distribute an entire portfolio of 10 to 500+ listings across 50+ OTAs from one login instead of separate accounts.",
+  "Distribute an entire portfolio of 10 to 500+ listings across your OTAs from one login instead of separate accounts.",
   "Manage staff, tasks, and turnovers across every property so on-ground teams know exactly what to do at each unit.",
   "Track occupancy, revenue, and expenses across the whole book of business, then drill into any single owner or property.",
 ];
@@ -46,7 +46,7 @@ const faqs = [
   },
   {
     q: "Does it scale to a large portfolio?",
-    a: "The platform is built for operators running 10 to 500+ listings. You distribute across 50+ OTAs, run operations, and settle partner payouts from one dashboard, adding owners and listings without extra tools.",
+    a: "The platform is built for operators running 10 to 500+ listings. You distribute across your OTAs, run operations, and settle partner payouts from one dashboard, adding owners and listings without extra tools.",
   },
 ];
 

@@ -19,7 +19,7 @@ export function SiteFooter() {
               </span>
             </Link>
             <p className="mt-8 max-w-xs text-sm leading-relaxed text-blue-50">
-              Centralized PMS and channel manager that automates distribution across 50+ global OTA
+              Centralized PMS and channel manager that automates distribution across your global OTA
               channels.
             </p>
           </div>

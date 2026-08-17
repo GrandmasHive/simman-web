@@ -4,8 +4,8 @@ import { cn } from "@/lib/utils";
 const outcomes = [
   {
     icon: CalendarX2,
-    title: "Never oversell a night again",
-    body: "Two-way real-time sync blocks the same night across every channel the instant it books.",
+    title: "Avoid overselling a night",
+    body: "Two-way calendar sync blocks the same night across every connected channel once it books.",
   },
   {
     icon: Clock,

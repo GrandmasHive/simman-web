@@ -42,7 +42,7 @@ const faqs = [
   },
   {
     q: "How do I stop OTAs from booking a unit under a corporate contract?",
-    a: "When a unit is committed to a corporate booking, Simplified Management blocks those dates across all connected channels in real time, so no nightly guest can book an apartment that is already contracted.",
+    a: "When a unit is committed to a corporate booking, Simplified Management blocks those dates across all connected channels, so no nightly guest can book an apartment that is already contracted.",
   },
   {
     q: "Can I see how each apartment earns across booking types?",

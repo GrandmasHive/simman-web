@@ -22,10 +22,10 @@ export const features = [
     title: "Channel Manager",
     tagline: "Sell everywhere, oversell nowhere",
     description:
-      "Distribute and sync listings, rates, and availability across Airbnb, Booking.com, Agoda, Expedia and 50+ OTAs from one calendar.",
+      "Distribute and sync listings, rates, and availability across Airbnb, Booking.com, Agoda, Expedia, and the other OTAs you list on, from one calendar.",
     bullets: [
-      "50+ OTA connections from one login",
-      "Two-way, real-time availability sync",
+      "OTA connections from one login",
+      "Two-way, cross-channel availability sync",
       "Centralized pricing and rate rules",
     ],
     image: "/screenshots/booking.png",
@@ -36,17 +36,17 @@ export const features = [
   },
   {
     key: "calendar",
-    title: "Real-Time Calendar Sync",
-    tagline: "The same night is never double-sold",
+    title: "Calendar Sync",
+    tagline: "One master calendar, every channel aligned",
     description:
-      "Every booking updates every channel instantly. Eliminate double bookings and the manual work of keeping calendars aligned.",
+      "Every booking updates your master calendar. Sync it out to your OTAs to eliminate double bookings and the manual work of keeping calendars aligned.",
     bullets: [
-      "Instant cross-channel updates",
-      "Zero double bookings",
+      "Cross-channel calendar updates",
+      "Fewer double bookings",
       "Master calendar drives all distribution",
     ],
     image: "/screenshots/calendar.png",
-    alt: "Real-Time Calendar Sync screenshot showing a multi-property booking calendar with per-night rates",
+    alt: "Calendar Sync screenshot showing a multi-property booking calendar with per-night rates",
     // No callout here: the crop doesn't show a clean top-of-frame figure to
     // point at, so the badge is hidden, not fabricated (see ITERATIONS.md v2).
     callout: undefined as string | undefined,
@@ -81,7 +81,7 @@ export const pricingTiers = [
     features: [
       "Centralized PMS dashboard",
       "Unified booking management",
-      "Real-time calendar sync",
+      "Cross-channel calendar sync",
       "Core OTA connections",
       "Guest management & tasks",
     ],
@@ -92,7 +92,7 @@ export const pricingTiers = [
     highlight: false,
     features: [
       "Everything in Starter",
-      "50+ OTA distribution",
+      "Expanded OTA distribution",
       "Partner accounts & split payouts",
       "Reports & insights",
       "Priority email support",
@@ -127,11 +127,11 @@ export const faqs = [
   },
   {
     q: "Which channels do you connect to?",
-    a: "Simplified Management connects to 50+ OTA channels including Airbnb, Booking.com, Agoda, Expedia, Vrbo, MakeMyTrip, Goibibo and more, distributing and syncing availability from one dashboard.",
+    a: "Simplified Management connects to 8 major OTA channels including Airbnb, Booking.com, Agoda, Expedia, Vrbo, MakeMyTrip, Goibibo and StayVista, distributing and syncing availability from one dashboard.",
   },
   {
-    q: "How fast does availability sync across channels?",
-    a: "Availability, rates, and reservations sync in real time across every connected channel, so the same night is never double-sold.",
+    q: "How does availability sync across channels?",
+    a: "Availability, rates, and reservations sync across every connected channel from one master calendar, so you can keep the same night from being double-sold.",
   },
   {
     q: "Can I manage partners and split payouts?",

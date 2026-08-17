@@ -9,9 +9,9 @@ import { features } from "@/lib/content";
 const feature = features.find((f) => f.key === "calendar")!;
 
 export const metadata: Metadata = {
-  title: "Real-Time Calendar Sync",
+  title: "Calendar Sync",
   description:
-    "Every booking updates every channel instantly. Eliminate double bookings and the manual work of keeping OTA calendars aligned across your whole portfolio.",
+    "Keep one master calendar and sync it out to your OTAs, cutting down double bookings and the manual work of keeping calendars aligned across your whole portfolio.",
   alternates: { canonical: "/services/calendar-sync" },
 };
 
@@ -23,28 +23,28 @@ const steps = [
   },
   {
     step: "2",
-    title: "Instant two-way updates",
-    body: "A booking, block, or cancellation on any channel pushes to all the others in real time, with no refresh or manual export.",
+    title: "Two-way updates",
+    body: "A booking, block, or cancellation on any connected channel syncs back to your master calendar, and changes you make there sync out to the rest.",
   },
   {
     step: "3",
-    title: "Zero double bookings",
-    body: "Because the same night can only be open in one place at a time, guests never book a night that is already sold.",
+    title: "Fewer double bookings",
+    body: "Because the same night is tracked in one place, guests are far less likely to book a night that is already sold.",
   },
 ];
 
 const faqItems = [
   {
-    q: "How fast does the calendar actually sync?",
-    a: "Availability, rates, and reservations sync in real time. The moment a night sells on one channel, it closes on every other connected channel, so the same night is never double-sold.",
+    q: "How does the calendar sync work?",
+    a: "Availability, rates, and reservations sync across every connected channel from your master calendar. When a night sells on one channel, that update flows through to the others, so you can keep the same night from being double-sold.",
   },
   {
     q: "What happens if a guest cancels?",
-    a: "A cancellation reopens those nights across every channel automatically, so the availability goes straight back on sale without anyone re-listing it by hand.",
+    a: "A cancellation reopens those nights on your master calendar, and that availability syncs back out to your connected channels, so you are not re-listing it by hand.",
   },
   {
     q: "Do I still need to update calendars manually anywhere?",
-    a: "No. The master calendar drives all distribution, so you manage availability in one place and every OTA stays aligned on its own.",
+    a: "No. The master calendar drives distribution, so you manage availability in one place and sync it out to every connected OTA instead of updating each one separately.",
   },
 ];
 
@@ -53,8 +53,8 @@ export default function CalendarSyncPage() {
     <>
       <PageHeader
         eyebrow={feature.tagline}
-        title="The same night is never double-sold"
-        lede="Every booking updates every channel instantly. Real-time calendar sync eliminates double bookings and the daily manual work of keeping availability aligned across every OTA you sell on."
+        title="Keep the same night from being double-sold"
+        lede="Every booking updates your master calendar, which syncs out to every OTA you sell on. Cut down double bookings and the daily manual work of keeping availability aligned across your portfolio."
       />
 
       <section className="section-pad border-b border-border">
@@ -72,16 +72,16 @@ export default function CalendarSyncPage() {
             <div className="mt-8 space-y-4 text-body">
               <p>
                 A double booking costs you a refund, a scramble to rehouse a guest, and a review you
-                cannot undo. Real-time sync removes the gap that causes them: availability updates
-                everywhere the instant a night is sold.
+                cannot undo. Calendar sync is built to close the gap that causes them: one master
+                calendar that every connected channel reads from and writes back to.
               </p>
               <p>
-                Your master calendar drives every channel. When one platform takes a booking, the
-                others close that night automatically, so there is no window where two guests can
-                claim the same room.
+                Your master calendar drives every channel. When one platform takes a booking, that
+                update syncs across your other connected channels, so there is far less risk of two
+                guests claiming the same room.
               </p>
               <p>
-                For a large portfolio, that means no more end-of-day calendar reconciliation. Your
+                For a large portfolio, that means far less end-of-day calendar reconciliation. Your
                 team spends its time on guests and turnovers, not on chasing calendars into
                 agreement.
               </p>
@@ -90,7 +90,7 @@ export default function CalendarSyncPage() {
 
           <BrowserFrame
             src="/screenshots/calendar.png"
-            alt="Simplified Management master calendar syncing availability across channels in real time"
+            alt="Simplified Management master calendar syncing availability across channels"
             width={1800}
             height={1010}
           />
@@ -104,7 +104,7 @@ export default function CalendarSyncPage() {
               How it works
             </p>
             <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl">
-              One calendar, every channel, always in agreement
+              One calendar, every channel, kept in sync
             </h2>
           </div>
 
