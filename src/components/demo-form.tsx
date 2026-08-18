@@ -7,13 +7,16 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
-// WIRE ME (added last, before ads): create a free Web3Forms account and set the
-// access key via the NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY environment variable (in Vercel
-// project settings, not hardcoded). Web3Forms needs no backend and works on any host.
-// Until the key is set, submissions are captured locally and the user still reaches
-// /thank-you, where the GA4 generate_lead + Meta Lead conversion events fire.
+// Web3Forms access key. Deliberately inlined as the fallback rather than left to an
+// environment variable: simplifiedmanagement.in is built and served by a Vercel account
+// we do not control, so we cannot set env vars for the live site — and with no key this
+// form silently drops the lead (see the local-capture branch below) while still showing
+// /thank-you and firing the GA4 generate_lead + Meta Lead conversion events. A real
+// NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY still overrides this. The key is public by design:
+// it ships in the rendered form markup on every page load, and is free to rotate.
 const WEB3FORMS_ACCESS_KEY =
-  process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? "__WEB3FORMS_ACCESS_KEY__";
+  process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ??
+  "436ad4a1-8628-4d57-9e21-c5ae4c3366e3";
 
 export function DemoForm() {
   const router = useRouter();

@@ -13,12 +13,12 @@ declare global {
   }
 }
 
-// WIRE ME: same Web3Forms access key used by the demo form (see
-// src/components/demo-form.tsx). Set NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY in
-// Vercel project settings. Until it's set, submissions are captured locally
-// and the gate still unlocks so the flow can be reviewed end to end.
+// Same Web3Forms access key as the demo form, inlined for the same reason — see the
+// note in src/components/demo-form.tsx. Without it the gate still unlocks but the lead
+// is dropped silently. NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY still overrides it.
 const WEB3FORMS_ACCESS_KEY =
-  process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? "__WEB3FORMS_ACCESS_KEY__";
+  process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ??
+  "436ad4a1-8628-4d57-9e21-c5ae4c3366e3";
 
 export type Resource = {
   slug: string;
