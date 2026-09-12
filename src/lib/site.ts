@@ -12,9 +12,9 @@ export const site = {
     country: "India",
   },
   phones: [
-    { label: "+91 99236 32995", tel: "+919923632995" },
+    { label: "+91 84840 12958", tel: "+918484012958" },
   ],
-  whatsapp: "919923632995",
+  whatsapp: "918484012958",
   socials: {
     instagram: "https://www.instagram.com/simplified_management.in/",
     facebook: "https://www.facebook.com/profile.php?id=61591756372165",
@@ -29,6 +29,7 @@ export const nav = {
     { label: "Solutions", href: "/solutions" },
     { label: "Pricing", href: "/pricing" },
     { label: "Integrations", href: "/integrations" },
+    { label: "Docs", href: "/docs" },
     { label: "Blog", href: "/blog" },
     { label: "Contact", href: "/contact" },
   ],
@@ -52,6 +53,7 @@ export const nav = {
     { label: "Contact", href: "/contact" },
   ],
   footerResources: [
+    { label: "Docs", href: "/docs" },
     { label: "Blog", href: "/blog" },
     { label: "Free Templates", href: "/resources" },
     { label: "Integrations", href: "/integrations" },
@@ -79,7 +81,7 @@ export const otaChannels = [
 /** Real, defensible product metrics (from the live app) — used instead of a fabricated rating. */
 export const productStats = [
   { value: "10-500+", label: "Listings per operator", live: false },
-  { value: "8", label: "OTA channels", live: false },
+  { value: "Major", label: "Indian & global OTAs", live: false },
   { value: "Two-way", label: "Calendar sync", live: false },
   { value: "15+", label: "Operations modules", live: false },
 ] as const;
