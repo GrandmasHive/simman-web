@@ -29,7 +29,6 @@ export const nav = {
     { label: "Solutions", href: "/solutions" },
     { label: "Pricing", href: "/pricing" },
     { label: "Integrations", href: "/integrations" },
-    { label: "Docs", href: "/docs" },
     { label: "Blog", href: "/blog" },
     { label: "Contact", href: "/contact" },
   ],
@@ -53,7 +52,6 @@ export const nav = {
     { label: "Contact", href: "/contact" },
   ],
   footerResources: [
-    { label: "Docs", href: "/docs" },
     { label: "Blog", href: "/blog" },
     { label: "Free Templates", href: "/resources" },
     { label: "Integrations", href: "/integrations" },
