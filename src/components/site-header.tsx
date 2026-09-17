@@ -11,7 +11,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { nav } from "@/lib/site";
+import { nav, site } from "@/lib/site";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -42,12 +42,12 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <Link
-            href="/login"
+          <a
+            href={site.loginUrl}
             className="text-sm font-medium text-body transition-colors hover:text-foreground"
           >
             Login
-          </Link>
+          </a>
           <Button asChild className="rounded-full">
             <Link href="/demo">Request Demo</Link>
           </Button>
@@ -85,13 +85,13 @@ export function SiteHeader() {
                   </Link>
                 ))}
                 <div className="mt-4 flex flex-col gap-3 border-t border-border pt-4">
-                  <Link
-                    href="/login"
+                  <a
+                    href={site.loginUrl}
                     onClick={() => setOpen(false)}
                     className="rounded-md px-2 py-2 text-base font-medium text-body hover:text-foreground"
                   >
                     Login
-                  </Link>
+                  </a>
                   <Button asChild className="w-full rounded-full" onClick={() => setOpen(false)}>
                     <Link href="/demo">Request Demo</Link>
                   </Button>
