@@ -52,20 +52,35 @@ export function ResourceGate({ resources }: { resources: Resource[] }) {
     setPending(true);
     setStatus(null);
 
-    try {
-      if (hasLiveKey) {
-        const res = await fetch("https://api.web3forms.com/submit", {
-          method: "POST",
-          headers: { Accept: "application/json" },
-          body: new FormData(form),
-        });
-        const json = await res.json();
-        if (!res.ok || !json.success) throw new Error(json.message || "Submission failed");
-      } else {
-        const data = Object.fromEntries(new FormData(form).entries());
-        console.info("[lead-magnet-request] captured locally:", data);
-      }
+    const fd = new FormData(form);
+    const data = Object.fromEntries(fd.entries());
 
+    try {
+      // Primary: our own endpoint → HubSpot Contact (kind "resource" = no deal) + email.
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...data, kind: "resource" }),
+      });
+      if (!res.ok) throw new Error(`lead endpoint ${res.status}`);
+    } catch {
+      // Fallback: post straight to Web3Forms so the lead is never dropped.
+      try {
+        if (hasLiveKey) {
+          await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: { Accept: "application/json" },
+            body: fd,
+          });
+        } else {
+          console.info("[lead-magnet-request] captured locally:", data);
+        }
+      } catch {
+        /* never block access to the templates */
+      }
+    }
+
+    try {
       if (typeof window.gtag === "function") {
         window.gtag("event", "lead_magnet_download", {
           form: "resources-gate",

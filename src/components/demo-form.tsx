@@ -34,25 +34,36 @@ export function DemoForm() {
     setPending(true);
     setStatus(null);
 
+    const fd = new FormData(form);
+    const data = Object.fromEntries(fd.entries());
+
     try {
-      if (hasLiveKey) {
-        const res = await fetch("https://api.web3forms.com/submit", {
-          method: "POST",
-          headers: { Accept: "application/json" },
-          body: new FormData(form),
-        });
-        const json = await res.json();
-        if (!res.ok || !json.success) throw new Error(json.message || "Submission failed");
-      } else {
-        // Local capture until the key is wired.
-        const data = Object.fromEntries(new FormData(form).entries());
-        console.info("[demo-request] captured locally:", data);
-      }
-      router.push("/thank-you");
+      // Primary: our own endpoint → HubSpot CRM (Contact + Deal, realtime) + email.
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error(`lead endpoint ${res.status}`);
     } catch {
-      // Never block the user — still route to the thank-you page.
-      router.push("/thank-you");
+      // Fallback: post straight to Web3Forms so a lead is never dropped, even if
+      // our endpoint is unreachable. (Skipped only if no key is available at all.)
+      try {
+        if (hasLiveKey) {
+          await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: { Accept: "application/json" },
+            body: fd,
+          });
+        } else {
+          console.info("[demo-request] captured locally:", data);
+        }
+      } catch {
+        /* never block the user */
+      }
     } finally {
+      // Always route to the thank-you page (fires GA4 generate_lead + Meta Lead).
+      router.push("/thank-you");
       setPending(false);
     }
   }
