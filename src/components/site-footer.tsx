@@ -62,12 +62,30 @@ export function SiteFooter() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-border pt-6 text-sm text-muted-foreground sm:flex-row">
           <p>© {new Date().getFullYear()} Simplified Management. All rights reserved.</p>
+          <MadeInIndiaBadge />
           <a href={site.email && `mailto:${site.email}`} className="hover:text-primary">
             {site.email}
           </a>
         </div>
       </div>
     </footer>
+  );
+}
+
+// Own "Made in India" mark. The official Make in India lion logo needs DPIIT
+// permission for commercial use; swap it in here once approval lands.
+function MadeInIndiaBadge() {
+  return (
+    <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1 text-xs font-medium text-foreground">
+      <svg viewBox="0 0 30 20" className="h-3.5 w-auto rounded-[2px] ring-1 ring-black/10" aria-hidden>
+        <rect width="30" height="20" fill="#FFFFFF" />
+        <rect width="30" height="6.67" fill="#FF9933" />
+        <rect y="13.33" width="30" height="6.67" fill="#138808" />
+        <circle cx="15" cy="10" r="2.6" fill="none" stroke="#000080" strokeWidth="0.6" />
+        <circle cx="15" cy="10" r="0.5" fill="#000080" />
+      </svg>
+      Proudly made in India
+    </span>
   );
 }
 
