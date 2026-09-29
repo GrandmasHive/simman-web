@@ -12,9 +12,9 @@ export const site = {
     country: "India",
   },
   phones: [
-    { label: "+91 84840 12958", tel: "+918484012958" },
+    { label: "+91 98240 04043", tel: "+919824004043" },
   ],
-  whatsapp: "918484012958",
+  whatsapp: "919824004043",
   socials: {
     instagram: "https://www.instagram.com/simplified_management.in/",
     facebook: "https://www.facebook.com/profile.php?id=61591756372165",
