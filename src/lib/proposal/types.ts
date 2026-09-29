@@ -30,6 +30,9 @@ export type ProposalInput = {
   /** Optional: one sentence the prospect said on the call. */
   quote: string;
   billing: Billing;
+  /** Show the first two monthly invoices at Rs 0 (free plan). Default on.
+   *  Older drafts don't have it: treat undefined as on. */
+  zeroInvoices?: boolean;
   /** Week 1 starts on this date (YYYY-MM-DD). */
   startDate: string;
   /** The date the proposal is made (YYYY-MM-DD). */

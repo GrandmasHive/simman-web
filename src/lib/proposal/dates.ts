@@ -57,6 +57,8 @@ export function fmtRange(a: Date, b: Date): string {
 
 export type Schedule = {
   start: Date;
+  /** Invoice dates: month 1 and month 2 (free plan, Rs 0), then the first paid one. */
+  invoices: Date[];
   weeks: { from: Date; to: Date }[];
   goLive: Date;
   freeUntil: Date;
@@ -74,6 +76,7 @@ export function schedule(startIso: string, issueIso: string, validDays: number):
   const issued = parse(issueIso);
   return {
     start,
+    invoices: [start, addMonths(start, 1), firstBill],
     weeks,
     goLive: weeks[3].from,
     freeUntil: addDays(firstBill, -1),

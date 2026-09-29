@@ -115,6 +115,7 @@ export function blankInput(segment: Segment = "hotel"): ProposalInput {
     problems: [],
     quote: "",
     billing: "both",
+    zeroInvoices: true,
     startDate: nextMonday(issue),
     issueDate: issue,
     validDays: 14,

@@ -361,6 +361,14 @@ function Builder({ user, sample }: { user: string; sample: "hotel" | "owner" | n
                 options={[["both", "Monthly + yearly"], ["monthly", "Monthly"], ["yearly", "Yearly"]]}
                 onChange={(v) => set("billing", v as Billing)} />
             </Field>
+            <label className="flex cursor-pointer items-start gap-2.5 rounded-md border border-border px-2.5 py-2 text-sm">
+              <input type="checkbox" className="mt-0.5 accent-[#2563eb]" checked={input.zeroInvoices !== false}
+                onChange={(e) => set("zeroInvoices", e.target.checked)} />
+              <span>
+                Show the first two invoices at ₹0 (free plan)
+                <span className="block text-xs text-muted-foreground">Off: shows the free months and the first bill date instead.</span>
+              </span>
+            </label>
             <div className="grid grid-cols-2 gap-3">
               <Field label="Week 1 starts">
                 <DateInput value={input.startDate} onChange={(v) => set("startDate", v)} fallback={nextMonday(todayIso())} />

@@ -54,6 +54,7 @@ export function prefillFromLead(lead: Lead, current: ProposalInput): Prefill {
   const input: ProposalInput = {
     ...base,
     billing: current.billing,
+    zeroInvoices: current.zeroInvoices,
     startDate: current.startDate,
     issueDate: current.issueDate,
     validDays: current.validDays,

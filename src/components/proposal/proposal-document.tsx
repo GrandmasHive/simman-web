@@ -64,6 +64,7 @@ export function ProposalDocument({ input }: { input: ProposalInput }) {
   const showMonthly = input.billing !== "yearly";
   const showYearly = input.billing !== "monthly";
   const hasProblems = problems.length > 0;
+  const zeroInvoices = input.zeroInvoices !== false;
   const total = hasProblems ? 7 : 6;
   const foot = `Proposal for ${business} · ${fmtDate(s.issued)}`;
   let n = 1;
@@ -263,11 +264,28 @@ export function ProposalDocument({ input }: { input: ProposalInput }) {
             </div>
           ))}
         </div>
-        <div className="pp-free">
-          <div><span className="pp-label">Your free months</span><div className="pp-free-v">{fmtDate(s.start)}<br />to {fmtDate(s.freeUntil)}</div></div>
-          <div><span className="pp-label">Your first bill</span><div className="pp-free-v">{fmtDate(s.firstBill)}</div></div>
-        </div>
-        <div className="pp-leave"><Tick size={20} /><span><b>{c.assurances[2].title}.</b> {c.assurances[2].text}</span></div>
+        {zeroInvoices ? (
+          <div className="pp-invoices">
+            <span className="pp-label">Your first invoices</span>
+            {s.invoices.map((d, i) => (
+              <div className={`pp-inv ${i < 2 ? "pp-inv-free" : ""}`} key={i}>
+                <span className="pp-inv-date">{fmtDate(d)}</span>
+                <span className="pp-inv-what">{i < 2 ? `Month ${i + 1} · free plan` : "Month 3 onwards"}</span>
+                <span className="pp-inv-amt">
+                  {i < 2 ? "₹0" : showMonthly ? <>{rupees(q.monthly)}<small> + GST a month</small></> : <>{rupees(q.yearly)}<small> + GST a year</small></>}
+                </span>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <>
+            <div className="pp-free">
+              <div><span className="pp-label">Your free months</span><div className="pp-free-v">{fmtDate(s.start)}<br />to {fmtDate(s.freeUntil)}</div></div>
+              <div><span className="pp-label">Your first bill</span><div className="pp-free-v">{fmtDate(s.firstBill)}</div></div>
+            </div>
+            <div className="pp-leave"><Tick size={20} /><span><b>{c.assurances[2].title}.</b> {c.assurances[2].text}</span></div>
+          </>
+        )}
       </Page>
 
       {/* 6. Everything included */}
@@ -304,7 +322,12 @@ export function ProposalDocument({ input }: { input: ProposalInput }) {
           <span className="pp-label">When you say yes</span>
           <div className="pp-step"><span className="pp-step-n">1</span><span>Tell {CONTACT.name} on a call or on WhatsApp.</span></div>
           <div className="pp-step"><span className="pp-step-n">2</span><span>Week one starts on {fmtDayMonth(s.start)} with a call about how you run things today.</span></div>
-          <div className="pp-step"><span className="pp-step-n">3</span><span>You go live on {fmtDayMonth(s.goLive)}. Your first bill comes on {fmtDate(s.firstBill)}.</span></div>
+          <div className="pp-step"><span className="pp-step-n">3</span><span>
+            You go live on {fmtDayMonth(s.goLive)}.{" "}
+            {zeroInvoices
+              ? <>Your first two invoices are ₹0. The first paid one is on {fmtDate(s.firstBill)}.</>
+              : <>Your first bill comes on {fmtDate(s.firstBill)}.</>}
+          </span></div>
         </div>
         <div className="pp-contact">
           <div>
