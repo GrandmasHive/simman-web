@@ -6,7 +6,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { WhatsappButton } from "@/components/whatsapp-button";
 
 // Routes that render bare (no marketing header/footer/WhatsApp), e.g. login.
-const BARE_ROUTES = ["/login"];
+const BARE_ROUTES = ["/login", "/team"];
 
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
