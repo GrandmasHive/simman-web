@@ -106,7 +106,8 @@ export function blankInput(segment: Segment = "hotel"): ProposalInput {
     contactName: "",
     role: segment === "hotel" ? "General Manager" : "",
     business: "",
-    properties: [{ name: "", area: "", kind: COPY[segment].kinds[0], units: segment === "hotel" ? 20 : 1 }],
+    // 0 until the rep fills it in: never show a made-up count.
+    properties: [{ name: "", area: "", kind: COPY[segment].kinds[0], units: 0 }],
     sites: [],
     otherSite: "",
     today: [],

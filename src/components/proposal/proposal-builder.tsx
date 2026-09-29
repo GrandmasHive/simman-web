@@ -11,7 +11,7 @@ import { ProposalDocument } from "./proposal-document";
 import { COPY, MAX_OWNER_ROWS, MAX_PROBLEMS, SITES, TODAY } from "@/lib/proposal/copy";
 import { isValidIso, nextMonday, todayIso } from "@/lib/proposal/dates";
 import { blankInput, fileName, hubspotNote, isReady, whatsappMessage } from "@/lib/proposal/derive";
-import { quote, rupees } from "@/lib/proposal/pricing";
+import { quote, rupees, totalUnits } from "@/lib/proposal/pricing";
 import { SAMPLES } from "@/lib/proposal/samples";
 import { type Lead, leadName, prefillFromLead } from "@/lib/proposal/from-hubspot";
 import type { Billing, ProposalInput, PropertyRow, Segment } from "@/lib/proposal/types";
@@ -125,7 +125,8 @@ function Builder({ user, sample }: { user: string; sample: "hotel" | "owner" | n
       contactName: p.contactName, business: p.business, sites: p.sites, otherSite: p.otherSite,
       today: p.today, otherSystem: p.otherSystem, quote: p.quote, billing: p.billing,
       startDate: p.startDate, issueDate: p.issueDate, validDays: p.validDays, hubspotDealId: p.hubspotDealId,
-      properties: [{ ...fresh.properties[0], name: seg === "hotel" ? p.business : "" }],
+      // Keep the count the rep (or HubSpot) already gave.
+      properties: [{ ...fresh.properties[0], name: seg === "hotel" ? p.business : "", units: totalUnits(p) }],
     }));
   }
 
@@ -304,7 +305,9 @@ function Builder({ user, sample }: { user: string; sample: "hotel" | "owner" | n
               </div>
             )}
             <div className="rounded-lg bg-accent px-3 py-2 text-sm text-accent-foreground">
-              Price: <b>{rupees(q.monthly)} a month</b> + GST, or {rupees(q.yearly)} a year + GST
+              {q.units < 1
+                ? <span className="text-amber-800">Add the number of {input.segment === "hotel" ? "rooms" : "listings"} to work out the price.</span>
+                : <>Price: <b>{rupees(q.monthly)} a month</b> + GST, or {rupees(q.yearly)} a year + GST</>}
             </div>
           </Section>
 
