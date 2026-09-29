@@ -3,7 +3,9 @@
 A private page on the website where a sales rep makes a personalised proposal PDF
 for a prospect, after the sales deck. Route: `/team/proposal`, behind a login.
 
-Status 2026-09-25: built and tested LOCALLY on branch `feat/sales-proposals`. Not deployed.
+Status 2026-09-29: branch `feat/sales-proposals` pushed; PREVIEW at
+https://simman-web-git-feat-sales-proposals-dev-ops-9530.vercel.app/team/login.
+Not merged to `main`, so not live on simplifiedmanagement.in yet.
 
 ## How the sales team uses it (3 steps)
 
@@ -26,7 +28,8 @@ note appears, do what it says before downloading.
   only pick problems from this list, so they can't promise anything new.
 - Contact on every proposal: Tipusultan, +91 98240 04043, sultan@simplifiedmanagement.in.
 - Defaults Shaun can override:
-  - The 2 free months count from the Week 1 start date.
+  - The 2 free months count from the Week 1 start date. Page 5 shows the first two
+    invoices at ₹0 (free plan) and the first paid one; the rep can switch that off.
   - One hotel per proposal (one ₹3,000 platform fee).
   - Only Airbnb, Booking.com and MakeMyTrip are promised to "come in on their own".
   - Amounts are rounded to the rupee.
@@ -51,17 +54,14 @@ npm run dev -- -p 3100
 Then open http://localhost:3100/team/login. Local test user: see `.env.local` (gitignored).
 Samples: `/team/proposal?sample=hotel` and `/team/proposal?sample=owner`.
 
-## Before deploying (not done yet)
+## Deploy state (2026-09-29)
 
-1. Vercel project env (Production): add `TEAM_SESSION_SECRET` and `TEAM_USERS` with REAL
-   rep logins (not the local test user). `HUBSPOT_TOKEN` is already there.
-2. Decide: GA4 + Meta Pixel load on every page from the root layout, so team visits count
-   as site PageViews. Exclude `/team` first if that matters.
-3. Decide: keep or remove the "Log this proposal on the HubSpot deal" button. It sets the
-   deal amount (12 months, before GST) and appends one note line. It only runs when the rep
-   clicks it and confirms. It has not been run against live data.
-4. Commit as GrandmasHive (or the deploy blocks), merge `feat/sales-proposals` into `main`,
-   push to the `devops` remote. Check `/team/login` on a preview first.
+- Done: Vercel env `TEAM_SESSION_SECRET` (sensitive) and `TEAM_USERS` (tipusultan, ghouse)
+  set for Production + Preview. `HUBSPOT_TOKEN` was already there.
+- Done: GA4 + Meta Pixel skip `/team` (guard in `src/app/layout.tsx`).
+- Kept: the "Log this proposal on the HubSpot deal" button (rep clicks + confirms; sets the
+  deal amount and appends one note line). Not yet run against live data.
+- To go live: merge `feat/sales-proposals` into `main` as GrandmasHive and push to `devops`.
 
 ## Files
 
