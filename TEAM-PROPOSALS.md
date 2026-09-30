@@ -1,38 +1,48 @@
 # Proposal maker (sales team)
 
-A private page on the website where a sales rep makes a personalised proposal PDF
-for a prospect, after the sales deck. Route: `/team/proposal`, behind a login.
+A private page on the website where a sales rep turns a call into the final offer:
+a 5-page PDF with the final price, sent to the prospect on WhatsApp.
+Route: `/team/proposal`, behind a login. Settings: `/team/settings`.
 
-Status 2026-09-29: branch `feat/sales-proposals` pushed; PREVIEW at
-https://simman-web-git-feat-sales-proposals-dev-ops-9530.vercel.app/team/login.
+Status 2026-09-30: v2 on branch `feat/sales-proposals`, PREVIEW only
+(https://simman-web-git-feat-sales-proposals-dev-ops-9530.vercel.app/team/login).
 Not merged to `main`, so not live on simplifiedmanagement.in yet.
 
 ## How the sales team uses it (3 steps)
 
-1. **Log in** at `simplifiedmanagement.in/team/login`. Find the prospect in HubSpot
-   (name, phone, email or business), or skip that and type their details.
-2. **Fill in what they told you on the call.** Hotel or property owner, rooms or listings,
-   booking sites, how they run it today, their team, up to 5 problems, the start date.
-   The preview on the right is exactly what the prospect gets.
-3. **Tap Download PDF**, choose "Save as PDF", and send the file on WhatsApp yourself.
-   "Copy WhatsApp message" gives you a short intro to paste with it.
-   Nothing is ever sent to a prospect by this tool.
+1. **Log in** at `simplifiedmanagement.in/team/login`.
+2. **Fill in two things:** who it's for (name, business, city or area) and what they need
+   (Hotel or Home owner, and the number of rooms or listings). The price card on the right
+   works out the price as you type.
+3. **Tap Download proposal PDF.** The file downloads straight away. Send it on WhatsApp
+   yourself. "Copy WhatsApp text" gives a short message to paste with it.
 
-Tips: make proposals on a laptop (Chrome or Edge). If a yellow "page is too full"
-note appears, do what it says before downloading.
+The offer is open for 1 week by default; switch to 1 month next to the Download button.
+Nothing is ever sent to a prospect by this tool.
 
-## What's fixed and what the rep can change
+## What the PDF is
+
+Always 5 A4 pages: cover (with the monthly price), your price worked out, your start
+(4 weeks with dates, first two invoices at ₹0), everything included, next step with the
+rep's contact. Week 1 starts the Monday after the proposal is made.
+
+The PDF is built in the browser, one exact A4 image per page, with the call, WhatsApp,
+email and demo links added back on top (`src/lib/proposal/export-pdf.ts`). It does not use
+the browser's print window, so paper size, margins and scaling settings can't break it.
+
+## What's fixed
 
 - Prices: `src/lib/proposal/pricing.ts`. FINAL. Do not change.
-- Every product claim: `src/lib/proposal/copy.ts`, copied from the v2 decks. Reps can
-  only pick problems from this list, so they can't promise anything new.
-- Contact on every proposal: Tipusultan, +91 98240 04043, sultan@simplifiedmanagement.in.
-- Defaults Shaun can override:
-  - The 2 free months count from the Week 1 start date. Page 5 shows the first two
-    invoices at ₹0 (free plan) and the first paid one; the rep can switch that off.
-  - One hotel per proposal (one ₹3,000 platform fee).
-  - Only Airbnb, Booking.com and MakeMyTrip are promised to "come in on their own".
-  - Amounts are rounded to the rupee.
+- Every product line: `src/lib/proposal/copy.ts`, from the v2 decks.
+- Default contact (until a rep saves their own in Settings): Tipusultan, Relationship Manager,
+  +91 98240 04043, sultan@simplifiedmanagement.in.
+
+## Settings (each rep's contact on their proposals)
+
+Saved with the rep's login in a private Vercel Blob store, when `BLOB_READ_WRITE_TOKEN` is set
+on the Vercel project. NOT switched on yet (needs Shaun's approval under the money rule). Until
+then Settings shows "Saving isn't switched on yet" and proposals print the default contact.
+On a laptop (`npm run dev`), profiles save to `.data/profiles.json` (gitignored).
 
 ## Logins (Shaun)
 
@@ -45,29 +55,13 @@ Users live in the env var `TEAM_USERS` (hashed passwords, never plain text).
 
 If either variable is missing, nobody can log in (fails closed).
 
-## Run it locally
+## Coming next: our own CRM
 
-```bash
-npm run dev -- -p 3100
-```
+The two steps map to the CRM fields being added: business name, city or area, type
+(Hotel / Home owners) and count. The count must be rooms for hotels and listings for home
+owners, because the price is per room or per listing.
 
-Then open http://localhost:3100/team/login. Local test user: see `.env.local` (gitignored).
-Samples: `/team/proposal?sample=hotel` and `/team/proposal?sample=owner`.
+## Go live
 
-## Deploy state (2026-09-29)
-
-- Done: Vercel env `TEAM_SESSION_SECRET` (sensitive) and `TEAM_USERS` (tipusultan, ghouse)
-  set for Production + Preview. `HUBSPOT_TOKEN` was already there.
-- Done: GA4 + Meta Pixel skip `/team` (guard in `src/app/layout.tsx`).
-- Kept: the "Log this proposal on the HubSpot deal" button (rep clicks + confirms; sets the
-  deal amount and appends one note line). Not yet run against live data.
-- To go live: merge `feat/sales-proposals` into `main` as GrandmasHive and push to `devops`.
-
-## Files
-
-- `src/app/team/proposal/page.tsx`: the page (checks the session)
-- `src/components/proposal/`: form (`proposal-builder.tsx`) and the 7 A4 pages
-  (`proposal-document.tsx`, `proposal.css`)
-- `src/lib/proposal/`: pricing, dates, deck copy, samples
-- `src/lib/team-auth.ts`, `src/proxy.ts`, `src/app/api/team/*`, `src/app/team/login/`: login + HubSpot
-- `public/brand/simman-wordmark.svg`: the real logo (from Media-Kit/source)
+Merge `feat/sales-proposals` into `main` as GrandmasHive and push to `devops`.
+GA4 and the Meta Pixel already skip `/team`; `/team` and `/api/team` are in robots.txt.
