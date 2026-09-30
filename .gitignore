@@ -42,5 +42,3 @@ next-env.d.ts
 
 .vercel
 
-# local rep profiles (Settings) when running on a laptop
-/.data/

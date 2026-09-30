@@ -5,7 +5,6 @@
 // saves it in one click (see export-pdf.ts). This tool never sends anything to
 // a prospect: the rep sends the PDF.
 
-import Link from "next/link";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { ProposalDocument } from "./proposal-document";
 import { TeamShell } from "@/components/team/team-shell";
@@ -199,8 +198,7 @@ function Builder({ name, contact, isDefaultContact, sample }: {
         <span className="tm-avatar" aria-hidden="true">{initials(contact.name)}</span>
         <div>
           On the PDF: <b>{contact.name}</b> · {contact.phone}
-          {isDefaultContact && <> (company details)</>}
-          <br /><Link href="/team/settings" className="tm-link-b">Change in Settings</Link>
+          {isDefaultContact && <><br />Company details: your own aren&apos;t set up yet. Ask Shaun.</>}
         </div>
       </div>
 
@@ -234,7 +232,6 @@ function Builder({ name, contact, isDefaultContact, sample }: {
   return (
     <TeamShell
       name={name}
-      active="proposals"
       actions={<button type="button" className="tm-btn tm-nav-hide" onClick={startNew}>+ New proposal</button>}
       mobileBar={
         <div className="tm-mbar">

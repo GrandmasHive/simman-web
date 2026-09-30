@@ -128,14 +128,6 @@
 .tm-note.ok { background: #ecfdf5; color: var(--green); }
 .tm-foot { font-size: 12px; color: var(--muted); text-align: center; margin-top: 12px; overflow-wrap: anywhere; }
 
-/* ---------- settings ---------- */
-.tm-set { display: grid; grid-template-columns: minmax(0, 1fr) 420px; gap: 28px; padding: 28px; max-width: 1080px; margin: 0 auto; align-items: start; }
-.tm-set h1 { margin: 0 0 4px; font: 700 20px var(--display); letter-spacing: -.01em; }
-/* The contact box at its real print size, scaled down to fit the column. */
-.tm-cprev { width: 674px; zoom: .6; }
-.tm-check { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--body); cursor: pointer; }
-.tm-check input { width: 20px; height: 20px; accent-color: var(--brand); }
-
 /* ---------- login ---------- */
 .tm-login { min-height: 100dvh; display: flex; align-items: center; justify-content: center; padding: 32px 20px; }
 .tm-login .tm-card { width: 100%; max-width: 400px; padding: 32px; }
@@ -154,9 +146,8 @@
 
 /* ---------- phone ---------- */
 .tm-mbar { display: none; }
-.tm-subnav { display: none; }
 @media (max-width: 1023px) {
-  .tm-main, .tm-set { grid-template-columns: minmax(0, 1fr); padding: 16px; gap: 16px; }
+  .tm-main { grid-template-columns: minmax(0, 1fr); padding: 16px; gap: 16px; }
   .tm-est { position: static; }
   .tm-bar { padding: 0 16px; }
   .tm-mbar { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; background: #fff; border-top: 1px solid var(--line);
@@ -166,11 +157,7 @@
   .tm-with-mbar { padding-bottom: 88px; }
 }
 @media (max-width: 640px) {
-  .tm-user, .tm-nav-hide, .tm-bar .tm-nav { display: none; }
-  .tm-subnav { display: flex; gap: 4px; padding: 8px 16px; background: #fff; border-bottom: 1px solid var(--line); }
-  .tm-subnav a { flex: 1; text-align: center; font-size: 14px; font-weight: 500; color: var(--body); padding: 8px 12px; border-radius: 8px; }
-  .tm-subnav a[aria-current="page"] { background: var(--sec); color: var(--ink); }
-  .tm-cprev { zoom: .5; }
+  .tm-user, .tm-nav-hide { display: none; }
   .tm-grid2 { grid-template-columns: 1fr; }
   .tm-place { grid-template-columns: 1fr 1fr 36px; }
   .tm-place .tm-select { grid-column: 1 / 3; }

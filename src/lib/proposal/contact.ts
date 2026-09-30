@@ -1,6 +1,8 @@
 // The contact details printed on a proposal (its last page and the cover's
-// "Prepared by" line). Each rep can set their own in Settings; until they do,
-// proposals use the company default below. Safe to import from client code.
+// "Prepared by" line). Fixed per login: the rep who makes a proposal gets
+// their own details on it. To change someone's details, edit REP_CONTACTS
+// below and push. A login without an entry prints the company contact.
+// Safe to import from client code (no secrets here).
 
 export type Contact = {
   name: string;
@@ -8,10 +10,8 @@ export type Contact = {
   /** Shown as the call number, "+91 98240 04043". */
   phone: string;
   email: string;
-  /** True when WhatsApp is on the same number as `phone`. */
-  sameWhatsapp: boolean;
-  /** Only used when `sameWhatsapp` is false. */
-  whatsapp: string;
+  /** Only when WhatsApp is on a different number from `phone`. */
+  whatsapp?: string;
 };
 
 // Matches the sales decks and the website (number changed 2026-09-25, email per
@@ -21,9 +21,18 @@ export const COMPANY_CONTACT: Contact = {
   role: "Relationship Manager",
   phone: "+91 98240 04043",
   email: "sultan@simplifiedmanagement.in",
-  sameWhatsapp: true,
-  whatsapp: "",
 };
+
+/** One entry per login (the username in TEAM_USERS). */
+export const REP_CONTACTS: Record<string, Contact> = {
+  tipusultan: COMPANY_CONTACT,
+  // ghouse: { name: "Ghouse", role: "…", phone: "+91 …", email: "…@simplifiedmanagement.in" },
+};
+
+export function contactFor(username: string): { contact: Contact; isDefault: boolean } {
+  const own = REP_CONTACTS[username];
+  return own ? { contact: own, isDefault: false } : { contact: COMPANY_CONTACT, isDefault: true };
+}
 
 export const SITE = {
   name: "simplifiedmanagement.in",
@@ -45,50 +54,12 @@ export function phoneDigits(input: string): string | null {
   return "91" + d;
 }
 
-/** "+91 98240 04043" from any way of typing an Indian mobile number, or null. */
-export function formatPhone(input: string): string | null {
-  const d = phoneDigits(input);
-  return d ? `+91 ${d.slice(2, 7)} ${d.slice(7)}` : null;
-}
-
 export function callDigits(c: Contact): string {
   return phoneDigits(c.phone) ?? phoneDigits(COMPANY_CONTACT.phone)!;
 }
 
 export function whatsappDigits(c: Contact): string {
-  return (!c.sameWhatsapp && phoneDigits(c.whatsapp)) || callDigits(c);
-}
-
-export type ContactCheck =
-  | { ok: true; contact: Contact }
-  | { ok: false; error: string; field: keyof Contact };
-
-/** Validates and tidies a contact typed in Settings. */
-export function checkContact(raw: unknown): ContactCheck {
-  const r = (raw && typeof raw === "object" ? raw : {}) as Record<string, unknown>;
-  const str = (v: unknown) => (typeof v === "string" ? v.trim().replace(/\s+/g, " ") : "");
-  const name = str(r.name);
-  const role = str(r.role);
-  const email = str(r.email).toLowerCase();
-  const sameWhatsapp = r.sameWhatsapp !== false;
-
-  if (name.length < 2 || name.length > 60) return { ok: false, error: "Enter your name (2 to 60 letters).", field: "name" };
-  if (role.length > 60) return { ok: false, error: "Keep the title under 60 characters.", field: "role" };
-
-  const phone = formatPhone(str(r.phone));
-  if (!phone) return { ok: false, error: "Enter a 10-digit Indian mobile number, like 98240 04043.", field: "phone" };
-
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) || email.length > 100) {
-    return { ok: false, error: "Enter a valid email address.", field: "email" };
-  }
-
-  let whatsapp = "";
-  if (!sameWhatsapp) {
-    const w = formatPhone(str(r.whatsapp));
-    if (!w) return { ok: false, error: "Enter the WhatsApp number as a 10-digit Indian mobile.", field: "whatsapp" };
-    whatsapp = w;
-  }
-  return { ok: true, contact: { name, role, phone, email, sameWhatsapp, whatsapp } };
+  return (c.whatsapp && phoneDigits(c.whatsapp)) || callDigits(c);
 }
 
 export function initials(name: string): string {

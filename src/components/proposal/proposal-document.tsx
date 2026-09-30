@@ -49,7 +49,7 @@ function Page({ eyebrow, n, total, foot, children, end, fix, className = "" }: {
   );
 }
 
-/** The "Call or WhatsApp" box on the last page. Also the live preview in Settings. */
+/** The "Call or WhatsApp" box on the last page. */
 export function ContactBlock({ contact }: { contact: Contact }) {
   return (
     <div className="pp-contact">

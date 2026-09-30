@@ -1,18 +1,15 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
 
-// The frame around every signed-in team screen: logo, Proposals / Settings tabs,
-// the rep's name and Log out. `extra` renders outside the on-screen frame, so it
+// The frame around every signed-in team screen: logo, the rep's name and Log out. `extra` renders outside the on-screen frame, so it
 // is the place for things that must print (the proposal pages) or float (the
 // preview window).
 
-import Link from "next/link";
 import "./team.css";
 import { initials } from "@/lib/proposal/contact";
 
-export function TeamShell({ name, active, actions, extra, mobileBar, children }: {
+export function TeamShell({ name, actions, extra, mobileBar, children }: {
   name: string;
-  active: "proposals" | "settings";
   actions?: React.ReactNode;
   extra?: React.ReactNode;
   mobileBar?: React.ReactNode;
@@ -32,11 +29,6 @@ export function TeamShell({ name, active, actions, extra, mobileBar, children }:
         <header className="tm-bar">
           <div className="tm-bar-l">
             <img className="tm-logo" src="/brand/simman-wordmark.svg" alt="Simplified Management" />
-            <span className="tm-sep" />
-            <nav className="tm-nav" aria-label="Team">
-              <Link href="/team/proposal" aria-current={active === "proposals" ? "page" : undefined}>Proposals</Link>
-              <Link href="/team/settings" aria-current={active === "settings" ? "page" : undefined}>Settings</Link>
-            </nav>
           </div>
           <div className="tm-bar-r">
             {actions}
@@ -45,11 +37,6 @@ export function TeamShell({ name, active, actions, extra, mobileBar, children }:
             <button type="button" className="tm-link" onClick={logout}>Log out</button>
           </div>
         </header>
-        {/* On a phone the tabs sit on their own row under the bar. */}
-        <nav className="tm-subnav" aria-label="Team (phone)">
-          <Link href="/team/proposal" aria-current={active === "proposals" ? "page" : undefined}>Proposals</Link>
-          <Link href="/team/settings" aria-current={active === "settings" ? "page" : undefined}>Settings</Link>
-        </nav>
         <div className={mobileBar ? "tm-with-mbar" : undefined}>{children}</div>
         {mobileBar}
       </div>

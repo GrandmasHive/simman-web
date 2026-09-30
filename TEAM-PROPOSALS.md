@@ -2,7 +2,7 @@
 
 A private page on the website where a sales rep turns a call into the final offer:
 a 5-page PDF with the final price, sent to the prospect on WhatsApp.
-Route: `/team/proposal`, behind a login. Settings: `/team/settings`.
+Route: `/team/proposal`, behind a login.
 
 Status 2026-09-30: v2 on branch `feat/sales-proposals`, PREVIEW only
 (https://simman-web-git-feat-sales-proposals-dev-ops-9530.vercel.app/team/login).
@@ -34,22 +34,16 @@ the browser's print window, so paper size, margins and scaling settings can't br
 
 - Prices: `src/lib/proposal/pricing.ts`. FINAL. Do not change.
 - Every product line: `src/lib/proposal/copy.ts`, from the v2 decks.
-- Default contact (until a rep saves their own in Settings): Tipusultan, Relationship Manager,
-  +91 98240 04043, sultan@simplifiedmanagement.in.
-
-## Settings (each rep's contact on their proposals)
-
-Saved with the rep's login in a private Vercel Blob store, when `BLOB_READ_WRITE_TOKEN` is set
-on the Vercel project. NOT switched on yet (needs Shaun's approval under the money rule). Until
-then Settings shows "Saving isn't switched on yet" and proposals print the default contact.
-On a laptop (`npm run dev`), profiles save to `.data/profiles.json` (gitignored).
+- Each login's contact on its proposals: fixed in `REP_CONTACTS` in `src/lib/proposal/contact.ts`.
+  To change someone's details, edit that list and push. A login with no entry prints the company
+  contact: Tipusultan, Relationship Manager, +91 98240 04043, sultan@simplifiedmanagement.in.
 
 ## Logins (Shaun)
 
 Users live in the env var `TEAM_USERS` (hashed passwords, never plain text).
 
 - Add a rep: `node scripts/team-user.mjs <username> <password>`. Append the printed entry
-  to `TEAM_USERS` (comma-separated).
+  to `TEAM_USERS` (comma-separated), and add their contact to `REP_CONTACTS`.
 - Remove a rep: delete their entry. Their access stops at once.
 - New session secret: `node scripts/team-user.mjs --secret` into `TEAM_SESSION_SECRET`.
 

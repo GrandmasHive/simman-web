@@ -1,5 +1,5 @@
 // What a sales rep fills in for one proposal. Everything printed on the
-// proposal comes from this object, the rep's contact (Settings) and the fixed
+// proposal comes from this object, the rep's contact (contact.ts) and the fixed
 // copy in ./copy.ts. The proposal is the final offer: who it's for, what they
 // need, the price and the start dates.
 
