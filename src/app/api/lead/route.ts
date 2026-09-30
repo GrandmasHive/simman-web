@@ -5,8 +5,10 @@ import { NextResponse } from "next/server";
 // kill the other:
 //   1. Upsert a HubSpot Contact + create a Deal in the sales pipeline (realtime CRM).
 //   2. Send the Web3Forms email notification (preserves the pre-existing behaviour).
-// The client (demo-form.tsx) posts here; if this endpoint is unreachable or 500s,
-// the form falls back to posting Web3Forms directly, so a lead is never dropped.
+// It returns 200 only when at least one sink CONFIRMED the lead (HubSpot accepted the
+// writes, or Web3Forms answered success: true). Otherwise it returns 502 and the form
+// keeps the visitor on the page with an inline error, so a failed submit is never
+// thanked or counted as a conversion.
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -20,9 +22,9 @@ const DEAL_STAGE = "appointmentscheduled";
 // HubSpot-defined association: Deal -> Contact.
 const DEAL_TO_CONTACT_TYPE_ID = 3;
 
-// Web3Forms email notification. Public key by design; env overrides if set.
-const WEB3FORMS_ACCESS_KEY =
-  process.env.WEB3FORMS_ACCESS_KEY ?? "436ad4a1-8628-4d57-9e21-c5ae4c3366e3";
+// Web3Forms email notification. Server-side only: the key no longer ships in the
+// client bundle. Set WEB3FORMS_ACCESS_KEY in the Vercel project env.
+const WEB3FORMS_ACCESS_KEY = process.env.WEB3FORMS_ACCESS_KEY;
 
 type LeadInput = {
   name?: string;
@@ -84,10 +86,11 @@ async function upsertContact(lead: LeadInput): Promise<string> {
 
   const existingId = await findContactId(lead.email!);
   if (existingId) {
-    await hubspot(`/crm/v3/objects/contacts/${existingId}`, {
+    const res = await hubspot(`/crm/v3/objects/contacts/${existingId}`, {
       method: "PATCH",
       body: JSON.stringify({ properties }),
     });
+    if (!res.ok) throw new Error(`contact update failed: ${res.status} ${await res.text()}`);
     return existingId;
   }
 
@@ -142,7 +145,8 @@ async function createDeal(lead: LeadInput, contactId: string): Promise<void> {
 }
 
 async function sendWeb3FormsEmail(lead: LeadInput): Promise<void> {
-  await fetch("https://api.web3forms.com/submit", {
+  if (!WEB3FORMS_ACCESS_KEY) throw new Error("WEB3FORMS_ACCESS_KEY not set");
+  const res = await fetch("https://api.web3forms.com/submit", {
     method: "POST",
     headers: { "Content-Type": "application/json", Accept: "application/json" },
     body: JSON.stringify({
@@ -156,6 +160,12 @@ async function sendWeb3FormsEmail(lead: LeadInput): Promise<void> {
       message: lead.message,
     }),
   });
+  // Web3Forms can answer 4xx/5xx (bad key, quota) or 200 with success: false.
+  // Only an explicit success counts as delivered.
+  const json = await res.json().catch(() => null);
+  if (!res.ok || json?.success !== true) {
+    throw new Error(`web3forms rejected: ${res.status} ${json?.message ?? ""}`.trim());
+  }
 }
 
 export async function POST(request: Request) {
@@ -192,7 +202,7 @@ export async function POST(request: Request) {
     console.error("[api/lead] web3forms failed:", results[1].reason);
   }
 
-  // If nothing landed, tell the client so it can fall back to a direct submit.
+  // If nothing confirmed, tell the client so it shows the inline error.
   if (!hubspotOk && !emailOk) {
     return NextResponse.json({ ok: false, hubspot: false, email: false }, { status: 502 });
   }
