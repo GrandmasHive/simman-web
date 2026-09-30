@@ -92,6 +92,9 @@
 .pp-setup-top { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; }
 .pp-setup-n { font-family: var(--pp-display); font-size: 42px; font-weight: 800; letter-spacing: -.03em; color: var(--pp-hover); line-height: 1; }
 .pp-setup-where { font-size: 21px; color: var(--pp-body); }
+.pp-setup-price { padding-top: 16px; border-top: 1px solid var(--pp-sec); font-size: 20px; line-height: 1.4; color: var(--pp-body); }
+.pp-setup-note { margin-top: 4px; font-size: 18px; }
+.pp-setup-amt { font-family: var(--pp-display); font-size: 34px; font-weight: 800; letter-spacing: -.02em; color: var(--pp-ink); }
 .pp-cover-mid { margin-top: auto; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
 .pp-promise {
   font-family: var(--pp-display); font-size: 30px; line-height: 1.2; font-weight: 700;

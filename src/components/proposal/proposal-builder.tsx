@@ -1,8 +1,9 @@
 "use client";
 
-// The proposal maker: three short steps on the left, a live price estimate on
-// the right. Download PDF = the browser's own "Save as PDF" (real text, tappable
-// links). This tool never sends anything to a prospect: the rep sends the PDF.
+// The proposal maker: two short steps on the left, a live price estimate on
+// the right. Download PDF builds an exact 5-page A4 file in the browser and
+// saves it in one click (see export-pdf.ts). This tool never sends anything to
+// a prospect: the rep sends the PDF.
 
 import Link from "next/link";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
@@ -64,6 +65,7 @@ function Builder({ name, contact, isDefaultContact, sample }: {
     ({ ...(sample ? structuredClone(SAMPLES[sample]) : loadDraft() ?? blankInput("hotel")), issueDate: todayIso() }));
   const [note, setNote] = useState<Note | null>(null);
   const [preview, setPreview] = useState(false);
+  const [busy, setBusy] = useState(false);
   const [overflow, setOverflow] = useState<{ n: number; fix: string }[]>([]);
   const printRef = useRef<HTMLDivElement>(null);
 
@@ -110,21 +112,27 @@ function Builder({ name, contact, isDefaultContact, sample }: {
     setNote(null);
   }
 
-  function download() {
+  async function download() {
+    if (busy) return;
     const err = isReady(input);
     if (err) return setNote({ text: err, tone: "warn" });
     if (overflow.length) {
-      return setNote({ text: `Page ${overflow[0].n} is too full to print: ${overflow[0].fix}.`, tone: "warn" });
+      return setNote({ text: `Page ${overflow[0].n} is too full: ${overflow[0].fix}.`, tone: "warn" });
     }
-    const prev = document.title;
-    document.title = fileName(input);
-    const restore = () => {
-      document.title = prev;
-      window.removeEventListener("afterprint", restore);
-    };
-    window.addEventListener("afterprint", restore);
-    setNote({ text: "In the window that opens, choose “Save as PDF”, then save. Send the file on WhatsApp yourself.", tone: "info" });
-    window.print();
+    const el = printRef.current;
+    if (!el) return;
+    setBusy(true);
+    setNote({ text: "Making the PDF…", tone: "info" });
+    try {
+      const { exportProposalPdf } = await import("@/lib/proposal/export-pdf");
+      await exportProposalPdf(el, fileName(input));
+      setNote({ text: "PDF downloaded. Send it to them on WhatsApp.", tone: "ok" });
+    } catch (e) {
+      console.error("[proposal] PDF export failed:", e);
+      setNote({ text: "Couldn't make the PDF. Try again, or use Preview PDF and your browser's print to save it.", tone: "warn" });
+    } finally {
+      setBusy(false);
+    }
   }
 
   async function copyMessage() {
@@ -211,7 +219,9 @@ function Builder({ name, contact, isDefaultContact, sample }: {
         <div className="tm-hint" style={{ marginTop: 6 }}>Until {fmtDate(s.validUntil)}</div>
       </div>
       <div style={{ marginTop: 14 }}>
-        <button type="button" className="tm-btn primary lg" onClick={download}>Download proposal PDF</button>
+        <button type="button" className="tm-btn primary lg" onClick={download} disabled={busy}>
+          {busy ? "Making the PDF…" : "Download proposal PDF"}
+        </button>
       </div>
       <div className="tm-actions">
         <button type="button" className="tm-btn" onClick={openPreview}>Preview PDF</button>
@@ -234,7 +244,7 @@ function Builder({ name, contact, isDefaultContact, sample }: {
             </div>
             {q.units > 0 && <div className="tm-hint">₹0 for the first two months</div>}
           </div>
-          <button type="button" className="tm-btn primary" onClick={download}>Download</button>
+          <button type="button" className="tm-btn primary" onClick={download} disabled={busy}>{busy ? "Making…" : "Download"}</button>
         </div>
       }
       extra={

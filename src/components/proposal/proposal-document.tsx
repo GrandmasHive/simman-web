@@ -101,6 +101,12 @@ export function ProposalDocument({ input, contact }: { input: ProposalInput; con
             <span className="pp-setup-n">{units}</span>
             {where && <span className="pp-setup-where">{where}</span>}
           </div>
+          {q.units > 0 && (
+            <div className="pp-setup-price">
+              <div><span className="pp-setup-amt">{rupees(q.monthly)}</span> a month + GST</div>
+              <div className="pp-setup-note">or {rupees(q.yearly)} a year + GST. Your first two invoices are ₹0.</div>
+            </div>
+          )}
         </div>
         <div className="pp-cover-mid">
           <p className="pp-promise">{c.promise}</p>
