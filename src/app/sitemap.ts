@@ -22,6 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/compare",
     "/blog",
     "/privacy",
+    "/grievance",
     "/terms",
   ];
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Mail, Phone, MapPin, MessageCircle } from "lucide-react";
 import { PageHeader } from "@/components/page-header";
 import { DemoForm } from "@/components/demo-form";
+import Link from "next/link";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -46,6 +47,13 @@ export default function ContactPage() {
               {site.address.locality},<br />
               {site.address.region}, {site.address.country}
             </ContactRow>
+            <p className="text-sm text-muted-foreground">
+              Privacy or data complaints:{" "}
+              <Link href="/grievance" className="font-semibold text-primary hover:underline">
+                contact our Grievance Officer
+              </Link>
+              .
+            </p>
           </div>
           <DemoForm />
         </div>

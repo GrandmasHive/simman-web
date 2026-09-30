@@ -59,6 +59,7 @@ export const nav = {
     { label: "Book a Demo", href: "/demo" },
     { label: "Privacy", href: "/privacy" },
     { label: "App Privacy", href: "/app-privacy" },
+    { label: "Grievance Officer", href: "/grievance" },
     { label: "Terms", href: "/terms" },
     { label: "DPA", href: "/dpa" },
   ],
