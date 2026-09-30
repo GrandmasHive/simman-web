@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import "@/components/team/team.css";
 import { LoginForm } from "@/components/team/login-form";
 
 export const metadata: Metadata = {
@@ -18,18 +19,15 @@ export default async function TeamLoginPage({
   const next = typeof nextParam === "string" ? nextParam : undefined;
 
   return (
-    <div className="flex min-h-dvh items-center justify-center bg-white px-6 py-16">
-      <div className="w-full max-w-sm rounded-xl border border-border bg-white p-8 shadow-sm">
-        <img src="/brand/simman-wordmark.svg" alt="Simplified Management" className="h-7 w-auto" />
-
-        <h1 className="mt-8 font-[family-name:var(--font-jakarta)] text-2xl font-bold text-foreground">
-          Sales team login
-        </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Sign in with your sales team credentials.
-        </p>
-
-        <LoginForm next={next} />
+    <div className="tm">
+      <div className="tm-login">
+        <div className="tm-card">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="tm-logo" style={{ height: 26 }} src="/brand/simman-wordmark.svg" alt="Simplified Management" />
+          <h1>Sales team login</h1>
+          <p className="tm-hint" style={{ margin: 0 }}>Sign in with the username and password you were given.</p>
+          <LoginForm next={next} />
+        </div>
       </div>
     </div>
   );

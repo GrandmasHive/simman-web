@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { getTeamUser } from "@/lib/team-auth";
+import { getProfile } from "@/lib/team-profile";
 import { ProposalBuilder } from "@/components/proposal/proposal-builder";
 
 export const metadata: Metadata = {
@@ -19,5 +20,13 @@ export default async function ProposalPage({
 
   const { sample } = await searchParams;
   const pick = sample === "hotel" || sample === "owner" ? sample : null;
-  return <ProposalBuilder user={user} sample={pick} />;
+  const profile = await getProfile(user);
+  return (
+    <ProposalBuilder
+      name={user.charAt(0).toUpperCase() + user.slice(1)}
+      contact={profile.contact}
+      isDefaultContact={profile.isDefault}
+      sample={pick}
+    />
+  );
 }

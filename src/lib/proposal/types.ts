@@ -1,43 +1,22 @@
 // What a sales rep fills in for one proposal. Everything printed on the
-// proposal comes from this object plus the fixed copy in ./copy.ts.
+// proposal comes from this object, the rep's contact (Settings) and the fixed
+// copy in ./copy.ts. The proposal is the final offer: who it's for, what they
+// need, the price and the start dates.
 
 export type Segment = "hotel" | "owner";
-export type Billing = "both" | "monthly" | "yearly";
-
-/** One property. For a hotel there is exactly one row and `units` = rooms.
- *  For an owner, `units` = listings (things a guest can book on their own). */
-export type PropertyRow = {
-  name: string;
-  area: string;
-  kind: string;
-  units: number;
-};
+export type Validity = "week" | "month";
 
 export type ProposalInput = {
   segment: Segment;
   contactName: string;
-  /** Hotels only: Owner, General Manager, Operations Manager. */
-  role: string;
   business: string;
-  properties: PropertyRow[];
-  sites: string[];
-  otherSite: string;
-  today: string[];
-  otherSystem: string;
-  team: Record<string, number>;
-  /** Problem ids from the segment's fixed list in ./copy.ts (max 5). */
-  problems: string[];
-  /** Optional: one sentence the prospect said on the call. */
-  quote: string;
-  billing: Billing;
-  /** Show the first two monthly invoices at Rs 0 (free plan). Default on.
-   *  Older drafts don't have it: treat undefined as on. */
-  zeroInvoices?: boolean;
-  /** Week 1 starts on this date (YYYY-MM-DD). */
-  startDate: string;
-  /** The date the proposal is made (YYYY-MM-DD). */
+  /** City or area, e.g. "Nashik" or "Alibaug and Pune". */
+  area: string;
+  /** Rooms (hotel) or listings (owner: things a guest can book on their own).
+   *  0 until the rep fills it in: the tool never shows a made-up count. */
+  count: number;
+  /** The date the proposal is made (YYYY-MM-DD). Week 1 starts the next Monday. */
   issueDate: string;
-  validDays: number;
-  /** Set when the details came from a HubSpot deal. */
-  hubspotDealId?: string;
+  /** The offer is open for 1 week (default) or 1 month from issueDate. */
+  validFor: Validity;
 };

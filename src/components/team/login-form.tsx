@@ -2,9 +2,6 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 
 // Only allow same-site paths under /team as a post-login destination — never
 // follow an absolute/external URL from the "next" query param (open-redirect).
@@ -49,38 +46,41 @@ export function LoginForm({ next }: { next?: string }) {
   }
 
   return (
-    <form onSubmit={onSubmit} className="mt-6 space-y-4">
-      <div className="grid gap-1.5">
-        <Label htmlFor="username">Username</Label>
-        <Input
+    <form onSubmit={onSubmit} style={{ marginTop: 24, display: "flex", flexDirection: "column", gap: 16 }}>
+      <div>
+        <label className="tm-label" htmlFor="username">Username</label>
+        <input
           id="username"
           name="username"
           type="text"
           required
           autoComplete="username"
+          autoCapitalize="none"
           autoFocus
+          className="tm-input"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
       </div>
-      <div className="grid gap-1.5">
-        <Label htmlFor="password">Password</Label>
-        <Input
+      <div>
+        <label className="tm-label" htmlFor="password">Password</label>
+        <input
           id="password"
           name="password"
           type="password"
           required
           autoComplete="current-password"
+          className="tm-input"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
 
-      {error && <p className="text-sm text-destructive">{error}</p>}
+      {error && <p className="tm-err" role="alert" style={{ margin: 0 }}>{error}</p>}
 
-      <Button type="submit" className="w-full" size="lg" disabled={pending}>
-        {pending ? "Signing in..." : "Sign in"}
-      </Button>
+      <button type="submit" className="tm-btn primary lg" disabled={pending}>
+        {pending ? "Signing in…" : "Sign in"}
+      </button>
     </form>
   );
 }

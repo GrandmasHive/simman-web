@@ -67,10 +67,10 @@ export type Schedule = {
   validUntil: Date;
 };
 
-// The two free months count from the Week 1 start date ("they start the day
-// you do", per the decks). Default pending Shaun's confirmation, 2026-09-25.
-export function schedule(startIso: string, issueIso: string, validDays: number): Schedule {
-  const start = parse(startIso);
+// Week 1 starts the Monday after the proposal is made. The two free months
+// (invoiced at Rs 0) count from that start. The offer is open 1 week or 1 month.
+export function schedule(issueIso: string, validFor: "week" | "month"): Schedule {
+  const start = parse(nextMonday(issueIso));
   const weeks = [0, 1, 2, 3].map((w) => ({ from: addDays(start, w * 7), to: addDays(start, w * 7 + 6) }));
   const firstBill = addMonths(start, 2);
   const issued = parse(issueIso);
@@ -82,6 +82,6 @@ export function schedule(startIso: string, issueIso: string, validDays: number):
     freeUntil: addDays(firstBill, -1),
     firstBill,
     issued,
-    validUntil: addDays(issued, Math.max(1, Math.floor(validDays || 14))),
+    validUntil: validFor === "month" ? addMonths(issued, 1) : addDays(issued, 7),
   };
 }

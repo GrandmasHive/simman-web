@@ -1,14 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
-// The printable proposal: 7 A4 portrait pages (6 if no problems were picked).
-// Story: cover -> your setup -> what you told us / what changes -> your price
-// -> your start with dates -> everything included -> next step.
+// The printable proposal: 5 A4 portrait pages, the final offer.
+// Cover, your price, your start (with dates and invoices), everything
+// included, next step.
 
 import "./proposal.css";
-import { CONTACT, COPY, WA_PROPOSAL_TEXT } from "@/lib/proposal/copy";
-import { fmtDate, fmtDayMonth, fmtRange, schedule } from "@/lib/proposal/dates";
+import { COPY } from "@/lib/proposal/copy";
 import {
-  allSites, areasLabel, displayBusiness, firstName, pickedProblems, teamChips, todayMethods, unitsLabel,
-} from "@/lib/proposal/derive";
+  type Contact, SITE, WA_PROPOSAL_TEXT, callDigits, whatsappDigits,
+} from "@/lib/proposal/contact";
+import { fmtDate, fmtDayMonth, fmtRange, schedule } from "@/lib/proposal/dates";
+import { PAGES, displayBusiness, unitsLabel } from "@/lib/proposal/derive";
 import { OWNER_BULK_FROM, OWNER_BULK_RATE, quote, rupees } from "@/lib/proposal/pricing";
 import type { ProposalInput } from "@/lib/proposal/types";
 import { LineArt } from "./line-art";
@@ -48,29 +49,42 @@ function Page({ eyebrow, n, total, foot, children, end, fix, className = "" }: {
   );
 }
 
-export function ProposalDocument({ input }: { input: ProposalInput }) {
+/** The "Call or WhatsApp" box on the last page. Also the live preview in Settings. */
+export function ContactBlock({ contact }: { contact: Contact }) {
+  return (
+    <div className="pp-contact">
+      <div>
+        <span className="pp-label">Call or WhatsApp</span>
+        <a className="pp-phone" href={`tel:+${callDigits(contact)}`}>{contact.phone}</a>
+        <div className="pp-person">{[contact.name, contact.role].filter(Boolean).join(", ")}</div>
+      </div>
+      <div className="pp-rule" />
+      <div className="pp-rows">
+        <div className="pp-row"><span>Email</span><a href={`mailto:${contact.email}`}>{contact.email}</a></div>
+        <div className="pp-row"><span>See the demo again</span><a href={SITE.demoUrl}>{SITE.demo}</a></div>
+      </div>
+      <a className="pp-wa" href={`https://wa.me/${whatsappDigits(contact)}?text=${WA_PROPOSAL_TEXT}`}>Message us on WhatsApp</a>
+    </div>
+  );
+}
+
+export function ProposalDocument({ input, contact }: { input: ProposalInput; contact: Contact }) {
   const c = COPY[input.segment];
   const q = quote(input);
-  const s = schedule(input.startDate, input.issueDate, input.validDays);
+  const s = schedule(input.issueDate, input.validFor);
   const hotel = input.segment === "hotel";
   const business = displayBusiness(input);
-  const problems = pickedProblems(input);
-  const sites = allSites(input);
-  const methods = todayMethods(input);
-  const team = teamChips(input);
-  const props = hotel ? input.properties.slice(0, 1) : input.properties.filter((p) => p.name.trim() || p.units > 0);
   const units = unitsLabel(input.segment, q.units);
-  const where = hotel ? (props[0]?.area.trim() || "") : areasLabel(input);
-  const showMonthly = input.billing !== "yearly";
-  const showYearly = input.billing !== "monthly";
-  const hasProblems = problems.length > 0;
-  const zeroInvoices = input.zeroInvoices !== false;
-  const total = hasProblems ? 7 : 6;
+  const where = input.area.trim();
+  const showMonthly = true;
+  const showYearly = true;
+  const zeroInvoices = true;
+  const total = PAGES;
   const foot = `Proposal for ${business} · ${fmtDate(s.issued)}`;
   let n = 1;
   // No "Prepared for" line when the cover title already is their name.
   const prepared = input.contactName.trim() && input.business.trim()
-    ? <>Prepared for <b>{input.contactName.trim()}</b>{hotel && input.role ? `, ${input.role}` : ""}</>
+    ? <>Prepared for <b>{input.contactName.trim()}</b></>
     : null;
 
   return (
@@ -85,18 +99,8 @@ export function ProposalDocument({ input }: { input: ProposalInput }) {
         <div className="pp-setup">
           <div className="pp-setup-top">
             <span className="pp-setup-n">{units}</span>
-            {where && (
-              <span className="pp-setup-where">
-                {hotel && props[0]?.name.trim() && props[0].name.trim() !== business ? `${props[0].name.trim()}, ${where}` : where}
-              </span>
-            )}
+            {where && <span className="pp-setup-where">{where}</span>}
           </div>
-          {sites.length > 0 && (
-            <div className="pp-chips">
-              {sites.slice(0, 4).map((x) => <span key={x} className="pp-chip">{x}</span>)}
-              {sites.length > 4 && <span className="pp-chip">+{sites.length - 4} more</span>}
-            </div>
-          )}
         </div>
         <div className="pp-cover-mid">
           <p className="pp-promise">{c.promise}</p>
@@ -106,94 +110,10 @@ export function ProposalDocument({ input }: { input: ProposalInput }) {
           <span className="pp-sign">Keep it simple.</span>
           <div className="pp-meta">
             <span><b>{fmtDate(s.issued)}</b> · valid until {fmtDate(s.validUntil)}</span>
-            <span>Prepared by {CONTACT.name}, {CONTACT.role}</span>
+            <span>Prepared by {[contact.name, contact.role].filter(Boolean).join(", ")}</span>
           </div>
         </div>
       </section>
-
-      {/* 2. Your setup today */}
-      <Page eyebrow="Your setup" n={++n} total={total} foot={foot} fix="shorten or remove the quote, or untick some sites and tools">
-        <h2 className="pp-h2">{hotel ? "Your hotel today." : props.length > 1 ? "Your properties today." : "Your property today."}</h2>
-        <p className="pp-sub">What you told us on our call. We set it up around this.</p>
-        <div className={`pp-props ${props.length > 5 ? "pp-compact pp-dense" : props.length > 2 ? "pp-compact" : ""}`}>
-          {hotel ? (
-            <div className="pp-prop">
-              <div>
-                <div className="pp-prop-name">{props[0]?.name.trim() || business}</div>
-                <div className="pp-prop-meta">{[props[0]?.kind, props[0]?.area.trim()].filter(Boolean).join(" · ")}</div>
-              </div>
-              <div className="pp-prop-big"><span>{q.units}</span><span>{q.units === 1 ? "room" : "rooms"}</span></div>
-            </div>
-          ) : (
-            <>
-              {props.map((p, i) => (
-                <div className="pp-prop" key={i}>
-                  <div>
-                    <div className="pp-prop-name">{p.name.trim() || `Property ${i + 1}`}</div>
-                    <div className="pp-prop-meta">{[p.kind, p.area.trim()].filter(Boolean).join(" · ")}</div>
-                  </div>
-                  <span className="pp-prop-n">{unitsLabel("owner", Math.max(0, Math.floor(p.units || 0)))}</span>
-                </div>
-              ))}
-              {props.length > 1 && (
-                <div className="pp-prop pp-prop-total">
-                  <span className="pp-prop-name">In total</span>
-                  <span className="pp-prop-n">{units}</span>
-                </div>
-              )}
-            </>
-          )}
-        </div>
-        <div className="pp-facts">
-          {sites.length > 0 && (
-            <div className="pp-fact">
-              <span className="pp-label">Where your bookings come from</span>
-              <div className="pp-chips">{sites.map((x) => <span key={x} className="pp-chip">{x}</span>)}</div>
-            </div>
-          )}
-          {methods.length > 0 && (
-            <div className="pp-fact">
-              <span className="pp-label">How you run it today</span>
-              <div className="pp-chips">{methods.map((x) => <span key={x} className="pp-chip">{x}</span>)}</div>
-            </div>
-          )}
-          {team.length > 0 && (
-            <div className="pp-fact">
-              <span className="pp-label">Your team</span>
-              <div className="pp-chips">{team.map((x) => {
-                const [num, ...rest] = x.split(" ");
-                return <span key={x} className="pp-chip"><b>{num}</b> {rest.join(" ")}</span>;
-              })}</div>
-            </div>
-          )}
-        </div>
-        <div className="pp-grow" />
-        {input.quote.trim() && (
-          <div className="pp-quote">
-            <span className="pp-quote-mark">&ldquo;</span>
-            <p className="pp-quote-text">{input.quote.trim()}</p>
-            <p className="pp-quote-by">{firstName(input) ? `${firstName(input)}, on our call` : "On our call"}</p>
-          </div>
-        )}
-      </Page>
-
-      {/* 3. What you told us, and what changes */}
-      {hasProblems && (
-        <Page eyebrow="What changes" n={++n} total={total} foot={foot} fix="pick fewer problems">
-          <h2 className="pp-h2">What you told us.<br />And what changes.</h2>
-          <p className="pp-sub">The problems you raised on our call, and what changes.</p>
-          <div className="pp-changes">
-            {problems.map((p) => (
-              <div className="pp-change" key={p.id}>
-                <div className="pp-said"><span className="pp-dot" /><span>{p.said}</span></div>
-                <div className="pp-fix"><Tick /><span>{p.changes}</span></div>
-              </div>
-            ))}
-          </div>
-          <div className="pp-grow" />
-          {problems.length < 5 && <div className="pp-band">{c.closeBand}</div>}
-        </Page>
-      )}
 
       {/* 4. Your price */}
       <Page eyebrow="Your price" n={++n} total={total} foot={foot}>
@@ -313,14 +233,14 @@ export function ProposalDocument({ input }: { input: ProposalInput }) {
       <Page eyebrow="Next step" n={++n} total={total} foot={foot} end={
         <div className="pp-end">
           <span className="pp-sign">Keep it simple.</span>
-          <a href={CONTACT.siteUrl}><span>{CONTACT.site}</span></a>
+          <a href={SITE.url}><span>{SITE.name}</span></a>
         </div>
       }>
         <h2 className="pp-h2 pp-h2-xl">Call today.<br />Start on {fmtDate(s.start).replace(/ \d{4}$/, "")}.</h2>
         <p className="pp-sub">This proposal is valid until {fmtDate(s.validUntil)}. Your first two months are free, and they start the day you do.</p>
         <div className="pp-steps">
           <span className="pp-label">When you say yes</span>
-          <div className="pp-step"><span className="pp-step-n">1</span><span>Tell {CONTACT.name} on a call or on WhatsApp.</span></div>
+          <div className="pp-step"><span className="pp-step-n">1</span><span>Tell {contact.name} on a call or on WhatsApp.</span></div>
           <div className="pp-step"><span className="pp-step-n">2</span><span>Week one starts on {fmtDayMonth(s.start)} with a call about how you run things today.</span></div>
           <div className="pp-step"><span className="pp-step-n">3</span><span>
             You go live on {fmtDayMonth(s.goLive)}.{" "}
@@ -329,19 +249,7 @@ export function ProposalDocument({ input }: { input: ProposalInput }) {
               : <>Your first bill comes on {fmtDate(s.firstBill)}.</>}
           </span></div>
         </div>
-        <div className="pp-contact">
-          <div>
-            <span className="pp-label">Call or WhatsApp</span>
-            <a className="pp-phone" href={`tel:+${CONTACT.phoneDigits}`}>{CONTACT.phone}</a>
-            <div className="pp-person">{CONTACT.name}, {CONTACT.role}</div>
-          </div>
-          <div className="pp-rule" />
-          <div className="pp-rows">
-            <div className="pp-row"><span>Email</span><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></div>
-            <div className="pp-row"><span>See the demo again</span><a href={CONTACT.demoUrl}>{CONTACT.demo}</a></div>
-          </div>
-          <a className="pp-wa" href={`https://wa.me/${CONTACT.phoneDigits}?text=${WA_PROPOSAL_TEXT}`}>Message us on WhatsApp</a>
-        </div>
+        <ContactBlock contact={contact} />
         <div className="pp-grow" />
       </Page>
     </div>

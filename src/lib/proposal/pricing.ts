@@ -30,8 +30,8 @@ export type Quote = {
 };
 
 export function totalUnits(input: ProposalInput): number {
-  const rows = input.segment === "hotel" ? input.properties.slice(0, 1) : input.properties;
-  return rows.reduce((n, p) => n + (Number.isFinite(p.units) && p.units > 0 ? Math.floor(p.units) : 0), 0);
+  const n = Math.floor(Number(input.count));
+  return Number.isFinite(n) && n > 0 ? n : 0;
 }
 
 /** Every figure is rounded to the nearest rupee, and shown totals add up. */
