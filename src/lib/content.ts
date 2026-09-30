@@ -73,41 +73,43 @@ export const features = [
   },
 ] as const;
 
-export const pricingTiers = [
+// Final pricing, 2026-09-30 (see DECISIONS.md). Owners count listings,
+// hotels count rooms: never cross the two words in customer-facing copy.
+export const pricingTerms = [
+  "All prices include 18% GST",
+  "First 2 months free",
+  "Pay monthly, or yearly and save 15%",
+] as const;
+
+export const pricingPlans = [
   {
-    name: "Starter",
-    scale: "10-50 listings",
-    highlight: true,
+    name: "Owners",
+    audience: "Villas, homestays, flats and Airbnb listings",
+    rates: [
+      { amount: "₹799", unit: "per listing / month", note: "1 to 10 listings" },
+      { amount: "₹499", unit: "per listing / month", note: "11 or more listings" },
+    ],
     features: [
-      "Centralized PMS dashboard",
-      "Unified booking management",
+      "One listing is one bookable unit",
+      "Unlimited channels per listing",
       "Cross-channel calendar sync",
-      "Core OTA connections",
-      "Guest management & tasks",
-    ],
-  },
-  {
-    name: "Growth",
-    scale: "50-200 listings",
-    highlight: false,
-    features: [
-      "Everything in Starter",
-      "Expanded OTA distribution",
+      "Unified booking management",
       "Partner accounts & split payouts",
-      "Reports & insights",
-      "Priority email support",
     ],
   },
   {
-    name: "Scale",
-    scale: "200-500+ listings",
-    highlight: false,
+    name: "Hotels",
+    audience: "One property with many rooms",
+    rates: [
+      { amount: "₹3,000", unit: "per month", note: "Platform fee" },
+      { amount: "+ ₹100", unit: "per room / month", note: "For every room" },
+    ],
     features: [
-      "Everything in Growth",
-      "Multi-property automation",
-      "Advanced pricing & rules",
-      "Dedicated account manager",
-      "Priority support",
+      "Every room type in one dashboard",
+      "Unlimited channels",
+      "Rate and availability sync per room type",
+      "Housekeeping & task routing",
+      "Reports & insights",
     ],
   },
 ] as const;
@@ -115,15 +117,15 @@ export const pricingTiers = [
 export const faqs = [
   {
     q: "How much does Simplified Management cost?",
-    a: "Pricing is tailored to your portfolio size and the modules you use (PMS, channel manager, calendar sync, partner payouts). Request a demo and we provide a quote matched to your number of listings.",
+    a: "Owners pay ₹799 per listing per month for 1 to 10 listings, and ₹499 per listing per month from 11 listings up. Hotels pay a ₹3,000 monthly platform fee plus ₹100 per room per month. All prices include 18% GST, the first 2 months are free, and yearly billing saves 15%.",
   },
   {
-    q: "Does it support large portfolios?",
-    a: "Yes. The Scale plan is built for operators running 200 to 500+ listings, with full OTA distribution, partner payout automation, and priority support.",
+    q: "What counts as a listing?",
+    a: "One bookable unit. A whole villa booked as one unit is one listing. A guesthouse that sells 12 rooms separately is 12 listings. Channels are unlimited, and there are no per-booking fees.",
   },
   {
-    q: "How is pricing structured as I grow?",
-    a: "Pricing scales with your number of listings, so it grows predictably as your portfolio grows. Exact pricing is confirmed during your demo.",
+    q: "Which plan is right for me?",
+    a: "If you own or manage villas, homestays, flats or Airbnb units, you're on the Owners plan and pay per listing. If you run one property with many rooms, you're on the Hotels plan and pay a platform fee plus a per-room rate.",
   },
   {
     q: "Which channels do you connect to?",

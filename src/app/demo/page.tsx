@@ -15,7 +15,7 @@ const points = [
   "A walkthrough tailored to your number of listings",
   "See calendar sync and OTA distribution in action",
   "Partner payout automation for co-owned properties",
-  "A quote matched to your portfolio scale",
+  "Which plan fits you, and what your first bill looks like",
 ];
 
 export default function DemoPage() {
