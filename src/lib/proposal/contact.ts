@@ -26,7 +26,14 @@ export const COMPANY_CONTACT: Contact = {
 /** One entry per login (the username in TEAM_USERS). */
 export const REP_CONTACTS: Record<string, Contact> = {
   tipusultan: COMPANY_CONTACT,
-  // ghouse: { name: "Ghouse", role: "…", phone: "+91 …", email: "…@simplifiedmanagement.in" },
+  // Per Shaun 2026-09-30; number (calls + WhatsApp) as printed in his media kit
+  // (Media-Kit/mohd/).
+  ghouse: {
+    name: "Mohd Ghouse",
+    role: "Relationship Manager",
+    phone: "+91 84840 12968",
+    email: "mohd@simplifiedmanagement.in",
+  },
 };
 
 export function contactFor(username: string): { contact: Contact; isDefault: boolean } {
