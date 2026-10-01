@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { LEAD_CONFIRMED_KEY, LeadError } from "@/components/lead-error";
+import { submitLead } from "@/lib/lead-alert";
 
 export function DemoForm() {
   const router = useRouter();
@@ -27,21 +28,10 @@ export function DemoForm() {
 
     const data = Object.fromEntries(new FormData(form).entries());
 
-    // /api/lead returns 200 + ok only after HubSpot or Web3Forms confirms the lead.
-    // Anything else keeps the visitor here with their input and an inline error;
-    // /thank-you (and its GA4 + Meta conversion) is reached only on confirmed success.
-    let confirmed = false;
-    try {
-      const res = await fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      const json = await res.json().catch(() => null);
-      confirmed = res.ok && json?.ok === true;
-    } catch {
-      confirmed = false;
-    }
+    // Confirmed = HubSpot or the email alert accepted the lead. Anything else keeps
+    // the visitor here with their input and an inline error; /thank-you (and its
+    // GA4 + Meta conversion) is reached only on confirmed success.
+    const confirmed = await submitLead(data);
 
     if (!confirmed) {
       setFailed(true);

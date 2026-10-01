@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { LeadError } from "@/components/lead-error";
+import { submitLead } from "@/lib/lead-alert";
 
 declare global {
   interface Window {
@@ -50,19 +51,8 @@ export function ResourceGate({ resources }: { resources: Resource[] }) {
 
     const data = Object.fromEntries(new FormData(form).entries());
 
-    // Unlock and fire the conversion only after /api/lead confirms the lead.
-    let confirmed = false;
-    try {
-      const res = await fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, kind: "resource" }),
-      });
-      const json = await res.json().catch(() => null);
-      confirmed = res.ok && json?.ok === true;
-    } catch {
-      confirmed = false;
-    }
+    // Unlock and fire the conversion only after HubSpot or the email alert confirms.
+    const confirmed = await submitLead({ ...data, kind: "resource" });
 
     if (!confirmed) {
       setFailed(true);

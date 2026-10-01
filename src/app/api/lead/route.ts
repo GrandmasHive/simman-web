@@ -1,14 +1,11 @@
 import { NextResponse } from "next/server";
 
 // This route runs server-side on Vercel so the HubSpot token never reaches the
-// browser. It does two independent things per lead and never lets one failure
-// kill the other:
-//   1. Upsert a HubSpot Contact + create a Deal in the sales pipeline (realtime CRM).
-//   2. Send the Web3Forms email notification (preserves the pre-existing behaviour).
-// It returns 200 only when at least one sink CONFIRMED the lead (HubSpot accepted the
-// writes, or Web3Forms answered success: true). Otherwise it returns 502 and the form
-// keeps the visitor on the page with an inline error, so a failed submit is never
-// thanked or counted as a conversion.
+// browser. It upserts a HubSpot Contact and, for demo requests, creates a Deal in
+// the sales pipeline. It returns 200 only when HubSpot accepted the writes, else 502.
+// The email alert is sent from the browser (src/lib/lead-alert.ts) because
+// Web3Forms' free plan rejects server-side calls. The forms count a lead as
+// confirmed when EITHER this route or the email alert succeeds.
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -22,12 +19,6 @@ const DEAL_STAGE = "appointmentscheduled";
 // HubSpot-defined association: Deal -> Contact.
 const DEAL_TO_CONTACT_TYPE_ID = 3;
 
-// Web3Forms email notification. Server-side only: the key no longer ships in the
-// client bundle. WEB3FORMS_ACCESS_KEY in the Vercel env overrides the fallback,
-// which is the same public key main shipped, so email alerts keep working today.
-const WEB3FORMS_ACCESS_KEY =
-  process.env.WEB3FORMS_ACCESS_KEY || "436ad4a1-8628-4d57-9e21-c5ae4c3366e3";
-
 type LeadInput = {
   name?: string;
   email?: string;
@@ -37,7 +28,6 @@ type LeadInput = {
   // "demo" (default) = hot lead → Contact + Deal on the sales pipeline.
   // "resource" = content download → Contact only, so the pipeline stays clean.
   kind?: "demo" | "resource";
-  subject?: string; // email notification subject (passthrough)
 };
 
 function splitName(full?: string): { firstname: string; lastname: string } {
@@ -146,30 +136,6 @@ async function createDeal(lead: LeadInput, contactId: string): Promise<void> {
   if (!res.ok) throw new Error(`deal create failed: ${res.status} ${await res.text()}`);
 }
 
-async function sendWeb3FormsEmail(lead: LeadInput): Promise<void> {
-  if (!WEB3FORMS_ACCESS_KEY) throw new Error("WEB3FORMS_ACCESS_KEY not set");
-  const res = await fetch("https://api.web3forms.com/submit", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Accept: "application/json" },
-    body: JSON.stringify({
-      access_key: WEB3FORMS_ACCESS_KEY,
-      subject: lead.subject || "New Demo Request - Simplified Management",
-      from_name: "Simplified Management Website",
-      name: lead.name,
-      email: lead.email,
-      phone: lead.phone,
-      properties: lead.properties,
-      message: lead.message,
-    }),
-  });
-  // Web3Forms can answer 4xx/5xx (bad key, quota) or 200 with success: false.
-  // Only an explicit success counts as delivered.
-  const json = await res.json().catch(() => null);
-  if (!res.ok || json?.success !== true) {
-    throw new Error(`web3forms rejected: ${res.status} ${json?.message ?? ""}`.trim());
-  }
-}
-
 export async function POST(request: Request) {
   let lead: LeadInput;
   try {
@@ -182,32 +148,16 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, error: "email required" }, { status: 400 });
   }
 
-  // Run both sinks independently; a failure in one must not block the other.
-  const results = await Promise.allSettled([
-    (async () => {
-      if (!HUBSPOT_TOKEN) throw new Error("HUBSPOT_TOKEN not set");
-      const contactId = await upsertContact(lead);
-      // Only demo requests become deals on the sales pipeline; resource
-      // downloads land as contacts so the board isn't flooded with soft leads.
-      if (lead.kind !== "resource") await createDeal(lead, contactId);
-    })(),
-    sendWeb3FormsEmail(lead),
-  ]);
-
-  const hubspotOk = results[0].status === "fulfilled";
-  const emailOk = results[1].status === "fulfilled";
-
-  if (results[0].status === "rejected") {
-    console.error("[api/lead] hubspot failed:", results[0].reason);
-  }
-  if (results[1].status === "rejected") {
-    console.error("[api/lead] web3forms failed:", results[1].reason);
+  try {
+    if (!HUBSPOT_TOKEN) throw new Error("HUBSPOT_TOKEN not set");
+    const contactId = await upsertContact(lead);
+    // Only demo requests become deals on the sales pipeline; resource
+    // downloads land as contacts so the board isn't flooded with soft leads.
+    if (lead.kind !== "resource") await createDeal(lead, contactId);
+  } catch (err) {
+    console.error("[api/lead] hubspot failed:", err);
+    return NextResponse.json({ ok: false, hubspot: false }, { status: 502 });
   }
 
-  // If nothing confirmed, tell the client so it shows the inline error.
-  if (!hubspotOk && !emailOk) {
-    return NextResponse.json({ ok: false, hubspot: false, email: false }, { status: 502 });
-  }
-
-  return NextResponse.json({ ok: true, hubspot: hubspotOk, email: emailOk });
+  return NextResponse.json({ ok: true, hubspot: true });
 }
