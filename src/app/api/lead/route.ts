@@ -23,8 +23,10 @@ const DEAL_STAGE = "appointmentscheduled";
 const DEAL_TO_CONTACT_TYPE_ID = 3;
 
 // Web3Forms email notification. Server-side only: the key no longer ships in the
-// client bundle. Set WEB3FORMS_ACCESS_KEY in the Vercel project env.
-const WEB3FORMS_ACCESS_KEY = process.env.WEB3FORMS_ACCESS_KEY;
+// client bundle. WEB3FORMS_ACCESS_KEY in the Vercel env overrides the fallback,
+// which is the same public key main shipped, so email alerts keep working today.
+const WEB3FORMS_ACCESS_KEY =
+  process.env.WEB3FORMS_ACCESS_KEY || "436ad4a1-8628-4d57-9e21-c5ae4c3366e3";
 
 type LeadInput = {
   name?: string;
