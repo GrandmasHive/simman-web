@@ -6,23 +6,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-
-// Web3Forms access key. Deliberately inlined as the fallback rather than left to an
-// environment variable: simplifiedmanagement.in is built and served by a Vercel account
-// we do not control, so we cannot set env vars for the live site — and with no key this
-// form silently drops the lead (see the local-capture branch below) while still showing
-// /thank-you and firing the GA4 generate_lead + Meta Lead conversion events. A real
-// NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY still overrides this. The key is public by design:
-// it ships in the rendered form markup on every page load, and is free to rotate.
-const WEB3FORMS_ACCESS_KEY =
-  process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ??
-  "436ad4a1-8628-4d57-9e21-c5ae4c3366e3";
+import { LEAD_CONFIRMED_KEY, LeadError } from "@/components/lead-error";
+import { submitLead } from "@/lib/lead-alert";
 
 export function DemoForm() {
   const router = useRouter();
   const [status, setStatus] = useState<null | string>(null);
   const [pending, setPending] = useState(false);
-  const hasLiveKey = WEB3FORMS_ACCESS_KEY && !WEB3FORMS_ACCESS_KEY.startsWith("__");
+  const [failed, setFailed] = useState(false);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -33,44 +24,31 @@ export function DemoForm() {
     }
     setPending(true);
     setStatus(null);
+    setFailed(false);
 
-    const fd = new FormData(form);
-    const data = Object.fromEntries(fd.entries());
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    // Confirmed = HubSpot or the email alert accepted the lead. Anything else keeps
+    // the visitor here with their input and an inline error; /thank-you (and its
+    // GA4 + Meta conversion) is reached only on confirmed success.
+    const confirmed = await submitLead(data);
+
+    if (!confirmed) {
+      setFailed(true);
+      setPending(false);
+      return;
+    }
 
     try {
-      // Primary: our own endpoint → HubSpot CRM (Contact + Deal, realtime) + email.
-      const res = await fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      if (!res.ok) throw new Error(`lead endpoint ${res.status}`);
+      sessionStorage.setItem(LEAD_CONFIRMED_KEY, "demo-request");
     } catch {
-      // Fallback: post straight to Web3Forms so a lead is never dropped, even if
-      // our endpoint is unreachable. (Skipped only if no key is available at all.)
-      try {
-        if (hasLiveKey) {
-          await fetch("https://api.web3forms.com/submit", {
-            method: "POST",
-            headers: { Accept: "application/json" },
-            body: fd,
-          });
-        } else {
-          console.info("[demo-request] captured locally:", data);
-        }
-      } catch {
-        /* never block the user */
-      }
-    } finally {
-      // Always route to the thank-you page (fires GA4 generate_lead + Meta Lead).
-      router.push("/thank-you");
-      setPending(false);
+      /* storage blocked: lead is recorded, the conversion just goes untracked */
     }
+    router.push("/thank-you");
   }
 
   return (
     <form onSubmit={onSubmit} className="rounded-2xl border border-border bg-card p-6 sm:p-8">
-      <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
       <input type="hidden" name="subject" value="New Demo Request - Simplified Management" />
       <input type="hidden" name="from_name" value="Simplified Management Website" />
       <input type="checkbox" name="botcheck" tabIndex={-1} className="hidden" aria-hidden />
@@ -111,6 +89,7 @@ export function DemoForm() {
           </span>
         </label>
         {status && <p className="text-sm text-destructive">{status}</p>}
+        {failed && <LeadError />}
         <Button type="submit" size="lg" className="w-full" disabled={pending}>
           {pending ? "Sending..." : "Request Demo"}
         </Button>

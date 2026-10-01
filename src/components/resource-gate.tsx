@@ -5,6 +5,8 @@ import { Download, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { LeadError } from "@/components/lead-error";
+import { submitLead } from "@/lib/lead-alert";
 
 declare global {
   interface Window {
@@ -12,13 +14,6 @@ declare global {
     fbq?: (...args: unknown[]) => void;
   }
 }
-
-// Same Web3Forms access key as the demo form, inlined for the same reason — see the
-// note in src/components/demo-form.tsx. Without it the gate still unlocks but the lead
-// is dropped silently. NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY still overrides it.
-const WEB3FORMS_ACCESS_KEY =
-  process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ??
-  "436ad4a1-8628-4d57-9e21-c5ae4c3366e3";
 
 export type Resource = {
   slug: string;
@@ -31,16 +26,17 @@ export type Resource = {
 
 /**
  * Email-gated download list. One email capture unlocks every resource passed
- * in — matches the /demo form's Web3Forms pipeline so leads land in the same
- * place, but fires a distinct "lead_magnet_download" conversion event (GA4 +
- * Meta) instead of demo-request's "generate_lead", so the two lead sources
- * stay attributable separately in analytics.
+ * in. Posts to /api/lead like the /demo form so leads land in the same place
+ * (HubSpot Contact + email) and unlocks only once delivery is confirmed. Fires a
+ * distinct "lead_magnet_download" conversion event (GA4 + Meta) instead of
+ * demo-request's "generate_lead", so the two lead sources stay attributable
+ * separately in analytics.
  */
 export function ResourceGate({ resources }: { resources: Resource[] }) {
   const [unlocked, setUnlocked] = useState(false);
   const [pending, setPending] = useState(false);
   const [status, setStatus] = useState<null | string>(null);
-  const hasLiveKey = WEB3FORMS_ACCESS_KEY && !WEB3FORMS_ACCESS_KEY.startsWith("__");
+  const [failed, setFailed] = useState(false);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -51,33 +47,17 @@ export function ResourceGate({ resources }: { resources: Resource[] }) {
     }
     setPending(true);
     setStatus(null);
+    setFailed(false);
 
-    const fd = new FormData(form);
-    const data = Object.fromEntries(fd.entries());
+    const data = Object.fromEntries(new FormData(form).entries());
 
-    try {
-      // Primary: our own endpoint → HubSpot Contact (kind "resource" = no deal) + email.
-      const res = await fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, kind: "resource" }),
-      });
-      if (!res.ok) throw new Error(`lead endpoint ${res.status}`);
-    } catch {
-      // Fallback: post straight to Web3Forms so the lead is never dropped.
-      try {
-        if (hasLiveKey) {
-          await fetch("https://api.web3forms.com/submit", {
-            method: "POST",
-            headers: { Accept: "application/json" },
-            body: fd,
-          });
-        } else {
-          console.info("[lead-magnet-request] captured locally:", data);
-        }
-      } catch {
-        /* never block access to the templates */
-      }
+    // Unlock and fire the conversion only after HubSpot or the email alert confirms.
+    const confirmed = await submitLead({ ...data, kind: "resource" });
+
+    if (!confirmed) {
+      setFailed(true);
+      setPending(false);
+      return;
     }
 
     try {
@@ -91,14 +71,11 @@ export function ResourceGate({ resources }: { resources: Resource[] }) {
       if (typeof window.fbq === "function") {
         window.fbq("track", "Lead", { content_name: "resource_download" });
       }
-
-      setUnlocked(true);
     } catch {
-      // Do not block access to the templates on a delivery hiccup — still unlock.
-      setUnlocked(true);
-    } finally {
-      setPending(false);
+      /* analytics must never block the downloads of a confirmed lead */
     }
+    setUnlocked(true);
+    setPending(false);
   }
 
   if (unlocked) {
@@ -131,7 +108,6 @@ export function ResourceGate({ resources }: { resources: Resource[] }) {
       onSubmit={onSubmit}
       className="rounded-2xl border border-border bg-card p-6 sm:p-8"
     >
-      <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
       <input type="hidden" name="subject" value="New Lead Magnet Request - Simplified Management" />
       <input type="hidden" name="from_name" value="Simplified Management Website" />
       <input type="checkbox" name="botcheck" tabIndex={-1} className="hidden" aria-hidden />
@@ -174,6 +150,7 @@ export function ResourceGate({ resources }: { resources: Resource[] }) {
       </label>
 
       {status && <p className="mt-3 text-sm text-destructive">{status}</p>}
+      {failed && <LeadError className="mt-3" />}
     </form>
   );
 }
