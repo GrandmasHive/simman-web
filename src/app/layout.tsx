@@ -25,20 +25,19 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://simplifiedmanagement.in"),
   title: {
     default:
-      "Simplified Management - Property Management Software & Channel Manager",
+      "Simplified Management - Property Management Software for Indian Rentals and Hotels",
     template: "%s | Simplified Management",
   },
   description:
-    "Simplified Management is a centralized property management software (PMS) and channel manager. Sync calendars, automate OTA distribution, and split partner payouts from one dashboard.",
+    "Every booking, task and payout for every listing, on one screen. Bookings from 8 booking sites in one view, a calendar that flags clashes, and a statement for every owner.",
   applicationName: "Simplified Management",
   keywords: [
     "property management software",
-    "channel manager",
     "PMS",
-    "OTA distribution",
+    "homestay management software",
+    "villa management software",
     "vacation rental software",
-    "Airbnb channel manager",
-    "Booking.com sync",
+    "hotel software India",
     "India",
   ],
   openGraph: {

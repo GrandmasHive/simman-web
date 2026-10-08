@@ -4,7 +4,7 @@ export const site = {
   url: "https://simplifiedmanagement.in",
   loginUrl: "https://app.simplifiedmanagement.in/login",
   description:
-    "Centralized property management software (PMS) and channel manager. Sync calendars, automate OTA distribution, and split partner payouts from one dashboard.",
+    "Every booking, task and payout for every listing, on one screen. Bookings from 8 booking sites in one view, a calendar that flags clashes, and a statement for every owner.",
   email: "info@simplifiedmanagement.in",
   address: {
     locality: "Viman Nagar, Pune",

@@ -24,15 +24,15 @@ export default function Home() {
           <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1 text-label font-medium text-muted-foreground">
               <SyncDot />
-              Property Management Software &amp; Channel Manager
+              Property Management Software
             </span>
             <h1 className="mt-6 text-balance font-display text-display font-extrabold leading-[1.04] tracking-tight">
               One dashboard for every listing and channel.
             </h1>
             <p className="mt-6 max-w-xl text-body-lg leading-relaxed text-body">
-              The PMS and channel manager for operators running 10-500+ listings. Sync calendars
-              across Airbnb, Booking.com, and the other channels you list on, cutting down double
-              bookings, manual updates, and messy partner payouts.
+              For owners and managers running 10 to 500+ listings. Bookings from Airbnb,
+              Booking.com, MakeMyTrip and 5 more booking sites in one view. The calendar flags
+              clashes for you to review, and every owner gets a statement.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Button asChild size="lg">
