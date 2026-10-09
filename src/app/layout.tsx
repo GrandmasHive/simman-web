@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import { SiteChrome } from "@/components/site-chrome";
 import { OrgSchema } from "@/components/org-schema";
+import { site } from "@/lib/site";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -22,7 +23,7 @@ const GA_ID = "G-66919LQZJG";
 const META_PIXEL = "1360745635969895";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://simplifiedmanagement.in"),
+  metadataBase: new URL(site.url),
   title: {
     default:
       "Simplified Management - Property Management Software for Indian Rentals and Hotels",
@@ -43,7 +44,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: "Simplified Management",
-    url: "https://simplifiedmanagement.in",
+    url: site.url,
     images: ["/og-image.png"],
   },
   twitter: { card: "summary_large_image" },
