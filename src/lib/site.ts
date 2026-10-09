@@ -1,7 +1,7 @@
 export const site = {
   name: "Simplified Management",
   shortName: "Simplified",
-  url: "https://simplifiedmanagement.in",
+  url: "https://www.simplifiedmanagement.in",
   loginUrl: "https://app.simplifiedmanagement.in/login",
   description:
     "Every booking, task and payout for every listing, on one screen. Bookings from 8 booking sites in one view, a calendar that flags clashes, and a statement for every owner.",
@@ -18,8 +18,7 @@ export const site = {
   socials: {
     instagram: "https://www.instagram.com/simplified_management.in/",
     facebook: "https://www.facebook.com/profile.php?id=61591756372165",
-    youtube: "https://www.youtube.com/",
-    linkedin: "https://www.linkedin.com/",
+    linkedin: "https://www.linkedin.com/company/simplified-management-in/",
   },
 } as const;
 

@@ -15,15 +15,15 @@ Property managers, vacation rental operators, serviced apartment providers, bout
 Plans are banded by portfolio size (Starter: up to 50 listings; Growth: 50-200; Scale: 200-500+). Exact pricing is quoted during a demo.
 
 ## Key pages
-- Home: https://simplifiedmanagement.in/
-- Services: https://simplifiedmanagement.in/services/
-- Solutions: https://simplifiedmanagement.in/solutions/
-- Integrations (50+ OTAs): https://simplifiedmanagement.in/integrations/
-- Pricing: https://simplifiedmanagement.in/pricing/
-- ROI Calculator: https://simplifiedmanagement.in/roi-calculator/
-- Blog: https://simplifiedmanagement.in/blog/
-- About: https://simplifiedmanagement.in/about/
-- Contact: https://simplifiedmanagement.in/contact/
+- Home: https://www.simplifiedmanagement.in/
+- Services: https://www.simplifiedmanagement.in/services/
+- Solutions: https://www.simplifiedmanagement.in/solutions/
+- Integrations (50+ OTAs): https://www.simplifiedmanagement.in/integrations/
+- Pricing: https://www.simplifiedmanagement.in/pricing/
+- ROI Calculator: https://www.simplifiedmanagement.in/roi-calculator/
+- Blog: https://www.simplifiedmanagement.in/blog/
+- About: https://www.simplifiedmanagement.in/about/
+- Contact: https://www.simplifiedmanagement.in/contact/
 
 ## Contact
 Email: info@simplifiedmanagement.in

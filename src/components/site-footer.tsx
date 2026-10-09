@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { InstagramIcon, FacebookIcon, YoutubeIcon, LinkedinIcon } from "@/components/icons";
+import { InstagramIcon, FacebookIcon, LinkedinIcon } from "@/components/icons";
 import { nav, site } from "@/lib/site";
 
 export function SiteFooter() {
@@ -44,9 +44,6 @@ export function SiteFooter() {
                 </a>
                 <a href={site.socials.facebook} aria-label="Facebook" className="text-muted-foreground hover:text-primary">
                   <FacebookIcon className="size-5" />
-                </a>
-                <a href={site.socials.youtube} aria-label="YouTube" className="text-muted-foreground hover:text-primary">
-                  <YoutubeIcon className="size-5" />
                 </a>
                 <a href={site.socials.linkedin} aria-label="LinkedIn" className="text-muted-foreground hover:text-primary">
                   <LinkedinIcon className="size-5" />
