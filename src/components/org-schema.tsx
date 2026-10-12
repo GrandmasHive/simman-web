@@ -17,7 +17,7 @@ export function OrgSchema() {
           addressCountry: "IN",
         },
         areaServed: { "@type": "Country", name: "India" },
-        sameAs: [site.socials.instagram, site.socials.facebook, site.socials.linkedin],
+        sameAs: [site.socials.instagram, site.socials.facebook, site.socials.linkedin, site.socials.youtube],
       },
       {
         "@type": "WebSite",

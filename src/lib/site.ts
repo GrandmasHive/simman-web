@@ -19,6 +19,7 @@ export const site = {
     instagram: "https://www.instagram.com/simplified_management.in/",
     facebook: "https://www.facebook.com/profile.php?id=61591756372165",
     linkedin: "https://www.linkedin.com/company/simplified-management-in/",
+    youtube: "https://www.youtube.com/@simplified_management",
   },
 } as const;
 
