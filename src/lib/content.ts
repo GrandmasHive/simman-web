@@ -73,7 +73,7 @@ export const features = [
   },
 ] as const;
 
-// Final pricing, 2026-09-30 (see DECISIONS.md). Owners count listings,
+// Final pricing, 2026-09-30; hotels platform fee in two levels from 2026-10-13 (see DECISIONS.md). Owners count listings,
 // hotels count rooms: never cross the two words in customer-facing copy.
 export const pricingTerms = [
   "18% GST added on top of all prices",
@@ -101,10 +101,11 @@ export const pricingPlans = [
     name: "Hotels",
     audience: "One property with many rooms",
     rates: [
-      { amount: "₹3,000", unit: "per month", note: "Platform fee" },
-      { amount: "+ ₹100", unit: "per room / month", note: "For every room" },
+      { amount: "₹1,000", unit: "platform fee / month", note: "1 to 15 rooms" },
+      { amount: "₹3,000", unit: "platform fee / month", note: "16 or more rooms" },
     ],
     features: [
+      "Plus ₹100 per room / month",
       "Every room type in one dashboard",
       "Unlimited channels",
       "Rate and availability sync per room type",
@@ -117,7 +118,7 @@ export const pricingPlans = [
 export const faqs = [
   {
     q: "How much does Simplified Management cost?",
-    a: "Owners pay ₹799 per listing per month for 1 to 10 listings, and ₹499 per listing per month from 11 listings up. Hotels pay a ₹3,000 monthly platform fee plus ₹100 per room per month. Prices exclude GST, and 18% GST is added on top. The first 2 months are free, and yearly billing saves 15%.",
+    a: "Owners pay ₹799 per listing per month for 1 to 10 listings, and ₹499 per listing per month from 11 listings up. Hotels pay a monthly platform fee of ₹1,000 for 1 to 15 rooms, or ₹3,000 for 16 rooms or more, plus ₹100 per room per month. Prices exclude GST, and 18% GST is added on top. The first 2 months are free, and yearly billing saves 15%.",
   },
   {
     q: "What counts as a listing?",
