@@ -114,10 +114,10 @@ export function ResourceGate({ resources }: { resources: Resource[] }) {
 
       <div className="flex items-center gap-2 text-sm font-semibold text-muted-foreground">
         <Lock className="size-4" />
-        Enter your email to unlock both templates
+        Enter your details to unlock both templates
       </div>
 
-      <div className="mt-4 grid gap-4 sm:grid-cols-[1fr_1fr_auto] sm:items-end">
+      <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_auto] sm:items-end">
         <div className="grid gap-1.5">
           <Label htmlFor="rg-name">Name</Label>
           <Input id="rg-name" name="name" placeholder="Rajesh Kumar" autoComplete="name" />
@@ -131,6 +131,19 @@ export function ResourceGate({ resources }: { resources: Resource[] }) {
             required
             placeholder="rajesh@builders.in"
             autoComplete="email"
+          />
+        </div>
+        <div className="grid gap-1.5">
+          <Label htmlFor="rg-phone">WhatsApp Number</Label>
+          <Input
+            id="rg-phone"
+            name="phone"
+            type="tel"
+            required
+            pattern="[+0-9 ()-]{10,20}"
+            title="Your mobile number, e.g. 98765 43210"
+            placeholder="+91 98765 43210"
+            autoComplete="tel"
           />
         </div>
         <Button type="submit" size="lg" disabled={pending}>

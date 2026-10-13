@@ -11,13 +11,34 @@ const TIMEOUT_MS = 8000;
 type LeadFields = Record<string, FormDataEntryValue>;
 
 // Every website lead goes to the email alert only; the site sends nothing to a
-// CRM. Resolves true only when the alert is accepted.
+// CRM. Resolves true only when the alert is accepted. A confirmed lead also gets
+// the WhatsApp thank-you (/api/whatsapp-thanks); that call never blocks the form.
 export async function submitLead(fields: LeadFields): Promise<boolean> {
-  return sendLeadAlert(fields);
+  const confirmed = await sendLeadAlert(fields);
+  if (confirmed) requestWhatsAppThanks(fields);
+  return confirmed;
+}
+
+// Fire-and-forget. keepalive lets it finish after the page moves to /thank-you.
+function requestWhatsAppThanks(fields: LeadFields) {
+  try {
+    void fetch("/api/whatsapp-thanks", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: String(fields.name ?? ""),
+        phone: String(fields.phone ?? ""),
+        botcheck: fields.botcheck ? "1" : "",
+      }),
+      keepalive: true,
+    }).catch(() => {});
+  } catch {
+    /* the thank-you is a courtesy; the lead is already recorded */
+  }
 }
 
 // Resolves true only when Web3Forms answers success: true. Never throws.
-async function sendLeadAlert(fields: LeadFields): Promise<boolean> {
+export async function sendLeadAlert(fields: LeadFields): Promise<boolean> {
   // consent and kind are form bookkeeping; the email needs neither.
   const rest = { ...fields };
   delete rest.consent;

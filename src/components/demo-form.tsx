@@ -63,8 +63,17 @@ export function DemoForm() {
           <Input id="email" name="email" type="email" required placeholder="rajesh@builders.in" autoComplete="email" />
         </div>
         <div className="grid gap-1.5">
-          <Label htmlFor="phone">Phone</Label>
-          <Input id="phone" name="phone" type="tel" placeholder="+91 98765 43210" autoComplete="tel" />
+          <Label htmlFor="phone">WhatsApp Number</Label>
+          <Input
+            id="phone"
+            name="phone"
+            type="tel"
+            required
+            pattern="[+0-9 ()-]{10,20}"
+            title="Your mobile number, e.g. 98765 43210"
+            placeholder="+91 98765 43210"
+            autoComplete="tel"
+          />
         </div>
         <div className="grid gap-1.5">
           <Label htmlFor="properties">Company / Total Listings</Label>
