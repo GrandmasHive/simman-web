@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { InstagramIcon, FacebookIcon, YoutubeIcon, LinkedinIcon } from "@/components/icons";
 import { nav, site } from "@/lib/site";
+import { CookieSettingsLink } from "@/components/cookie-consent";
 
 export function SiteFooter() {
   return (
@@ -63,9 +64,12 @@ export function SiteFooter() {
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-border pt-6 text-sm text-muted-foreground sm:flex-row">
           <p>© {new Date().getFullYear()} Simplified Management. All rights reserved.</p>
           <MadeInIndiaBadge />
-          <a href={site.email && `mailto:${site.email}`} className="hover:text-primary">
-            {site.email}
-          </a>
+          <div className="flex items-center gap-4">
+            <CookieSettingsLink className="hover:text-primary" />
+            <a href={site.email && `mailto:${site.email}`} className="hover:text-primary">
+              {site.email}
+            </a>
+          </div>
         </div>
       </div>
     </footer>

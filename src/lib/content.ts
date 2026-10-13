@@ -76,7 +76,7 @@ export const features = [
 // Final pricing, 2026-09-30 (see DECISIONS.md). Owners count listings,
 // hotels count rooms: never cross the two words in customer-facing copy.
 export const pricingTerms = [
-  "All prices include 18% GST",
+  "18% GST added on top of all prices",
   "First 2 months free",
   "Pay monthly, or yearly and save 15%",
 ] as const;
@@ -117,7 +117,7 @@ export const pricingPlans = [
 export const faqs = [
   {
     q: "How much does Simplified Management cost?",
-    a: "Owners pay ₹799 per listing per month for 1 to 10 listings, and ₹499 per listing per month from 11 listings up. Hotels pay a ₹3,000 monthly platform fee plus ₹100 per room per month. All prices include 18% GST, the first 2 months are free, and yearly billing saves 15%.",
+    a: "Owners pay ₹799 per listing per month for 1 to 10 listings, and ₹499 per listing per month from 11 listings up. Hotels pay a ₹3,000 monthly platform fee plus ₹100 per room per month. Prices exclude GST, and 18% GST is added on top. The first 2 months are free, and yearly billing saves 15%.",
   },
   {
     q: "What counts as a listing?",
