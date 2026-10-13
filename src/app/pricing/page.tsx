@@ -7,7 +7,7 @@ import { faqs } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Pricing",
   description:
-    "Simplified Management pricing: owners pay ₹799 per listing per month (₹499 from 11 listings), hotels pay ₹3,000 a month plus ₹100 per room. GST included, first 2 months free.",
+    "Simplified Management pricing: owners pay ₹799 per listing per month (₹499 from 11 listings), hotels pay ₹3,000 a month plus ₹100 per room. Plus 18% GST, first 2 months free.",
   alternates: { canonical: "/pricing" },
 };
 
