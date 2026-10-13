@@ -12,7 +12,7 @@ declare global {
 
 /**
  * Fires the single lead conversion on /thank-you, but only when the demo form set
- * the confirmed-lead flag after a 200 from /api/lead. The flag is consumed, so a
+ * the confirmed-lead flag after the email alert confirmed the lead. The flag is consumed, so a
  * direct visit or a refresh of /thank-you does not report a conversion.
  */
 export function ConversionTracker() {

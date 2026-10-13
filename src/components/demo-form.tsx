@@ -28,7 +28,7 @@ export function DemoForm() {
 
     const data = Object.fromEntries(new FormData(form).entries());
 
-    // Confirmed = HubSpot or the email alert accepted the lead. Anything else keeps
+    // Confirmed = the email alert accepted the lead. Anything else keeps
     // the visitor here with their input and an inline error; /thank-you (and its
     // GA4 + Meta conversion) is reached only on confirmed success.
     const confirmed = await submitLead(data);

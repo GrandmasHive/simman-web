@@ -26,8 +26,8 @@ export type Resource = {
 
 /**
  * Email-gated download list. One email capture unlocks every resource passed
- * in. Posts to /api/lead like the /demo form so leads land in the same place
- * (HubSpot Contact + email) and unlocks only once delivery is confirmed. Fires a
+ * in. Sends the same email alert as the /demo form and unlocks only once
+ * delivery is confirmed. Fires a
  * distinct "lead_magnet_download" conversion event (GA4 + Meta) instead of
  * demo-request's "generate_lead", so the two lead sources stay attributable
  * separately in analytics.
@@ -51,7 +51,7 @@ export function ResourceGate({ resources }: { resources: Resource[] }) {
 
     const data = Object.fromEntries(new FormData(form).entries());
 
-    // Unlock and fire the conversion only after HubSpot or the email alert confirms.
+    // Unlock and fire the conversion only after the email alert confirms.
     const confirmed = await submitLead({ ...data, kind: "resource" });
 
     if (!confirmed) {

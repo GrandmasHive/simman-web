@@ -1,6 +1,6 @@
 // Email alert for every website lead, sent from the BROWSER to Web3Forms.
 // Web3Forms' free plan rejects server-side calls (403 "Use our API in client
-// side... Pro plan is required"), so this cannot live in /api/lead. The key is
+// side... Pro plan is required"), so this cannot run on the server. The key is
 // public by design: Web3Forms access keys only allow sending to the account's
 // own inbox. NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY overrides it if set.
 const WEB3FORMS_ACCESS_KEY =
@@ -10,30 +10,15 @@ const TIMEOUT_MS = 8000;
 
 type LeadFields = Record<string, FormDataEntryValue>;
 
-// Sends the lead to HubSpot (/api/lead) and the email alert in parallel.
-// Resolves true when EITHER confirms, so a lead is kept if one side is down.
+// Every website lead goes to the email alert only; the site sends nothing to a
+// CRM. Resolves true only when the alert is accepted.
 export async function submitLead(fields: LeadFields): Promise<boolean> {
-  const [crm, email] = await Promise.all([saveToCrm(fields), sendLeadAlert(fields)]);
-  return crm || email;
-}
-
-async function saveToCrm(fields: LeadFields): Promise<boolean> {
-  try {
-    const res = await fetch("/api/lead", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(fields),
-    });
-    const json = await res.json().catch(() => null);
-    return res.ok && json?.ok === true;
-  } catch {
-    return false;
-  }
+  return sendLeadAlert(fields);
 }
 
 // Resolves true only when Web3Forms answers success: true. Never throws.
 async function sendLeadAlert(fields: LeadFields): Promise<boolean> {
-  // consent and kind are for our own records; the email needs neither.
+  // consent and kind are form bookkeeping; the email needs neither.
   const rest = { ...fields };
   delete rest.consent;
   delete rest.kind;
