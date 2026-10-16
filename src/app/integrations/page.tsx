@@ -9,7 +9,7 @@ import { otaChannels } from "@/lib/site";
 export const metadata: Metadata = {
   title: "OTA Integrations & Channel Manager",
   description:
-    "Connect and sync your listings across 8 major OTA channels including Airbnb, Booking.com, Agoda, Expedia, Vrbo, MakeMyTrip, Goibibo and StayVista from one dashboard.",
+    "Connect and sync your listings across 50+ OTA channels including Airbnb, Booking.com, Agoda, Expedia, Vrbo, MakeMyTrip, Goibibo and Cleartrip from one dashboard.",
   alternates: { canonical: "/integrations" },
 };
 
@@ -34,7 +34,7 @@ const steps = [
 const faqItems = [
   {
     q: "Which channels can I connect?",
-    a: "Simplified Management connects to 8 major OTA channels including Airbnb, Booking.com, Agoda, Expedia, Vrbo, MakeMyTrip, Goibibo and StayVista, distributing and syncing availability from one dashboard.",
+    a: "Simplified Management connects to 50+ OTA channels including Airbnb, Booking.com, Agoda, Expedia, Vrbo, MakeMyTrip, Goibibo and Cleartrip, distributing and syncing availability from one dashboard.",
   },
   {
     q: "How does availability sync across channels?",

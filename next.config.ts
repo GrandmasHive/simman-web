@@ -6,6 +6,16 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: __dirname,
   },
+  // StayVista was replaced by Cleartrip in the channel list (Oct 2026).
+  async redirects() {
+    return [
+      {
+        source: "/integrations/stayvista",
+        destination: "/integrations/cleartrip",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

@@ -19,7 +19,7 @@ const steps = [
   {
     step: "1",
     title: "Connect your channels",
-    body: "Link the OTAs you already list on — Airbnb, Booking.com, Agoda, Expedia, Vrbo, MakeMyTrip, Goibibo, and StayVista — from one login, no separate extranets to juggle.",
+    body: "Link the OTAs you already list on — Airbnb, Booking.com, Agoda, Expedia, Vrbo, MakeMyTrip, Goibibo, and Cleartrip — from one login, no separate extranets to juggle.",
   },
   {
     step: "2",
@@ -36,11 +36,11 @@ const steps = [
 const faqItems = [
   {
     q: "Which channels can I connect?",
-    a: "Simplified Management connects to 8 major OTAs, including Airbnb, Booking.com, Agoda, Expedia, Vrbo, MakeMyTrip, Goibibo, and StayVista, all managed from one dashboard.",
+    a: "Simplified Management connects to 50+ OTAs, including Airbnb, Booking.com, Agoda, Expedia, Vrbo, MakeMyTrip, Goibibo, and Cleartrip, all managed from one dashboard.",
   },
   {
     q: "Will connecting more channels increase the risk of double bookings?",
-    a: "Availability syncs two-way across your connected channels, so a night that sells on one channel updates the rest, whether you are on two channels or eight.",
+    a: "Availability syncs two-way across your connected channels, so a night that sells on one channel updates the rest, whether you are on two channels or fifty.",
   },
   {
     q: "Can I price differently on different platforms?",

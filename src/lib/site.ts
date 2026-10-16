@@ -73,7 +73,7 @@ export const otaChannels = [
   { name: "Vrbo", slug: "vrbo" },
   { name: "MakeMyTrip", slug: "makemytrip" },
   { name: "Goibibo", slug: "goibibo" },
-  { name: "StayVista", slug: "stayvista" },
+  { name: "Cleartrip", slug: "cleartrip" },
 ] as const;
 
 /** Real, defensible product metrics (from the live app) — used instead of a fabricated rating. */

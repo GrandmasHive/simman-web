@@ -123,10 +123,9 @@ export const posts: Post[] = [
       { p: "Indian guests do not book on a single platform the way travellers in some other markets do. A weekend getaway from Mumbai might get booked on Airbnb, a family holiday to Goa might come through MakeMyTrip, and a business traveller might book direct on Booking.com. Building a distribution strategy for the Indian market means recognising that spread rather than betting everything on one channel." },
       { ul: [
         "Global: Airbnb, Booking.com, Agoda, Expedia, Vrbo",
-        "Domestic: MakeMyTrip and Goibibo, which carry real weight for Indian leisure travel",
-        "Premium villas: StayVista and similar curated platforms for higher-end properties",
+        "Domestic: MakeMyTrip, Goibibo and Cleartrip, which carry real weight for Indian leisure travel",
+        "Premium villas: curated villa platforms for higher-end properties",
       ] },
-      { p: "Guests in India also research and compare across other well-known travel sites, such as Cleartrip, even when their actual booking happens elsewhere. That is useful context for how Indian travellers shop, but it is a market-awareness point, not a channel list: Simplified Management connects and syncs across the 8 platforms above, and Cleartrip is not one of the channels the product integrates with today." },
       { h2: "Global versus domestic: different guests, different expectations" },
       { p: "Global OTAs tend to bring in international travellers and a segment of urban Indian travellers who default to platforms they already use for other travel. Domestic OTAs bring a different guest profile, often booking closer to the travel date, more price-sensitive, and more likely to call the property directly with questions before or after booking. A distribution strategy that only covers global platforms misses a meaningful share of demand that domestic OTAs capture on their own." },
       { p: "Premium villa platforms serve yet another guest: someone booking a larger group stay, often for a celebration or extended family trip, who is comparing curated listings rather than searching broadly. If your portfolio includes villas or larger properties, listing there in addition to the mainstream OTAs widens the pool without cannibalising your existing channels." },

@@ -22,7 +22,7 @@ const NODES = [
   { name: "Agoda", x: 12, y: 42, delay: "2.2s" },
   { name: "MakeMyTrip", x: 75, y: 39, delay: "0.6s" },
   { name: "Goibibo", x: 17, y: 60, delay: "1.7s" },
-  { name: "StayVista", x: 72, y: 58, delay: "2.8s" },
+  { name: "Cleartrip", x: 72, y: 58, delay: "2.8s" },
 ] as const;
 
 // Shared convergence point (the "hub").
