@@ -4,7 +4,7 @@ export const site = {
   url: "https://www.simplifiedmanagement.in",
   loginUrl: "https://app.simplifiedmanagement.in/login",
   description:
-    "Every booking, task and payout for every listing, on one screen. Bookings from 8 booking sites in one view, a calendar that flags clashes, and a statement for every owner.",
+    "Every booking, task and payout for every listing, on one screen. Bookings from every site you list on in one view, a calendar that flags clashes, and a statement for every owner.",
   email: "info@simplifiedmanagement.in",
   address: {
     locality: "Viman Nagar, Pune",
@@ -79,7 +79,7 @@ export const otaChannels = [
 /** Real, defensible product metrics (from the live app) — used instead of a fabricated rating. */
 export const productStats = [
   { value: "10-500+", label: "Listings per operator", live: false },
-  { value: "Major", label: "Indian & global OTAs", live: false },
+  { value: "50+", label: "Indian & global OTAs", live: false },
   { value: "Two-way", label: "Calendar sync", live: false },
   { value: "15+", label: "Operations modules", live: false },
 ] as const;

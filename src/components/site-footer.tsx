@@ -12,7 +12,6 @@ export function SiteFooter() {
         <div className="grid gap-10 lg:grid-cols-[1fr_1.6fr]">
           <div className="flex flex-col justify-between rounded-3xl bg-primary p-8 text-white sm:p-10">
             <Link href="/" className="inline-flex flex-col gap-4">
-              <span className="inline-block size-10 rounded-xl bg-white/15" aria-hidden />
               <span className="font-display text-4xl leading-[0.95] font-extrabold tracking-tight sm:text-5xl">
                 Simplified
                 <br />

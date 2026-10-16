@@ -17,7 +17,7 @@ const pricingFaqs = faqs.slice(0, 3);
 export default function PricingPage() {
   return (
     <>
-      <PricingSection />
+      <PricingSection headingLevel="h1" />
       <FaqSection items={pricingFaqs} />
       <CtaSection />
     </>

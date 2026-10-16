@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     template: "%s | Simplified Management",
   },
   description:
-    "Every booking, task and payout for every listing, on one screen. Bookings from 8 booking sites in one view, a calendar that flags clashes, and a statement for every owner.",
+    "Every booking, task and payout for every listing, on one screen. Bookings from every site you list on in one view, a calendar that flags clashes, and a statement for every owner.",
   applicationName: "Simplified Management",
   keywords: [
     "property management software",

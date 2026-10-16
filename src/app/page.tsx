@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { BrowserFrame } from "@/components/browser-frame";
+import { HeroMock } from "@/components/hero-mock";
 import { SyncDot } from "@/components/sync-dot";
 import { productStats, site, otaChannels } from "@/lib/site";
 import { FeatureTabs } from "@/components/sections/feature-tabs";
@@ -31,17 +31,21 @@ export default function Home() {
             </h1>
             <p className="mt-6 max-w-xl text-body-lg leading-relaxed text-body">
               For owners and managers running 10 to 500+ listings. Bookings from Airbnb,
-              Booking.com, MakeMyTrip and 5 more booking sites in one view. The calendar flags
-              clashes for you to review, and every owner gets a statement.
+              Booking.com, MakeMyTrip and the other sites you list on, in one view. The calendar
+              flags clashes for you to review, and every owner gets a statement.
             </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <p className="mt-6 inline-flex flex-wrap items-center gap-x-2 gap-y-1 rounded-lg border border-primary/20 bg-primary/5 px-3 py-2 text-sm text-foreground">
+              <span className="font-semibold text-primary">First 2 months free.</span>
+              <span>Then ₹799 per listing a month (₹499 from 11 listings), plus GST.</span>
+            </p>
+            <div className="mt-6 flex flex-wrap items-center gap-3">
               <Button asChild size="lg">
                 <Link href="/demo">
                   Request a Demo <ArrowRight className="size-4" />
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline">
-                <Link href="/services">Explore the Platform</Link>
+                <Link href="/pricing">See pricing</Link>
               </Button>
             </div>
             <p className="mt-6 text-sm text-muted-foreground">
@@ -54,14 +58,7 @@ export default function Home() {
             </p>
           </div>
 
-          <BrowserFrame
-            src="/screenshots/overview.png"
-            alt="Simplified Management dashboard showing 108 properties, active bookings, today's check-ins and check-outs, revenue and expenses chart, and a live check-in activity feed"
-            width={1800}
-            height={1010}
-            priority
-            glow
-          />
+          <HeroMock className="lg:ml-4" />
         </div>
       </section>
 

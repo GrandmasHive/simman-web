@@ -3,16 +3,24 @@ import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { pricingPlans, pricingTerms } from "@/lib/content";
 
-export function PricingSection({ withHeader = true }: { withHeader?: boolean }) {
+export function PricingSection({
+  withHeader = true,
+  headingLevel = "h2",
+}: {
+  withHeader?: boolean;
+  /** "h1" on /pricing, where this heading is the page title; "h2" where it sits inside another page. */
+  headingLevel?: "h1" | "h2";
+}) {
+  const Heading = headingLevel;
   return (
     <section id="pricing" className="section-pad">
       <div className="container-page">
         {withHeader && (
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-primary">Pricing</p>
-            <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl">
+            <Heading className="mt-3 font-display text-3xl font-bold sm:text-4xl">
               Two plans. Pick the one that fits your property.
-            </h2>
+            </Heading>
             <p className="mt-4 text-lg text-body">
               Owners pay per listing. Hotels pay a platform fee plus a rate per room.
             </p>
