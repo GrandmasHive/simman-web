@@ -8,12 +8,12 @@ import { CtaSection } from "@/components/sections/cta-section";
 export const metadata: Metadata = {
   title: "Channel Management for Vacation Rentals",
   description:
-    "Sync villas and homestays across Airbnb, Vrbo, StayVista, and the other OTAs you list on. Cut down double bookings on peak weekends and price for seasonality from one calendar.",
+    "Sync villas and homestays across Airbnb, Vrbo, Cleartrip, and the other OTAs you list on. Cut down double bookings on peak weekends and price for seasonality from one calendar.",
   alternates: { canonical: "/solutions/vacation-rentals" },
 };
 
 const benefits = [
-  "List the same villa on Airbnb, Vrbo, StayVista, and Booking.com without maintaining separate calendars for each.",
+  "List the same villa on Airbnb, Vrbo, Cleartrip, and Booking.com without maintaining separate calendars for each.",
   "A confirmed booking blocks the night everywhere, helping keep a long weekend from being sold twice.",
   "Set higher rates for festival dates, school holidays, and long weekends, then let them apply across every channel at once.",
   "Track each home's occupancy and revenue on its own, even when the same guest journey spans multiple listings.",
@@ -23,7 +23,7 @@ const benefits = [
 const reasons = [
   {
     title: "Fewer peak-weekend double bookings",
-    body: "Vacation demand clusters on the same handful of dates. Two-way sync means the night a guest books on Airbnb comes down from Vrbo and StayVista too, so the next enquiry sees accurate availability.",
+    body: "Vacation demand clusters on the same handful of dates. Two-way sync means the night a guest books on Airbnb comes down from Vrbo and Cleartrip too, so the next enquiry sees accurate availability.",
   },
   {
     title: "Seasonal pricing without spreadsheets",
@@ -37,8 +37,8 @@ const reasons = [
 
 const faqs = [
   {
-    q: "Can I connect my Airbnb, Vrbo, and StayVista listings together?",
-    a: "Yes. Simplified Management connects to 8 major OTAs including Airbnb, Vrbo, StayVista, Booking.com, and MakeMyTrip. You manage one master calendar per property and availability syncs both ways across every channel.",
+    q: "Can I connect my Airbnb, Vrbo, and Cleartrip listings together?",
+    a: "Yes. Simplified Management connects to 50+ OTAs including Airbnb, Vrbo, Cleartrip, Booking.com, and MakeMyTrip. You manage one master calendar per property and availability syncs both ways across every channel.",
   },
   {
     q: "How does it help with double bookings on busy weekends?",
@@ -56,7 +56,7 @@ export default function VacationRentalsPage() {
       <PageHeader
         eyebrow="Solutions"
         title="Channel management for vacation rentals"
-        lede="Villas and homestays live or die on peak-weekend availability. Distribute across Airbnb, Vrbo, and StayVista from one calendar, price for seasonality, and never sell the same night twice."
+        lede="Villas and homestays live or die on peak-weekend availability. Distribute across Airbnb, Vrbo, and Cleartrip from one calendar, price for seasonality, and never sell the same night twice."
       />
 
       <section className="section-pad border-b border-border">
@@ -79,7 +79,7 @@ export default function VacationRentalsPage() {
           </div>
           <BrowserFrame
             src="/screenshots/calendar.png"
-            alt="Availability calendar syncing a vacation rental across Airbnb, Vrbo, and StayVista"
+            alt="Availability calendar syncing a vacation rental across Airbnb, Vrbo, and Cleartrip"
             width={1800}
             height={1010}
           />

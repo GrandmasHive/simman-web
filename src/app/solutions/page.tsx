@@ -16,7 +16,7 @@ const segments = [
     href: "/solutions/vacation-rentals",
     title: "Vacation Rentals",
     description:
-      "Sell villas and homestays across Airbnb, Vrbo, and StayVista without ever double-booking a peak weekend.",
+      "Sell villas and homestays across Airbnb, Vrbo, and Cleartrip without ever double-booking a peak weekend.",
   },
   {
     href: "/solutions/boutique-hotels",

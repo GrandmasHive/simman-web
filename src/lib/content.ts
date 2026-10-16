@@ -130,7 +130,7 @@ export const faqs = [
   },
   {
     q: "Which channels do you connect to?",
-    a: "Simplified Management connects to 8 major OTA channels including Airbnb, Booking.com, Agoda, Expedia, Vrbo, MakeMyTrip, Goibibo and StayVista, distributing and syncing availability from one dashboard.",
+    a: "Simplified Management connects to 50+ OTA channels including Airbnb, Booking.com, Agoda, Expedia, Vrbo, MakeMyTrip, Goibibo and Cleartrip, distributing and syncing availability from one dashboard.",
   },
   {
     q: "How does availability sync across channels?",
