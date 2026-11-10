@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -22,8 +23,9 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.description,
-    alternates: { canonical: `/blog/${post.slug}` },
+    alternates: { canonical: post.firstPublished?.url ?? `/blog/${post.slug}` },
     openGraph: { type: "article", title: post.title, description: post.description },
+    ...(post.author ? { authors: [{ name: post.author.name }] } : {}),
   };
 }
 
@@ -44,9 +46,11 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     description: post.description,
     datePublished: post.date,
     articleSection: post.category,
-    author: { "@type": "Organization", name: site.name },
+    author: post.author
+      ? { "@type": "Person", name: post.author.name, jobTitle: post.author.role }
+      : { "@type": "Organization", name: site.name },
     publisher: { "@type": "Organization", name: site.name },
-    mainEntityOfPage: `${site.url}/blog/${post.slug}`,
+    mainEntityOfPage: post.firstPublished?.url ?? `${site.url}/blog/${post.slug}`,
   };
 
   return (
@@ -66,9 +70,41 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           <h1 className="mt-3 font-display text-3xl font-extrabold leading-tight sm:text-4xl">
             {post.title}
           </h1>
-          <p className="mt-4 text-sm text-muted-foreground">
-            {formatDate(post.date)} · {post.readingMinutes} min read
-          </p>
+          {post.author ? (
+            <div className="mt-6 flex items-center gap-3">
+              {post.author.image && (
+                <Image
+                  src={post.author.image}
+                  alt={post.author.name}
+                  width={48}
+                  height={48}
+                  className="size-12 rounded-full object-cover"
+                />
+              )}
+              <div>
+                <p className="font-semibold text-foreground">{post.author.name}</p>
+                <p className="text-sm text-muted-foreground">
+                  {post.author.role} · {formatDate(post.date)} · {post.readingMinutes} min read
+                </p>
+              </div>
+            </div>
+          ) : (
+            <p className="mt-4 text-sm text-muted-foreground">
+              {formatDate(post.date)} · {post.readingMinutes} min read
+            </p>
+          )}
+          {post.firstPublished && (
+            <p className="mt-6 rounded-xl border border-border bg-card px-4 py-3 text-sm text-muted-foreground">
+              This column first appeared on{" "}
+              <a
+                href={post.firstPublished.url}
+                className="font-medium text-primary underline underline-offset-4 hover:text-primary/80"
+              >
+                {post.firstPublished.outlet}
+              </a>
+              .
+            </p>
+          )}
           <div className="mt-10">
             <PostBody content={post.content} />
           </div>

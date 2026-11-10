@@ -3,6 +3,19 @@ export type Block =
   | { p: string }
   | { ul: string[] };
 
+export type Author = {
+  name: string;
+  role: string;
+  image?: string; // path under /public, e.g. /authors/sanket-modi.jpg
+};
+
+// A post that first ran on another site. The page points its canonical URL there and
+// says where it first appeared, with a link.
+export type FirstPublished = {
+  outlet: string; // e.g. "HospitalityTech Edition"
+  url: string; // the original article's full URL
+};
+
 export type Post = {
   slug: string;
   title: string;
@@ -10,10 +23,105 @@ export type Post = {
   category: string;
   date: string; // ISO
   readingMinutes: number;
-  content: Block[];
+  author?: Author; // omitted: the post is by Simplified Management
+  firstPublished?: FirstPublished;
+  content: Block[]; // a p block may carry inline links as [text](https://...)
 };
 
 export const posts: Post[] = [
+  {
+    slug: "airbnb-india-growth-case-for-selling-on-more-sites",
+    title: "Airbnb's India Growth Makes the Case for Selling on More Sites",
+    description: "Nights booked by Indian travellers on Airbnb grew over 60% in Q3. Small owners should list on more sites and set up their records first.",
+    category: "Column",
+    date: "2026-11-07",
+    readingMinutes: 4,
+    author: {
+      name: "Sanket Modi",
+      role: "Managing Director, Simplified Management",
+      image: "/authors/sanket-modi.jpg"
+    },
+    firstPublished: {
+      outlet: "HospitalityTech Edition",
+      url: "https://hospitalitytechedition.com/opinion/airbnb-india-growth-case-for-selling-on-more-sites/"
+    },
+    content: [
+      {
+        p: "Airbnb's third-quarter shareholder letter carries one line that every homestay, villa and small hotel owner in India should read twice. Nights booked by guests from India grew by more than 60% on the platform, and the number of first-time bookers from India rose by more than 80%."
+      },
+      {
+        p: "Airbnb calls it \"the second consecutive quarter of acceleration\" for India, which tells me this is a trend and more than a festival-season spike."
+      },
+      {
+        p: "\"Origin\" matters here. These are Indian travellers, wherever they stay. That is the guest an owner in Lonavala, Coorg or Goa depends on for long weekends and school holidays, and that guest is now learning to book homes on a global platform at a fast clip."
+      },
+      {
+        p: "My view is that owners should read this as a reason to sell on more booking sites, and to get their own records in order before they do."
+      },
+      {
+        h2: "Why one site feels safe"
+      },
+      {
+        p: "The strongest argument for staying on a single booking site is simplicity. One calendar, one payout, one set of reviews and one support desk. An owner with three rooms and no staff has a fair point when they say a second site means a second chance of selling the same night twice."
+      },
+      {
+        p: "I take that seriously, because a clash costs real money. A cancelled guest leaves a bad review, the site may charge a penalty, and the owner spends the weekend on the phone."
+      },
+      {
+        p: "Avoiding that risk has its own price. A property that lives on one site lives on that site's ranking rules, its commission and its view of which guests to show the listing to. When the site changes any of those, the owner finds out from an empty calendar."
+      },
+      {
+        h2: "The guest is already shopping around"
+      },
+      {
+        p: "The Indian traveller in Airbnb's numbers does not book in one place. The same family that finds a villa on Airbnb this year may book a hotel on Booking.com or MakeMyTrip next year and a homestay through Instagram the year after. The same letter shows the pull running the other way as well. Airbnb says [about 35% of guests whose first Airbnb booking is a hotel return to book a home](https://hospitalitytechedition.com/news/airbnb-q3-hotels-single-digit-share-nights-35-percent-return-homes/)."
+      },
+      {
+        p: "Platforms are building to keep those guests inside their own apps. Booking Holdings has announced [a planned $100M investment in Vayo, its new travel agent product](https://hospitalitytechedition.com/news/booking-holdings-launches-vayo-ai-travel-agent/), and loyalty programmes are adding rental homes, as [Wyndham Rewards did with Homes & Havens](https://hospitalitytechedition.com/news/wyndham-rewards-homes-havens-vacation-rentals/). Each of these moves widens the shop window and raises the stakes for any property that is missing from it."
+      },
+      {
+        h2: "More sites means more paperwork"
+      },
+      {
+        p: "Small owners get stuck at this step. Adding a site is easy. Running three sites from three apps, a notebook and a WhatsApp group is where the money leaks out."
+      },
+      {
+        p: "For Indian owners the trouble tends to show up in four places."
+      },
+      {
+        ul: [
+          "A calendar that is updated by hand, late at night, after a booking has already come in elsewhere.",
+          "Payouts that arrive on different days from different sites, with commissions deducted in different ways.",
+          "Co-owners, often family members, who each want to know what their share of the month was.",
+          "Guest records that cannot support a GST invoice when a corporate guest asks for one."
+        ]
+      },
+      {
+        p: "Each of these is a record-keeping problem, and each gets worse with every site an owner adds."
+      },
+      {
+        h2: "What I would do this quarter"
+      },
+      {
+        p: "If I owned a small property and read Airbnb's India numbers, I would do three things before the December holidays."
+      },
+      {
+        p: "First, list on at least one global site and one Indian site, so the property is visible to the traveller who shops on either."
+      },
+      {
+        p: "Second, keep one master calendar that every booking is checked against, and decide in advance who on the team settles a clash and how fast."
+      },
+      {
+        p: "Third, write down how money is split. Commission by site, cleaning and staff costs, and each owner's share should come out of the same record every month, so nobody argues over a spreadsheet in January."
+      },
+      {
+        p: "Indian guests are booking homes in larger numbers, and the platforms are competing for them. Owners who meet those guests on more than one site, with their records ready for it, will keep more of that demand."
+      },
+      {
+        p: "Source: [Airbnb, Q3 2026 shareholder letter (SEC Form 8-K, Exhibit 99.1)](https://www.sec.gov/Archives/edgar/data/1559720/000119312526449727/d437988dex991.htm)"
+      }
+    ]
+  },
   {
     slug: "stop-double-bookings-airbnb-booking-com",
     title: "How to stop double bookings across Airbnb and Booking.com",
