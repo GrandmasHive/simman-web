@@ -1,12 +1,19 @@
 // FINAL pricing (Shaun, 2026-09-25). Do not change or "fix" these numbers.
-// Hotels: Rs 3,000 a month platform fee + Rs 100 per room a month.
+// Hotels: platform fee Rs 1,000 a month for 1-15 rooms, Rs 3,000 for 16 or more,
+//         plus Rs 100 per room a month (Shaun, brochures 12 Nov 2026; matches the website).
 // Owners: Rs 799 per listing a month for 1-10 listings; at 11 or more,
 //         Rs 499 applies to EVERY listing (so 10 costs more than 11-16: intended).
 // Yearly = 15% off. GST 18% is extra. First 2 months free. No setup fee.
 
 import type { ProposalInput } from "./types";
 
-export const HOTEL_PLATFORM_FEE = 3000;
+export const HOTEL_FEE_SMALL = 1000;
+export const HOTEL_FEE_LARGE = 3000;
+export const HOTEL_LARGE_FROM = 16;
+
+export function hotelPlatformFee(rooms: number): number {
+  return rooms >= HOTEL_LARGE_FROM ? HOTEL_FEE_LARGE : HOTEL_FEE_SMALL;
+}
 export const HOTEL_PER_ROOM = 100;
 export const OWNER_RATE = 799;
 export const OWNER_BULK_RATE = 499;
@@ -42,9 +49,10 @@ export function quote(input: ProposalInput): Quote {
   let lines: Quote["lines"];
   if (input.segment === "hotel") {
     rate = HOTEL_PER_ROOM;
-    monthly = HOTEL_PLATFORM_FEE + units * HOTEL_PER_ROOM;
+    const platformFee = hotelPlatformFee(units);
+    monthly = platformFee + units * HOTEL_PER_ROOM;
     lines = [
-      { label: "Platform fee", amount: HOTEL_PLATFORM_FEE },
+      { label: "Platform fee", amount: platformFee },
       { label: `${units} ${units === 1 ? "room" : "rooms"} × ₹${inr(HOTEL_PER_ROOM)}`, amount: units * HOTEL_PER_ROOM },
     ];
   } else {

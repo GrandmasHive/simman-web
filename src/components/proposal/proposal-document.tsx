@@ -145,7 +145,7 @@ export function ProposalDocument({ input, contact }: { input: ProposalInput; con
               <div className="pp-option-head"><span className="pp-option-title">Pay monthly</span></div>
               <span className="pp-option-line">{rupees(q.monthly)} + GST 18% {rupees(q.monthlyGst)}</span>
               <div className="pp-option-total"><span>{rupees(q.monthlyTotal)}</span><span>a month</span></div>
-              <span className="pp-option-foot">Including GST.</span>
+              <span className="pp-option-foot">Total with GST added.</span>
             </div>
           )}
           {showYearly && (
@@ -156,7 +156,7 @@ export function ProposalDocument({ input, contact }: { input: ProposalInput; con
               </div>
               <span className="pp-option-line">{rupees(q.yearFull)} less 15% = {rupees(q.yearly)}<br />+ GST 18% {rupees(q.yearlyGst)}</span>
               <div className="pp-option-total"><span>{rupees(q.yearlyTotal)}</span><span>a year</span></div>
-              <span className="pp-option-foot">Including GST. That is {rupees(q.yearlyPerMonth)} a month before GST, and you save {rupees(q.yearlySaving)}.</span>
+              <span className="pp-option-foot">Total with GST added. That is {rupees(q.yearlyPerMonth)} a month before GST, and you save {rupees(q.yearlySaving)}.</span>
             </div>
           )}
         </div>
