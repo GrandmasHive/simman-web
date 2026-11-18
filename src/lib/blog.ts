@@ -30,6 +30,87 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "small-properties-need-their-own-repeat-guest-list",
+    title: "Small Properties Need Their Own Repeat Guest List",
+    description: "EaseMyTrip reports a repeat booking rate above 90%. Sanket Modi says small hotels and homestays should earn the second stay from their own guest records.",
+    category: "Column",
+    date: "2026-11-18",
+    readingMinutes: 4,
+    author: {
+      name: "Sanket Modi",
+      role: "Managing Director, Simplified Management",
+      image: "/authors/sanket-modi.jpg"
+    },
+    firstPublished: {
+      outlet: "HospitalityTech Edition",
+      url: "https://hospitalitytechedition.com/opinion/small-properties-need-their-own-repeat-guest-list/"
+    },
+    content: [
+      {
+        p: "EaseMyTrip's results for the July to September quarter, [filed with the stock exchanges on 14 November](https://www.bseindia.com/xml-data/corpfiling/AttachLive/006e8681-2acc-447f-aa4d-2242ce1dfb1e.pdf), put a number on something small property owners in India see every season. The company says hotel segment bookings rose to 7.9 lakh from 4.2 lakh a year earlier, growth of 87.5%, and that Hotels and Packages revenue rose 188.8% to ₹92 crore."
+      },
+      {
+        p: "The line I keep returning to comes from the company's co-founder and chief executive, Rikant Pittie: \"With a customer repeat booking rate exceeding 90%, we have an established base of loyal customers.\""
+      },
+      {
+        p: "That is a strong position for a travel platform. It also tells hotel and homestay owners where a returning guest's habit sits today. If a family that stays in a Shimla cottage this December wants to come back next year, the natural place for them to start is the app they used the first time."
+      },
+      {
+        p: "My view is that every small property should keep its own list of past guests and earn a share of their next stay directly, within the rules of the sites it sells on."
+      },
+      {
+        h2: "The case for leaving it to the platforms"
+      },
+      {
+        p: "The strongest argument against this is a fair one. The booking site found the guest, paid for the marketing and handled the payment. An owner with four rooms and two staff has no time for email campaigns, and a property that pushes guests off a platform can break its contract and lose its place in search results."
+      },
+      {
+        p: "I agree with most of that. Booking sites are how strangers find a small property, and I would never ask an owner to drop one or to steer a guest away in the middle of a booking. Read each site's terms on guest contact before you do anything with guest details, and follow them."
+      },
+      {
+        p: "The argument runs out at the second stay. That booking comes from the stay itself, from the room, the breakfast and the caretaker who arranged a cab at five in the morning. The property earned that guest's trust, and it should keep a record of it."
+      },
+      {
+        h2: "Guest details are getting harder to keep"
+      },
+      {
+        p: "That record is also getting thinner. This site reported in October that [Booking.com stops sending guest phone numbers to hotel systems](https://hospitalitytechedition.com/news/booking-com-stops-sending-guest-phone-numbers-hotel-systems/), according to Mews and Smoobu, which leaves an owner with no number for pre-arrival messages on those bookings. Asking the guest at check-in, with their consent, is the simplest way to keep that number."
+      },
+      {
+        p: "Some guests already prefer to book with the property itself. A TravelBoom survey of 500 leisure travellers, fielded in October, found that [OTA share of leisure bookings fell to 32.8% while hotel websites held at 18%](https://hospitalitytechedition.com/articles/ota-leisure-booking-share-falls-hotel-websites-hold-18-percent-travelboom/). The survey was not run in India, and I would not carry its figures over. They do show that a steady share of travellers will book on a hotel's own site when one is there."
+      },
+      {
+        h2: "What a repeat guest list looks like at a small property"
+      },
+      {
+        p: "A small team can build one by writing down the same few details the same way for every stay."
+      },
+      {
+        ul: [
+          "At check-in, ask for a phone number and email address, and ask whether the guest is happy to hear from you about future stays. Write down the answer.",
+          "Note why they came: a wedding in town, a school holiday, a work trip, a temple visit. The reason tells you when they are likely to travel again.",
+          "Note which site they booked on and what they paid, so you can compare the cost of a direct booking with the commission on the same stay.",
+          "Reply to their review, good or bad. Shiji's benchmark found that [hotels reply to reviews in 3.1 days](https://hospitalitytechedition.com/articles/hotel-review-reply-time-3-1-days-positive-mentions-shiji-q3-benchmark/) across the hotels it tracked, and a small property can match that pace."
+        ]
+      },
+      {
+        h2: "Where the money is"
+      },
+      {
+        p: "A returning guest who books directly saves the owner the commission on that stay. For a property that fills its busy weekends through booking sites, that saving on even a handful of repeat stays a year adds up, and it comes from guests who already know the place."
+      },
+      {
+        p: "The second gain matters more to me. An owner with a list of past guests can fill a quiet weekday in the monsoon with a message to the families who came last year and said yes to hearing from them."
+      },
+      {
+        p: "If I ran a small property, I would start with the December bookings already in the calendar. Ask each of those guests for a number and their permission at check-in, note why they came, and send them one message with a direct booking link before the same season next year."
+      },
+      {
+        p: "Source: [EaseMyTrip, Q2 FY27 media release (BSE filing, 14 November 2026)](https://www.bseindia.com/xml-data/corpfiling/AttachLive/006e8681-2acc-447f-aa4d-2242ce1dfb1e.pdf)"
+      }
+    ]
+  },
+  {
     slug: "airbnb-india-growth-case-for-selling-on-more-sites",
     title: "Airbnb's India Growth Makes the Case for Selling on More Sites",
     description: "Nights booked by Indian travellers on Airbnb grew over 60% in Q3. Small owners should list on more sites and set up their records first.",
