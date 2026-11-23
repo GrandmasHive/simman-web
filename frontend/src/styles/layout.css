@@ -2,8 +2,13 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  border-bottom: 1px solid #eef1f4;
+  border-bottom: 1px solid transparent;
   background: #fff;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.site-header--scrolled {
+  border-bottom-color: #eef1f4;
+  box-shadow: 0 8px 24px rgba(21, 44, 67, 0.06);
 }
 .header-inner {
   min-height: 100px;
@@ -11,6 +16,10 @@
   align-items: center;
   justify-content: space-between;
   gap: 25px;
+  transition: min-height 0.25s ease;
+}
+.site-header--scrolled .header-inner {
+  min-height: 80px;
 }
 .brand {
   display: inline-flex;
@@ -59,8 +68,26 @@
   font-size: 14px;
   font-weight: 500;
 }
+.navigation > a:not(.button) {
+  position: relative;
+  transition: color 0.2s ease;
+}
+.navigation > a:not(.button)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -4px;
+  height: 2px;
+  background: var(--blue);
+  transition: right 0.25s ease;
+}
 .navigation > a:not(.button):hover {
   color: var(--blue-hover);
+}
+.navigation > a:not(.button):hover::after,
+.navigation > a:not(.button)[aria-current="page"]::after {
+  right: 0;
 }
 .menu-toggle {
   display: none;

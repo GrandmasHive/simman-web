@@ -6,7 +6,7 @@ export default function MobileApp() {
   const [view, setView] = useState("dashboard");
   return (
     <section id="app" className="section container app-layout">
-      <div className="app-copy">
+      <div className="app-copy reveal">
         <p className="eyebrow">HOSPITALITY IS ALWAYS ON THE MOVE</p>
         <h2>
           Your day doesn't
@@ -46,7 +46,7 @@ export default function MobileApp() {
           </button>
         </div>
       </div>
-      <div className="app-stage">
+      <div className="app-stage reveal reveal-delay-1">
         <span className="app-stage-caption">
           A LITTLE CLARITY.
           <br />
@@ -54,6 +54,7 @@ export default function MobileApp() {
         </span>
         <div className="phone-mockup phone-mockup--actual">
           <img
+            key={view}
             src={
               view === "dashboard"
                 ? "/images/mobile-dashboard.png"
@@ -67,6 +68,7 @@ export default function MobileApp() {
             loading="lazy"
             width={view === "dashboard" ? 277 : 352}
             height={view === "dashboard" ? 603 : 757}
+            className="fade-swap"
           />
         </div>
         <p className="app-sample-note">Actual mobile view · demo data</p>

@@ -34,10 +34,14 @@
   font-size: clamp(21px, 2.6vw, 33px);
   font-weight: 600;
 }
-.help-trigger .help-number { min-width: 58px; }
-.help-trigger-symbol { margin-left: auto; color: var(--blue); }
+.help-trigger .help-number { min-width: 58px; transition: color 0.25s ease, transform 0.25s ease; }
+.help-trigger-symbol { margin-left: auto; color: var(--blue); transition: transform 0.25s ease; }
 .help-trigger:focus-visible { outline: 2px solid var(--blue); outline-offset: -3px; }
 .help-row--active .help-trigger { color: var(--blue); }
+.help-row--active .help-trigger-symbol { transform: rotate(90deg); }
+.help-trigger:hover .help-number { color: var(--blue); transform: translateX(3px); }
+.help-screenshot img { transition: transform 0.4s ease; }
+.help-screenshot:hover img { transform: scale(1.015); }
 .help-details {
   display: grid;
   grid-template-rows: 0fr;

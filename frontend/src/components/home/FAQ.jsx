@@ -3,7 +3,7 @@ import { faqs } from "../../data/content";
 export default function FAQ() {
   return (
     <section id="questions" className="section container faq-layout">
-      <div>
+      <div className="reveal">
         <p className="eyebrow">GOOD QUESTIONS, CLEAR ANSWERS</p>
         <h2>
           A few things
@@ -18,7 +18,7 @@ export default function FAQ() {
           </a>
         </p>
       </div>
-      <div className="faq-list">
+      <div className="faq-list reveal reveal-delay-1">
         {faqs.map((faq) => (
           <details key={faq.question}>
             <summary>

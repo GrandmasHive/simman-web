@@ -13,7 +13,7 @@ export default function ProductGallery() {
       className="product-gallery container"
       aria-label="Actual product screenshots"
     >
-      <div className="gallery-heading">
+      <div className="gallery-heading reveal">
         <div>
           <p className="eyebrow">A LOOK INSIDE SIMPLIFIED MANAGEMENT</p>
           <h2>Your operation, in focus.</h2>
@@ -23,7 +23,7 @@ export default function ProductGallery() {
           performance of each property.
         </p>
       </div>
-      <div className="gallery-toolbar">
+      <div className="gallery-toolbar reveal reveal-delay-1">
         <div className="gallery-options" aria-label="Choose product screenshot">
           {productScreenshots.map((item, index) => (
             <button
@@ -45,13 +45,15 @@ export default function ProductGallery() {
           Expand screenshot
         </button>
       </div>
-      <figure className="product-screenshot">
+      <figure className="product-screenshot reveal reveal-delay-2">
         <img
+          key={screenshot.id}
           src={screenshot.src}
           alt={screenshot.alt}
           width={screenshot.width}
           height={screenshot.height}
           loading="lazy"
+          className="fade-swap"
         />
         <figcaption>{screenshot.caption}</figcaption>
       </figure>

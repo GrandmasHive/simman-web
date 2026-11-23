@@ -56,7 +56,7 @@ export default function Contact({ mode = "demo" }) {
   return (
     <section id="contact" className="contact-section">
       <div className="container contact-layout">
-        <div className="contact-copy">
+        <div className="contact-copy reveal">
           <p className="eyebrow">MORE ROOM FOR WHAT MATTERS</p>
           <h2>
             Your next chapter
@@ -75,7 +75,7 @@ export default function Contact({ mode = "demo" }) {
             </a>
           </div>
         </div>
-        <form className="demo-form" onSubmit={handleSubmit}>
+        <form className="demo-form reveal reveal-delay-1" onSubmit={handleSubmit}>
           <h3>
             {isContact ? "Start a conversation" : "Book your personal demo"}
           </h3>

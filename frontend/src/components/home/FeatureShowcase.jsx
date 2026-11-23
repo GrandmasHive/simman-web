@@ -11,7 +11,7 @@ export default function FeatureShowcase({ productPage = false }) {
       className="help-showcase section"
       aria-labelledby={productPage ? "product-help-title" : "home-help-title"}
     >
-      <div className="container help-heading">
+      <div className="container help-heading reveal">
         <p className="eyebrow">The Platform</p>
         <h2 id={productPage ? "product-help-title" : "home-help-title"}>
           Everything you need to run distribution
@@ -29,7 +29,7 @@ export default function FeatureShowcase({ productPage = false }) {
               key={feature.id}
               id={productPage ? feature.id : `home-${feature.id}`}
               data-feature={feature.id}
-              className={`help-row ${active === feature.id ? "help-row--active" : ""}`}
+              className={`help-row reveal reveal-delay-${Math.min(index + 1, 4)} ${active === feature.id ? "help-row--active" : ""}`}
               onPointerEnter={(event) => {
                 if (event.pointerType === "mouse") setActive(feature.id);
               }}

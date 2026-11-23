@@ -5,10 +5,10 @@ import Icon from "../ui/Icon";
 export default function Pricing({ showIntro = true }) {
   return (
     <section id="pricing" className="section container pricing-section">
-      {showIntro && <div className="section-intro"><div><p className="eyebrow">PRICING</p><h2>{pricingTitle}</h2></div><p>{pricingDescription}</p></div>}
+      {showIntro && <div className="section-intro reveal"><div><p className="eyebrow">PRICING</p><h2>{pricingTitle}</h2></div><p>{pricingDescription}</p></div>}
       <div className="pricing-grid pricing-grid--two">
-        {plans.map(plan => (
-          <article key={plan.name}>
+        {plans.map((plan, index) => (
+          <article key={plan.name} className={`reveal reveal-delay-${index + 1}`}>
             <h3>{plan.name}</h3><p>{plan.description}</p>
             <div className="pricing-rates">
               {plan.rates.map(rate => <div key={rate.label}><p>{rate.label}</p><strong>{rate.amount}</strong><span>{rate.unit}</span></div>)}

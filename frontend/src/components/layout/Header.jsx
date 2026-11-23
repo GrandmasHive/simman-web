@@ -6,6 +6,7 @@ import { navigation as links } from "../../data/navigation";
 
 export default function Header({ path = "/" }) {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const onEscape = (event) => {
       if (event.key === "Escape") setOpen(false);
@@ -13,8 +14,14 @@ export default function Header({ path = "/" }) {
     window.addEventListener("keydown", onEscape);
     return () => window.removeEventListener("keydown", onEscape);
   }, []);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   return (
-    <header className="site-header">
+    <header className={`site-header ${scrolled ? "site-header--scrolled" : ""}`}>
       <div className="container header-inner">
         <Brand />
         <button

@@ -100,6 +100,11 @@ export const faqs = [
       "The platform lists Airbnb, Booking.com, Agoda, Expedia, Vrbo, MakeMyTrip and Goibibo. Our team can walk you through the connection setup for your channels.",
   },
   {
+    question: "What can the AI Assistant actually do?",
+    answer:
+      "Ask it things like \"What was occupancy last month?\", \"Who is arriving today?\", \"Show every unit by month\" or \"Which platform brings in the most bookings?\" in plain language, and it answers from your own portfolio data, right from inside the dashboard. It will also tell you plainly when something is outside what it can answer yet. Bring your own questions to the demo and we'll show you exactly what it can do for your operation.",
+  },
+  {
     question: "Can I see the actual app before deciding?",
     answer:
       "Yes. Ask for a mobile app walkthrough as part of your demo so you can explore the real screens and available workflows.",

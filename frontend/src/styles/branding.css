@@ -53,6 +53,10 @@
 .pricing-grid article {
   padding: 35px 32px;
   border-right: 1px solid var(--line);
+  transition: background 0.3s ease;
+}
+.pricing-grid article:hover {
+  background: var(--pale);
 }
 .pricing-grid article:first-child {
   padding-left: 0;

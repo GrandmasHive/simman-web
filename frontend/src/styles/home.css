@@ -132,6 +132,22 @@
   gap: 45px;
   color: #53677d;
 }
+.channel-logo {
+  display: inline-flex;
+  transition: transform 0.25s ease;
+}
+.channel-logo img {
+  filter: grayscale(1) opacity(0.6);
+  transition: filter 0.25s ease;
+}
+.channel-logo:hover,
+.channel-logo:focus-visible {
+  transform: translateY(-3px);
+}
+.channel-logo:hover img,
+.channel-logo:focus-visible img {
+  filter: grayscale(0) opacity(1);
+}
 .channel-names span {
   font-family: "Manrope", sans-serif;
   font-size: 23px;
@@ -468,6 +484,8 @@
 }
 .solutions-photo {
   position: relative;
+  overflow: hidden;
+  border-radius: 5px;
 }
 .solutions-photo > img {
   width: 100%;
@@ -498,11 +516,23 @@
   background: transparent;
   color: var(--muted);
   font-size: 12px;
+  transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.solution-options button:hover {
+  transform: translateY(-2px);
+  border-color: var(--blue);
+  color: var(--blue);
 }
 .solution-options button[aria-pressed="true"] {
   background: #fff;
   border-color: var(--blue);
   color: var(--blue);
+}
+.solutions-photo img {
+  transition: transform 0.5s ease;
+}
+.solutions-photo:hover img {
+  transform: scale(1.03);
 }
 .solution-detail {
   min-height: 225px;
@@ -719,6 +749,10 @@
   position: relative;
   padding-top: 23px;
   border-top: 1px solid #ffffff35;
+  transition: transform 0.3s ease;
+}
+.steps-grid article:hover {
+  transform: translateY(-5px);
 }
 .step-index {
   position: absolute;
@@ -727,6 +761,10 @@
   color: #6e8bb0;
   font-size: 27px;
   font-weight: 400;
+  transition: color 0.3s ease;
+}
+.steps-grid article:hover .step-index {
+  color: #a7cafb;
 }
 .steps-grid small {
   font-size: 10px;
@@ -768,6 +806,10 @@
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
+  transition: color 0.2s ease;
+}
+.faq-list summary:hover {
+  color: var(--blue);
 }
 .faq-list summary::-webkit-details-marker {
   display: none;
@@ -788,17 +830,38 @@
   height: 1px;
   top: 7px;
   left: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 .faq-list summary > span::after {
   transform: rotate(90deg);
 }
+.faq-list details[open] summary > span::before {
+  transform: rotate(180deg);
+}
 .faq-list details[open] summary > span::after {
-  display: none;
+  transform: rotate(0deg);
+  opacity: 0;
 }
 .faq-list details > p {
   color: var(--muted);
   font-size: 15px;
   margin: 15px 25px 0 0;
+  animation: faq-fade 0.35s ease;
+}
+@keyframes faq-fade {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .faq-list details > p {
+    animation: none;
+  }
 }
 .contact-section {
   background: #f0f4fa;

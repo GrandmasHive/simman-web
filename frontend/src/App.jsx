@@ -68,6 +68,31 @@ export default function App() {
     });
     return () => cancelAnimationFrame(frame);
   }, [path, article]);
+  useEffect(() => {
+    // Revealed state is tracked with a data-attribute, not a class, because
+    // React owns `className` and rewrites it on any re-render of the element
+    // (e.g. hover state toggling an "--active" class) — a className written
+    // here would get clobbered. Attributes React doesn't know about survive.
+    const elements = document.querySelectorAll(".reveal");
+    if (!elements.length) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      elements.forEach((el) => el.setAttribute("data-revealed", "true"));
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.setAttribute("data-revealed", "true");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" },
+    );
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [path, article]);
   function navigate(event) {
     const anchor = event.target.closest("a[href]");
     if (

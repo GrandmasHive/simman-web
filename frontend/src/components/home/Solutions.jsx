@@ -7,7 +7,7 @@ export default function Solutions() {
   return (
     <section id="solutions" className="solutions-section">
       <div className="container solutions-layout">
-        <div className="solutions-photo">
+        <div className="solutions-photo reveal">
           <img
             src={photography.interior}
             alt="Contemporary furnished apartment with a comfortable living area and kitchen"
@@ -17,7 +17,7 @@ export default function Solutions() {
           />
           <span>EVERY SPACE HAS A STORY.</span>
         </div>
-        <div className="solutions-copy">
+        <div className="solutions-copy reveal reveal-delay-1">
           <p className="eyebrow">BUILT AROUND YOUR BUSINESS</p>
           <h2>
             Different places.
@@ -35,7 +35,7 @@ export default function Solutions() {
               </button>
             ))}
           </div>
-          <div className="solution-detail" aria-live="polite">
+          <div className="solution-detail fade-swap" key={solution.id} aria-live="polite">
             <h3>{solution.title}</h3>
             <p>{solution.description}</p>
             <ul>

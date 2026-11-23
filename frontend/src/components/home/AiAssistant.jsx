@@ -5,7 +5,7 @@ export default function AiAssistant() {
   return (
     <section id="ai-assistant" className="ai-section">
       <div className="container ai-layout">
-        <div className="ai-copy">
+        <div className="ai-copy reveal">
           <p className="eyebrow">
             <Icon name="sparkles" size={17} /> AI ASSISTANT
           </p>
@@ -34,7 +34,7 @@ export default function AiAssistant() {
             Explore the actual product screens
           </a>
         </div>
-        <figure className="ai-artwork">
+        <figure className="ai-artwork reveal reveal-delay-2">
           <img
             src="/images/ai-assistant-screenshot.png"
             alt="Actual Simplified Management AI Assistant panel open over the reservations calendar, answering a question about last month's occupancy with sourced figures and caveats"

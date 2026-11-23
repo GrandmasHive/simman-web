@@ -23,15 +23,18 @@ export default function GettingStarted() {
   return (
     <section className="getting-started">
       <div className="container">
-        <p className="eyebrow">A HUMAN CONVERSATION. A CLEAR NEXT STEP.</p>
-        <h2>
+        <p className="eyebrow reveal">A HUMAN CONVERSATION. A CLEAR NEXT STEP.</p>
+        <h2 className="reveal reveal-delay-1">
           Getting started should
           <br />
           feel simple, too.
         </h2>
         <div className="steps-grid">
           {steps.map((step, index) => (
-            <article key={step.label}>
+            <article
+              key={step.label}
+              className={`reveal reveal-delay-${index + 2}`}
+            >
               <span className="step-index">0{index + 1}</span>
               <small>{step.label}</small>
               <h3>{step.title}</h3>

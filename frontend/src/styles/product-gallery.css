@@ -21,6 +21,11 @@
   border-radius: 4px;
   color: var(--muted);
   font-size: 14px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.mobile-view-switch button:hover {
+  transform: translateY(-2px);
+  border-color: var(--blue);
 }
 .mobile-view-switch button[aria-pressed="true"] {
   background: var(--blue);
@@ -98,6 +103,30 @@
   width: 100%;
   height: auto;
   display: block;
+}
+.fade-swap {
+  animation: fade-swap-in 0.5s ease both;
+}
+@keyframes fade-swap-in {
+  from {
+    opacity: 0;
+    transform: scale(1.01);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.gallery-options button {
+  transition: transform 0.2s ease;
+}
+.gallery-options button:hover {
+  transform: translateY(-2px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .fade-swap {
+    animation: none;
+  }
 }
 .product-screenshot figcaption {
   padding: 12px 20px;
