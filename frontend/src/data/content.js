@@ -1,3 +1,5 @@
+export const teamNote = "Simplified Management started from a familiar frustration: bookings spread across spreadsheets, WhatsApp groups and separate OTA dashboards, with no single place that told the whole story. We're a small team based in Pune, so when you book a demo, you're talking to people who actually work on the product, not a script.";
+
 export const photography = {
   hero: "https://images.pexels.com/photos/4870581/pexels-photo-4870581.jpeg?auto=compress&cs=tinysrgb&w=1800",
   interior:

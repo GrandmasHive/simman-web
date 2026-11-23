@@ -9,6 +9,7 @@ import Contact from "../components/home/Contact";
 import ProductGallery from "../components/home/ProductGallery";
 import Pricing from "../components/home/Pricing";
 import AiAssistant from "../components/home/AiAssistant";
+import TeamNote from "../components/home/TeamNote";
 import SectionAtmosphere from "../components/ui/SectionAtmosphere";
 
 export default function HomePage() {
@@ -24,6 +25,7 @@ export default function HomePage() {
       <GettingStarted />
       <SectionAtmosphere variant="peach"><Pricing /></SectionAtmosphere>
       <SectionAtmosphere><FAQ /></SectionAtmosphere>
+      <TeamNote />
       <Contact />
     </main>
   );

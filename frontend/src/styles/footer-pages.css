@@ -70,6 +70,9 @@
 .policy-draft { border: 1px solid #ead4b9; background: #fff9f1; border-radius: 16px; padding: 24px; }
 .policy-draft p { margin: 10px 0 0; font-size: 14px; }
 .content-note { font-size: 13px; color: var(--muted); margin-top: 25px; }
+.team-note blockquote { max-width: 760px; margin: 0; padding: 36px 40px; border-left: 3px solid var(--blue); background: var(--pale); border-radius: 0 20px 20px 0; }
+.team-note p { font-size: 19px; line-height: 1.55; color: var(--ink); margin: 0 0 16px; letter-spacing: -0.2px; }
+.team-note cite { font-size: 13px; color: var(--muted); font-style: normal; }
 .calculator-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
 .calculator-inputs { padding: 32px; border: 1px solid var(--line); background: #fff; border-radius: 20px; }
 .calculator-inputs h2 { font-size: 30px; }

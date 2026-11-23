@@ -4,7 +4,7 @@ import PageIntro from "../components/ui/PageIntro";
 import PageCta from "../components/ui/PageCta";
 import SectionAtmosphere from "../components/ui/SectionAtmosphere";
 import Icon from "../components/ui/Icon";
-import { features } from "../data/content";
+import { features, teamNote } from "../data/content";
 import { productJourneys } from "../data/productJourneys";
 import { competitors, comparisonBenefits, comparisonCapabilities } from "../data/comparisons";
 import { productRoutes, informationPages, legalPages } from "../data/footerPages";
@@ -91,6 +91,14 @@ export function InformationPage({ path }) {
           {page.note && <p className="content-note">{page.note}</p>}
         </section>
       </SectionAtmosphere>
+      {path === "/about" && (
+        <section className="section container team-note">
+          <blockquote>
+            <p>{teamNote}</p>
+            <cite>The Simplified Management team · Pune, India</cite>
+          </blockquote>
+        </section>
+      )}
       <PageCta />
     </Page>
   );
