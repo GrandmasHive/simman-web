@@ -36,13 +36,13 @@ export default function AiAssistant() {
         </div>
         <figure className="ai-artwork">
           <img
-            src="/images/ai-assistant-art.png"
-            alt="Decorative cobalt glass architecture connected around a luminous centre, representing intelligence within a property portfolio"
+            src="/images/ai-assistant-screenshot.png"
+            alt="Actual Simplified Management AI Assistant panel open over the reservations calendar, answering a question about last month's occupancy with sourced figures and caveats"
             loading="lazy"
-            width="1536"
-            height="1024"
+            width="1916"
+            height="867"
           />
-          <figcaption>Connected properties. A clearer perspective.</figcaption>
+          <figcaption>Actual product screenshot · AI Assistant in the reservations view</figcaption>
         </figure>
       </div>
     </section>
