@@ -1,6 +1,8 @@
 import { Button, Input, Select } from "antd";
 import { useRef, useState } from "react";
 
+const FORM_ENDPOINT = "https://formspree.io/f/maeolobz";
+
 export default function Contact({ mode = "demo" }) {
   const isContact = mode === "contact";
   const params = new URLSearchParams(window.location.search);
@@ -10,33 +12,46 @@ export default function Contact({ mode = "demo" }) {
       ? `I'd like a walkthrough for ${params.get("interest")}.`
       : "";
   const [status, setStatus] = useState("");
+  const [submitting, setSubmitting] = useState(false);
   const [portfolio, setPortfolio] = useState(undefined);
   const [interest, setInterest] = useState("The full platform");
   const portfolioRef = useRef(null);
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     if (!portfolio) {
       setStatus("Please select your portfolio size.");
       portfolioRef.current?.focus();
       return;
     }
-    const data = new FormData(event.currentTarget);
-    const body = [
-      "Hello Simplified Management,",
-      isContact
-        ? "I would like to talk to your team."
-        : "I would like to book a platform demo.",
-      `Name: ${data.get("name")}`,
-      `Email: ${data.get("email")}`,
-      `Phone: ${data.get("phone") || "Not provided"}`,
-      `Portfolio: ${data.get("portfolio")}`,
-      `Interested in: ${data.get("interest")}`,
-      data.get("message"),
-    ].join("\n\n");
-    window.location.href = `mailto:info@simplifiedmanagement.in?subject=${encodeURIComponent(isContact ? "Property management enquiry" : "Platform demo enquiry")}&body=${encodeURIComponent(body)}`;
-    setStatus(
-      "Your email draft is ready to open. Review and send it in your email app. If it does not open, email us directly.",
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    data.set(
+      "_subject",
+      isContact ? "Property management enquiry" : "Platform demo enquiry",
     );
+    setSubmitting(true);
+    setStatus("");
+    try {
+      const response = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+      });
+      if (!response.ok) throw new Error("Request failed");
+      setStatus(
+        "Thank you — we've received your details and will be in touch shortly.",
+      );
+      form.reset();
+      setPortfolio(undefined);
+      setInterest("The full platform");
+    } catch (error) {
+      console.error("Contact form submission failed:", error);
+      setStatus(
+        "Something went wrong sending your enquiry. Please email us directly at info@simplifiedmanagement.in.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
   }
   return (
     <section id="contact" className="contact-section">
@@ -141,11 +156,16 @@ export default function Contact({ mode = "demo" }) {
               placeholder="Tell us what you want to simplify."
             />
           </label>
-          <Button type="primary" className="button" htmlType="submit">
-            {isContact ? "Prepare my enquiry" : "Prepare my demo enquiry"}
+          <Button
+            type="primary"
+            className="button"
+            htmlType="submit"
+            loading={submitting}
+          >
+            {isContact ? "Send my enquiry" : "Send my demo request"}
           </Button>
           <small className="form-note">
-            Opens an email draft for you to review and send.
+            We'll get back to you within one business day.
           </small>
           <p className="form-status" role="status">
             {status}

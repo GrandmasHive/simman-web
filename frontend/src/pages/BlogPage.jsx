@@ -5,6 +5,7 @@ import PageCta from "../components/ui/PageCta";
 import { articles } from "../data/articles";
 
 const categories = ["All", "Channel Management", "Guides", "Distribution", "Operations"];
+const coverVariants = ["", "calendar", "platform", "turnover"];
 export default function BlogPage() {
   const [category, setCategory] = useState("All");
   const filtered = articles.filter(
@@ -37,9 +38,20 @@ export default function BlogPage() {
           {filtered.map((a, i) => (
             <article
               key={a.slug}
-              className="article-card article-card--published"
+              className={[
+                "article-card",
+                "article-card--published",
+                coverVariants[i % coverVariants.length] &&
+                  `article-card--${coverVariants[i % coverVariants.length]}`,
+              ]
+                .filter(Boolean)
+                .join(" ")}
             >
               <a href={`/blog/${a.slug}`}>
+                <div className="article-cover">
+                  <span className="cover-index">{String(i + 1).padStart(2, "0")}</span>
+                  <strong>{a.title}</strong>
+                </div>
                 <div className="article-card-copy">
                   <p className="article-meta">
                     {a.category}

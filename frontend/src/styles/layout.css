@@ -4,16 +4,6 @@
   z-index: 50;
   border-bottom: 1px solid #eef1f4;
   background: #fff;
-  transition: transform 0.25s ease;
-}
-.site-header--hidden {
-  transform: translateY(-100%);
-}
-.site-header:focus-within {
-  transform: translateY(0);
-}
-@media (prefers-reduced-motion: reduce) {
-  .site-header { transition: none; }
 }
 .header-inner {
   min-height: 100px;
