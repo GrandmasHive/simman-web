@@ -62,11 +62,11 @@ export default function MobileApp() {
             alt={
               view === "dashboard"
                 ? "Actual Simplified Management mobile dashboard showing revenue and expenses, system alerts and quick actions. The screen contains demo data."
-                : "Actual Simplified Management mobile menu showing properties, availability calendar, rates, reservations, payments, reports, housekeeping and other operations."
+                : "Actual Simplified Management mobile menu showing properties, availability calendar, reservations, payments, guest profiles, housekeeping, laundry, inventory and other operations."
             }
             loading="lazy"
-            width={view === "dashboard" ? 277 : 276}
-            height={view === "dashboard" ? 603 : 597}
+            width={view === "dashboard" ? 277 : 352}
+            height={view === "dashboard" ? 603 : 757}
           />
         </div>
         <p className="app-sample-note">Actual mobile view · demo data</p>
