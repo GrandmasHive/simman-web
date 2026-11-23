@@ -68,11 +68,11 @@
   font-size: 14px;
   font-weight: 500;
 }
-.navigation > a:not(.button) {
+.navigation > a:not(.button):not(.nav-ai-link) {
   position: relative;
   transition: color 0.2s ease;
 }
-.navigation > a:not(.button)::after {
+.navigation > a:not(.button):not(.nav-ai-link)::after {
   content: "";
   position: absolute;
   left: 0;
@@ -82,12 +82,52 @@
   background: var(--blue);
   transition: right 0.25s ease;
 }
-.navigation > a:not(.button):hover {
+.navigation > a:not(.button):not(.nav-ai-link):hover {
   color: var(--blue-hover);
 }
-.navigation > a:not(.button):hover::after,
-.navigation > a:not(.button)[aria-current="page"]::after {
+.navigation > a:not(.button):not(.nav-ai-link):hover::after,
+.navigation > a:not(.button):not(.nav-ai-link)[aria-current="page"]::after {
   right: 0;
+}
+.nav-ai-link {
+  display: inline-flex !important;
+  align-items: center;
+  align-self: flex-start;
+  flex: 0 0 auto;
+  width: fit-content;
+  gap: 6px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(120deg, var(--blue), #6fa8ff, var(--peach)) border-box;
+  color: var(--blue) !important;
+  font-weight: 700;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.nav-ai-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px -12px rgba(21, 62, 117, 0.45);
+}
+.nav-ai-link svg {
+  animation: ai-pill-sparkle 2.4s ease-in-out infinite;
+}
+.nav-ai-badge {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  background: var(--peach);
+  color: #5b3410;
+  padding: 2px 6px;
+  border-radius: 999px;
+  line-height: 1.4;
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-ai-link svg {
+    animation: none;
+  }
 }
 .menu-toggle {
   display: none;

@@ -42,6 +42,7 @@ export default function Header({ path = "/" }) {
             <a
               key={link.href}
               href={link.href}
+              className={link.highlight ? "nav-ai-link" : undefined}
               aria-current={
                 path === link.href ||
                 (link.href === "/blog" && path.startsWith("/blog/"))
@@ -50,7 +51,9 @@ export default function Header({ path = "/" }) {
               }
               onClick={() => setOpen(false)}
             >
+              {link.highlight && <Icon name="sparkles" size={14} />}
               {link.label}
+              {link.badge && <span className="nav-ai-badge">{link.badge}</span>}
             </a>
           ))}
           <a

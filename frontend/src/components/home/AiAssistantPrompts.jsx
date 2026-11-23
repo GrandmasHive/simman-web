@@ -34,9 +34,9 @@ export default function AiAssistantPrompts() {
         <figure className="ai-example-artwork reveal reveal-delay-2">
           <img
             src="/images/ai-assistant-channel-comparison.png"
-            alt="Actual Simplified Management AI Assistant panel answering 'Which platform brings in the most bookings?' with a channel-by-channel breakdown of bookings, sold nights and net revenue, plus sourcing notes and caveats"
+            alt="Actual Simplified Management AI Assistant panel open over the reservations calendar, answering 'Which platform brings in the most bookings?' with a channel-by-channel breakdown of bookings, sold nights and net revenue, plus sourcing notes and caveats"
             loading="lazy"
-            width="1917"
+            width="1240"
             height="867"
           />
           <figcaption>

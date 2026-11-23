@@ -8,6 +8,7 @@ export const navigation = [
   { href: "/integrations", label: "Integrations" },
   { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
+  { href: "/#ai-assistant", label: "AI Assistant", badge: "New", highlight: true },
 ];
 
 export const pageMetadata = {

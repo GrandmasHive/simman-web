@@ -10,7 +10,7 @@ export default function AiAssistant() {
             <Icon name="sparkles" size={17} /> AI ASSISTANT
           </p>
           <h2>
-            A little intelligence.
+            A little <span>intelligence.</span>
             <br />
             Right where
             <br />
@@ -36,11 +36,11 @@ export default function AiAssistant() {
         </div>
         <figure className="ai-artwork reveal reveal-delay-2">
           <img
-            src="/images/ai-assistant-screenshot.png"
-            alt="Actual Simplified Management AI Assistant panel open over the reservations calendar, answering a question about last month's occupancy with sourced figures and caveats"
+            src="/images/ai-assistant-occupancy.png"
+            alt="Actual Simplified Management AI Assistant panel open over the reservations calendar, answering 'What was occupancy last month?' with the occupancy percentage, sold and available unit-nights, caveats, its sourcing, and suggested follow-up questions"
             loading="lazy"
-            width="1916"
-            height="867"
+            width="1335"
+            height="878"
           />
           <figcaption>Actual product screenshot · AI Assistant in the reservations view</figcaption>
         </figure>
