@@ -3,3 +3,4 @@ frontend/node_modules/
 .sites-runtime/
 site.tar.gz
 *.log
+dist/
