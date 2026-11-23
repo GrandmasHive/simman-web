@@ -36,14 +36,14 @@ export const features = [
   {
     id: "partners",
     icon: "wallet",
-    label: "Partner Accounts & Split Payouts",
-    title: "Make every partner’s share easier to follow.",
+    label: "Payments & Expense Tracking",
+    title: "Every rupee in, every rupee out, in one place.",
     description:
-      "Split booking earnings and expenses between partners. Keep each owner's share and statements easier to follow as your portfolio grows.",
+      "Track revenue, cash collected and expenses from a single payments view. Follow payroll, operating costs and other expense categories without juggling separate spreadsheets.",
     points: [
-      "Booking-level income and expenses",
-      "Automatic partner splits",
-      "Statements for co-owners",
+      "Revenue, cash collected and total expenses at a glance",
+      "Payroll, operating expenses and other cost categories",
+      "Monthly totals you can review property by property",
     ],
   },
   {
@@ -97,7 +97,7 @@ export const faqs = [
   {
     question: "Which booking channels can I connect?",
     answer:
-      "The platform lists Airbnb, Booking.com, Agoda, Expedia, Vrbo, MakeMyTrip, Goibibo and StayVista. Our team can walk you through the connection setup for your channels.",
+      "The platform lists Airbnb, Booking.com, Agoda, Expedia, Vrbo, MakeMyTrip and Goibibo. Our team can walk you through the connection setup for your channels.",
   },
   {
     question: "Can I see the actual app before deciding?",

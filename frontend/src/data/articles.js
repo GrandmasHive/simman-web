@@ -910,8 +910,7 @@ export const articles = [
       },
       {
         "paragraphs": [
-          "Indian guests do not book on a single platform the way travellers in some other markets do. A weekend getaway from Mumbai might get booked on Airbnb, a family holiday to Goa might come through MakeMyTrip, and a business traveller might book direct on Booking.com. Building a distribution strategy for the Indian market means recognising that spread rather than betting everything on one channel.",
-          "Guests in India also research and compare across other well-known travel sites, such as Cleartrip, even when their actual booking happens elsewhere. That is useful context for how Indian travellers shop, but it is a market-awareness point, not a channel list: Simplified Management connects and syncs across the 8 platforms above, and Cleartrip is not one of the channels the product integrates with today."
+          "Indian guests do not book on a single platform the way travellers in some other markets do. A weekend getaway from Mumbai might get booked on Airbnb, a family holiday to Goa might come through MakeMyTrip, and a business traveller might book direct on Booking.com. Building a distribution strategy for the Indian market means recognising that spread rather than betting everything on one channel."
         ],
         "blocks": [
           {
@@ -922,14 +921,9 @@ export const articles = [
             "type": "list",
             "items": [
               "Global: Airbnb, Booking.com, Agoda, Expedia, Vrbo",
-              "Domestic: MakeMyTrip and Goibibo, which carry real weight for Indian leisure travel",
-              "Premium villas: StayVista and similar curated platforms for higher-end properties"
+              "Domestic: MakeMyTrip and Goibibo, which carry real weight for Indian leisure travel"
             ],
             "ordered": false
-          },
-          {
-            "type": "paragraph",
-            "text": "Guests in India also research and compare across other well-known travel sites, such as Cleartrip, even when their actual booking happens elsewhere. That is useful context for how Indian travellers shop, but it is a market-awareness point, not a channel list: Simplified Management connects and syncs across the 8 platforms above, and Cleartrip is not one of the channels the product integrates with today."
           }
         ],
         "title": "The channels that matter in India"

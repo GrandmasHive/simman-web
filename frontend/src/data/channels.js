@@ -41,10 +41,4 @@ export const channels = [
     description:
       "Review the setup for Goibibo inventory, bookings and availability.",
   },
-  {
-    name: "StayVista",
-    logo: "/images/channels/stayvista.png",
-    description:
-      "Explore the connection requirements for your villa and holiday-home listings.",
-  },
 ];

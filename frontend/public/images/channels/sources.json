@@ -53,13 +53,6 @@
       "url": "https://go-assets.ibcdn.com/u/GI/images/1736403968363-header-sprite.png",
       "source": "https://www.goibibo.com/info/terms-of-services/",
       "note": "Exact unmodified rectangular extraction from official 250×400 header sprite. CSS logo size 104×30 at background-position -2px -1px with half-scale background; crop pixels x=4,y=2,width=208,height=60. Sprite retained as goibibo-sprite.png. Visually verified wordmark."
-    },
-    {
-      "brand": "StayVista",
-      "file": "stayvista.png",
-      "url": "https://img.vistarooms.com/website_assets/sv_logo_black.png",
-      "source": "https://www.stayvista.com/",
-      "note": "Official home page header logo, 160×73; display at 120×55 or smaller."
     }
   ],
   "note": "URLs fetched successfully from official pages/CDNs. Source publication of an asset is not a general grant of logo reuse permission. No marks recreated."

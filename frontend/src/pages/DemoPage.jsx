@@ -15,7 +15,7 @@ export default function DemoPage() {
           </>
         }
         description="See the real Simplified Management platform with a conversation centred on your portfolio, your channels and the work you want to simplify."
-        image="/images/dashboard.png"
+        image="/images/dashboard-overview.png"
         imageAlt="Actual Simplified Management dashboard with reservations, property totals and activity"
       >
         <Button type="primary" className="button" href="#contact">
