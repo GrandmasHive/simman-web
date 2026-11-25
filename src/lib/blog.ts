@@ -30,6 +30,80 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "small-properties-should-price-busy-dates-by-written-rule",
+    title: "Small Properties Should Price Busy Dates by Written Rule",
+    description: "Hotel rates in India rose faster than occupancy last quarter. Small properties should set busy-date prices months ahead, from their own booking records.",
+    category: "Column",
+    date: "2026-11-25",
+    readingMinutes: 5,
+    author: {
+      name: "Sanket Modi",
+      role: "Managing Director, Simplified Management",
+      image: "/authors/sanket-modi.jpg"
+    },
+    firstPublished: {
+      outlet: "HospitalityTech Edition",
+      url: "https://hospitalitytechedition.com/opinion/small-properties-should-price-busy-dates-by-written-rule/"
+    },
+    content: [
+      {
+        p: "India's listed hotel companies filed their July to September results this month, and the figures on price point one way. In its [investor presentation filed with the stock exchanges on 21 November](https://www.bseindia.com/xml-data/corpfiling/AttachLive/7a09d18c-1d81-4193-a26a-e9ed7426443e.pdf), EIH Associated Hotels cites HVS Anarock data showing industry occupancy up 1 to 3% on a year earlier, while the average room rate rose 8 to 10% to between ₹8,300 and ₹8,500 a night. The company's management adds: \"We continue to observe year-on-year increase in average rates across all regions.\""
+      },
+      {
+        p: "Apeejay Surrendra Park Hotels reported 94% occupancy for the same quarter in [its presentation filed on 17 November](https://www.bseindia.com/xml-data/corpfiling/AttachLive/33ba9d03-8b45-4b17-b224-c7f3048bdc85.pdf). Its managing director, Vijay Dewan, said: \"In Q2 FY27, we have delivered double-digit operating EBITDA growth of 11 % supported by 94% occupancy, among the highest in India, and with continued leadership in RevPAR in the upper-upscale segment.\""
+      },
+      {
+        p: "These are large hotels in big cities, and I would not carry their numbers over to a six room homestay in Coorg or a villa in Goa. The method carries over. The groups that are lifting their rates decide prices by date, from their own data, well before a guest calls."
+      },
+      {
+        p: "My view is that every small property should do the same at its own scale: write down its prices for busy dates months ahead, set them from its own booking history, and use the same price everywhere it sells."
+      },
+      {
+        h2: "The case for keeping one price"
+      },
+      {
+        p: "The strongest argument against this deserves a fair hearing. A small property lives on goodwill. A family that comes back every December remembers what it paid last year, and a sharp rise on a festival weekend can read as greed. A guest who sees one rate on a booking site and hears another on the phone stops trusting both. The homestay down the road may hold its rate and take the booking."
+      },
+      {
+        p: "I agree that guests remember prices, and that is the reason to plan them. A rise that is set in advance, applied the same way on every channel and limited to the dates where demand is clear is easy to explain. A loyal family can be given last year's rate as a written rule of its own. The price that damages trust is the one invented on the spot, when the owner hears that a wedding is in town and quotes whatever feels right that morning."
+      },
+      {
+        p: "Guests and regulators are also asking for prices that hold up. This site reported that [UK pricing rules put hotel resort fees and restaurant charges in the total price](https://hospitalitytechedition.com/news/uk-cma-total-price-rules-hotel-resort-fees-restaurant-charges/), and a RateGain audit found that [57% of the European luxury hotels it checked hide the total price](https://hospitalitytechedition.com/news/rategain-europe-direct-booking-friction-audit-57-percent-hide-total-price/) on their own sites. Those rules apply in Britain and Europe, and India has its own. Both point toward one full price, shown early."
+      },
+      {
+        h2: "What a written price plan looks like"
+      },
+      {
+        p: "Large chains buy software for this. This site reported that [B&B Hotels selected Duetto for revenue management](https://hospitalitytechedition.com/news/bb-hotels-selects-duetto-revenue-management/) across more than 930 hotels. A property with six rooms can start with a notebook or a spreadsheet and an hour a week."
+      },
+      {
+        ul: [
+          "Mark the dates that matter for your town: long weekends, the run from Diwali to New Year, local festivals, school holidays in the cities your guests come from, and the wedding dates families in your area have fixed.",
+          "Look at last year's bookings for those dates. Note how early each one filled and at what price.",
+          "Set three or four rate levels, such as a quiet weekday, a weekend, a peak date and an event date, and write down which dates get which level.",
+          "Set a floor for quiet weekdays: the lowest rate you will accept, so a slow Tuesday does not push the price below your costs.",
+          "Load the same rates on every booking site and on the list your caretaker quotes from, with taxes included in the price you show.",
+          "Review the plan once a week. Move a date up a level only when bookings for it are coming in faster than they did last year."
+        ]
+      },
+      {
+        h2: "Why this season"
+      },
+      {
+        p: "EIH Associated Hotels' management expects demand to stay strong through FY27, supported by meetings and events travel and an expected revival in foreign tourists. The same presentation notes that domestic air traffic fell about 6% on a year earlier in the quarter, citing DGCA data, which it puts down to rising aviation fuel prices, capacity limits and regional pressures."
+      },
+      {
+        p: "I read that as a reason for properties within driving distance of the big cities to watch their own enquiries closely this winter. A family that skips a flight may still take a long weekend by road. A property with its prices already written down can answer each enquiry in a minute, at a rate it chose with a clear head."
+      },
+      {
+        p: "If I ran a small property this week, I would open the calendar for December to February, mark every date that sold out last year, and write a rate next to each one before the first wedding enquiry of the season comes in."
+      },
+      {
+        p: "Source: [EIH Associated Hotels, Q2 FY27 investor presentation (BSE filing, 21 November 2026)](https://www.bseindia.com/xml-data/corpfiling/AttachLive/7a09d18c-1d81-4193-a26a-e9ed7426443e.pdf); [Apeejay Surrendra Park Hotels, Q2 FY27 investor presentation (17 November 2026)](https://www.bseindia.com/xml-data/corpfiling/AttachLive/33ba9d03-8b45-4b17-b224-c7f3048bdc85.pdf)"
+      }
+    ]
+  },
+  {
     slug: "small-properties-need-their-own-repeat-guest-list",
     title: "Small Properties Need Their Own Repeat Guest List",
     description: "EaseMyTrip reports a repeat booking rate above 90%. Sanket Modi says small hotels and homestays should earn the second stay from their own guest records.",
