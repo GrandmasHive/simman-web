@@ -12,6 +12,7 @@ export default function Channels() {
               href="/integrations"
               aria-label={`Explore ${c.name} integration`}
               className="channel-logo"
+              data-tooltip={c.name}
             >
               <img src={c.logo} alt={c.name} loading="lazy" />
             </a>

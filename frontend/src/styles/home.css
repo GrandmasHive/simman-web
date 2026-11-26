@@ -133,12 +133,54 @@
   color: #53677d;
 }
 .channel-logo {
+  position: relative;
   display: inline-flex;
   transition: transform 0.25s ease;
 }
 .channel-logo:hover,
 .channel-logo:focus-visible {
   transform: translateY(-3px);
+}
+.channel-logo::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translate(-50%, 4px);
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: #122c4d;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 5;
+}
+.channel-logo::before {
+  content: "";
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translate(-50%, 4px);
+  border: 6px solid transparent;
+  border-top-color: #122c4d;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 5;
+}
+.channel-logo:hover::after,
+.channel-logo:hover::before,
+.channel-logo:focus-visible::after,
+.channel-logo:focus-visible::before {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
 }
 .channel-names span {
   font-family: "Manrope", sans-serif;
