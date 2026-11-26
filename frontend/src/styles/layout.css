@@ -70,6 +70,7 @@
 }
 .navigation > a:not(.button):not(.nav-ai-link) {
   position: relative;
+  outline: none;
   transition: color 0.2s ease;
 }
 .navigation > a:not(.button):not(.nav-ai-link)::after {
@@ -86,6 +87,7 @@
   color: var(--blue-hover);
 }
 .navigation > a:not(.button):not(.nav-ai-link):hover::after,
+.navigation > a:not(.button):not(.nav-ai-link):focus-visible::after,
 .navigation > a:not(.button):not(.nav-ai-link)[aria-current="page"]::after {
   right: 0;
 }
