@@ -139,8 +139,18 @@
   transition: transform 0.25s ease;
 }
 .channel-logo img {
-  max-height: 300px !important;
-  width: 300px !important;
+  height: 36px;
+  width: auto;
+  max-width: none;
+}
+.channel-logo[data-tooltip="Airbnb"] img {
+  height: 46px;
+}
+.channel-logo[data-tooltip="Vrbo"] img,
+.channel-logo[data-tooltip="Goibibo"] img,
+.channel-logo[data-tooltip="Agoda"] img,
+.channel-logo[data-tooltip="Expedia"] img {
+  height: 24px;
   width: auto;
   max-width: 300px;
 }
