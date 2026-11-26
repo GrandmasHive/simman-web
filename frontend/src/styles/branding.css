@@ -148,8 +148,26 @@
 .pricing-notes { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 30px; margin-top: 28px; }
 .pricing-notes p { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 13px; color: var(--muted); }
 .pricing-notes svg { color: var(--blue); }
-@media (max-width: 780px) { .pricing-grid--two { grid-template-columns: 1fr; } }
-@media (max-width: 400px) { .pricing-rates { grid-template-columns: 1fr; } }
+@media (max-width: 780px) {
+  .pricing-grid--two { grid-template-columns: 1fr; gap: 0; }
+  .pricing-grid--two article,
+  .pricing-grid--two article:first-child,
+  .pricing-grid--two article:last-child {
+    padding: 28px 0;
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+  }
+  .pricing-grid--two article:last-child {
+    border-bottom: none;
+  }
+  .pricing-grid h3 { font-size: 24px; }
+  .pricing-rates strong { font-size: 30px; }
+}
+@media (max-width: 400px) {
+  .pricing-rates { grid-template-columns: 1fr; }
+}
 @media (max-width: 1150px) {
   .brand-full-logo {
     width: 215px;
