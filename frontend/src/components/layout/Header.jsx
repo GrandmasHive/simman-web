@@ -21,7 +21,11 @@ export default function Header({ path = "/" }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
   return (
-    <header className={`site-header ${scrolled ? "site-header--scrolled" : ""}`}>
+    <header
+      className={`site-header ${path === "/" ? "site-header--home" : ""} ${
+        scrolled ? "site-header--scrolled" : ""
+      }`}
+    >
       <div className="container header-inner">
         <Brand />
         <button

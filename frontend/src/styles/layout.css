@@ -4,11 +4,39 @@
   z-index: 50;
   border-bottom: 1px solid transparent;
   background: #fff;
-  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease,
+    background-color 0.25s ease;
+}
+.site-header--home {
+  position: absolute;
+  inset: 0 0 auto;
+  background: transparent;
+}
+.site-header--home.site-header--scrolled {
+  position: fixed;
+  background: #fff;
 }
 .site-header--scrolled {
   border-bottom-color: #eef1f4;
   box-shadow: 0 8px 24px rgba(21, 44, 67, 0.06);
+}
+.site-header--home:not(.site-header--scrolled) .brand-full-logo {
+  filter: brightness(0) invert(1);
+}
+.site-header--home:not(.site-header--scrolled) .menu-toggle {
+  border-color: #ffffff80;
+  background: #ffffff12;
+  color: #fff;
+}
+@media (min-width: 981px) {
+  .site-header--home:not(.site-header--scrolled)
+    .navigation > a:not(.button):not(.nav-ai-link) {
+    color: #fff;
+  }
+  .site-header--home:not(.site-header--scrolled)
+    .navigation > a:not(.button):not(.nav-ai-link)::after {
+    background: #fff;
+  }
 }
 .header-inner {
   min-height: 100px;
@@ -315,6 +343,12 @@
   }
   .site-header {
     position: sticky;
+  }
+  .site-header--home {
+    position: absolute;
+  }
+  .site-header--home.site-header--scrolled {
+    position: fixed;
   }
   .navigation {
     display: none;
