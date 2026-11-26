@@ -1,5 +1,6 @@
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
+import LogoIntro from "./components/ui/LogoIntro";
 import HomePage from "./pages/HomePage";
 import { useEffect, useSyncExternalStore } from "react";
 import ProductPage from "./pages/ProductPage";
@@ -121,6 +122,7 @@ export default function App() {
   }
   return (
     <div onClick={navigate}>
+      <LogoIntro />
       <a className="skip-link" href="#main">
         Skip to content
       </a>

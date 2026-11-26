@@ -1,3 +1,30 @@
+/* Logo intro animation */
+.logo-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 8, 20, 0.92);
+  pointer-events: none;
+  transition: opacity 0.55s ease;
+}
+.logo-intro--fly {
+  opacity: 0;
+}
+.logo-intro-inner {
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.logo-intro-inner img {
+  width: clamp(220px, 30vw, 360px);
+  filter: brightness(0) invert(1);
+  display: block;
+}
+.logo-intro--fly .logo-intro-inner {
+  transform: scale(0.45) translate(-56vw, -42vh);
+}
+
 .site-header {
   position: sticky;
   top: 0;
@@ -36,6 +63,16 @@
   .site-header--home:not(.site-header--scrolled)
     .navigation > a:not(.button):not(.nav-ai-link)::after {
     background: #fff;
+  }
+  .site-header--home:not(.site-header--scrolled) .header-login {
+    color: rgba(255,255,255,0.9);
+    border-color: rgba(255,255,255,0.3);
+  }
+  .site-header--home:not(.site-header--scrolled) .nav-ai-link {
+    background: rgba(255,255,255,0.12) !important;
+    border-color: rgba(255,255,255,0.35) !important;
+    color: rgba(255,255,255,0.95) !important;
+    box-shadow: none;
   }
 }
 .header-inner {

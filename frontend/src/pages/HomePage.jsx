@@ -16,7 +16,7 @@ import SectionAtmosphere from "../components/ui/SectionAtmosphere";
 export default function HomePage() {
   return (
     <main id="main" tabIndex="-1">
-      <SectionAtmosphere><Hero /></SectionAtmosphere>
+      <Hero />
       <Channels />
       <AiAssistant />
       <AiAssistantPrompts />
