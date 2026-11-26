@@ -119,8 +119,9 @@
   margin-top: 3px;
   color: #597c68;
 }
-.pricing-grid .button {
+#root .pricing-grid .button {
   width: 100%;
+  white-space: nowrap;
 }
 .pricing-grid--two {
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -130,10 +131,15 @@
 .pricing-grid--two article,
 .pricing-grid--two article:first-child,
 .pricing-grid--two article:last-child {
+  display: flex;
+  flex-direction: column;
   padding: 32px;
   border: 1px solid var(--line);
   border-radius: 24px;
   background: #f8fbff;
+}
+.pricing-grid--two article > .button {
+  margin-top: auto;
 }
 .pricing-rates { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 28px; }
 .pricing-rates p { font-size: 13px; color: var(--muted); margin-bottom: 6px; }

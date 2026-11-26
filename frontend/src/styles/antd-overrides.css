@@ -2,6 +2,7 @@
 #root .ant-btn.button {
   height: auto;
   white-space: normal;
+  box-shadow: none;
 }
 #root .ant-card.content-card > .ant-card-body {
   padding: 0;
