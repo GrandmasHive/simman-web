@@ -1,7 +1,7 @@
 export const channels = [
   {
     name: "Airbnb",
-    logo: "/images/channels/airbnb.svg",
+    logo: "/images/channels/airbnb.png",
     description:
       "Connect your home and vacation-rental listings to your central availability workflow.",
   },
