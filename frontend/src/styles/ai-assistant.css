@@ -23,6 +23,25 @@
   line-height: 1.12;
   letter-spacing: -2px;
 }
+.typing-h2 {
+  min-height: calc(clamp(42px, 4.8vw, 64px) * 1.12 * 4);
+  display: block;
+}
+.typing-line span:not(.typing-cursor) {
+  color: #77a9f1;
+  font-weight: 600;
+}
+.typing-cursor {
+  display: inline-block;
+  color: #77a9f1;
+  font-weight: 300;
+  margin-left: 2px;
+  animation: blink-cursor 0.75s step-end infinite;
+}
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
 .ai-copy h2 span {
   color: #77a9f1;
   font-weight: 600;
